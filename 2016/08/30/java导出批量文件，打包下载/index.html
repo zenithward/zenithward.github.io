@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>java导出批量文件，打包下载 | 麦桃子的部落格</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.获取json格式的数据Json-lib包是一个beans,collections,maps,java arrays 和XML和Json相互转换的包，主要就是用来解析Json数据
+需要导入的依赖包
+
+commons-beanutils-1.7.0.jarcommons-collections-3.2.jarcommons-lang-2.4.jarcommons-logging-1.1.jarez">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java导出批量文件，打包下载">
+<meta property="og:url" content="http://yoursite.com/2016/08/30/java导出批量文件，打包下载/index.html">
+<meta property="og:site_name" content="麦桃子的部落格">
+<meta property="og:description" content="1.获取json格式的数据Json-lib包是一个beans,collections,maps,java arrays 和XML和Json相互转换的包，主要就是用来解析Json数据
+需要导入的依赖包
+
+commons-beanutils-1.7.0.jarcommons-collections-3.2.jarcommons-lang-2.4.jarcommons-logging-1.1.jarez">
+<meta property="og:updated_time" content="2016-08-30T07:34:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java导出批量文件，打包下载">
+<meta name="twitter:description" content="1.获取json格式的数据Json-lib包是一个beans,collections,maps,java arrays 和XML和Json相互转换的包，主要就是用来解析Json数据
+需要导入的依赖包
+
+commons-beanutils-1.7.0.jarcommons-collections-3.2.jarcommons-lang-2.4.jarcommons-logging-1.1.jarez">
+  
+    <link rel="alternative" href="/atom.xml" title="麦桃子的部落格" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xruqa.com1.z0.glb.clouddn.com/IMG_myphoto.JPG" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Mai Taozi</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>About</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">越努力 越幸运</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Mai Taozi</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://7xruqa.com1.z0.glb.clouddn.com/IMG_myphoto.JPG" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Mai Taozi</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-java导出批量文件，打包下载" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/30/java导出批量文件，打包下载/" class="article-date">
+  	<time datetime="2016-08-30T06:44:02.000Z" itemprop="datePublished">2016-08-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      java导出批量文件，打包下载
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-获取json格式的数据"><a href="#1-获取json格式的数据" class="headerlink" title="1.获取json格式的数据"></a>1.获取json格式的数据</h2><p>Json-lib包是一个beans,collections,maps,java arrays 和XML和Json相互转换的包，主要就是用来解析Json数据</p>
+<p>需要导入的依赖包</p>
+<blockquote>
+<p>commons-beanutils-1.7.0.jar<br>commons-collections-3.2.jar<br>commons-lang-2.4.jar<br>commons-logging-1.1.jar<br>ezmorph-1.0.4.jar<br>json-lib-2.2.3-jdk13.jar</p>
+</blockquote>
+<p><strong>JSONArray和JSONObject的区别</strong></p>
+<pre><code>{
+&quot;cat&quot;:&quot;it&quot;,
+&quot;language&quot;:[
+    {&quot;id&quot;:1,&quot;ide&quot;:&quot;eclipse&quot;,&quot;name&quot;:Java},
+    {&quot;id&quot;:2,&quot;ide&quot;:&quot;XCode&quot;,&quot;name&quot;:&quot;Swift&quot;},
+    {&quot;id&quot;:3,&quot;ide&quot;:&quot;Visual Stdio&quot;,&quot;name&quot;:&quot;C#&quot;}     
+],
+&quot;pop&quot;:true
+}
+</code></pre><p>JsonArray array=object.get(“language”).getAsJsonArray();   </p>
+<pre><code>{
+&quot;resultcode&quot;: &quot;200&quot;,
+&quot;reason&quot;: &quot;successed!&quot;,
+&quot;result&quot;: {
+    &quot;sk&quot;: {
+        &quot;temp&quot;: &quot;24&quot;,
+        &quot;wind_direction&quot;: &quot;西南风&quot;,
+        &quot;wind_strength&quot;: &quot;2级&quot;,
+        &quot;humidity&quot;: &quot;51%&quot;,
+        &quot;time&quot;: &quot;10:11&quot;
+    }
+}
+}
+</code></pre><p>JsonObject result=json.get(“result”).getAsJsonObject();</p>
+<p><strong>转化成json数据</strong></p>
+<p><1>List集合转化成json方法</1></p>
+<pre><code>List list = new ArrayList();
+list.add( &quot;first&quot; );
+list.add( &quot;second&quot; );
+JSONArray jsonArray2 = JSONArray.fromObject( list );
+</code></pre><p><2>Map集合转换成json方法</2></p>
+<pre><code>Map map = new HashMap();
+map.put(&quot;name&quot;, &quot;json&quot;);
+map.put(&quot;bool&quot;, Boolean.TRUE);
+map.put(&quot;int&quot;, new Integer(1));
+map.put(&quot;arr&quot;, new String[] { &quot;a&quot;, &quot;b&quot; });
+map.put(&quot;func&quot;, &quot;function(i){ return this.arr[i]; }&quot;);
+JSONObject json = JSONObject.fromObject(map);
+</code></pre><p><3>数组转化成json代码</3></p>
+<pre><code>boolean[] boolArray = new boolean[] { true, false, true };
+JSONArray jsonArray1 = JSONArray.fromObject(boolArray);  
+</code></pre><h2 id="2-循环写入文件"><a href="#2-循环写入文件" class="headerlink" title="2.循环写入文件"></a>2.循环写入文件</h2><pre><code> List&lt;String&gt; file =new ArrayList&lt;String&gt;();
+ List&lt;File&gt; files=new ArrayList&lt;File&gt;();
+
+ //项目当前的根目录
+ String path=request.getSession().getServletContext().getRealPath(File.separator) 
+
+ JSONObject obj=jsonObj.getJSONObject(&quot;ret_info&quot;).getJSONObject(&quot;ret&quot;);
+
+ //根据一个Json数据，循环写入多个文件
+ Iterator it=obj.keys();
+
+ while(it.hasNext()){
+     String fileName=(String) it.next();
+     file.add(fileName);
+
+     File toFile=new File(path+fileName+&quot;.txt&quot;);
+     if(!toFile.exists()){
+           toFile.createNewFile();
+     }
+     //文件输出流
+     FileoutputStream fos=new FileOutputStream(toFile);
+     StringBuffer write=new StringBuffer();
+
+     //要写入文件的内容
+     write.append（&quot;*******************&quot;）;
+     ...
+
+     try{
+        fos.write(write.toString().getBytes(&quot;UTF-8&quot;));
+     }
+     catch(Exception e){
+         e.printStackTrace();
+     }
+     finally{
+         fos.flush();
+         fos.close();
+ }
+}
+</code></pre><h2 id="3-文件打包"><a href="#3-文件打包" class="headerlink" title="3.文件打包"></a>3.文件打包</h2><pre><code>for(int i=0;i&lt;file.size();i++){
+   String table=file.get(i);
+   File tempFile=new File(path+table+&quot;.txt&quot;);
+   files.add(tempFile);
+}
+
+BufferedInputStream bfs=null;
+byte data[]=new byte[1024];
+FileOutputStream dest=new FileOutputStream(path+&quot;/&quot;+&quot;导出数据.zip&quot;);
+ZipOutputStream out=new ZipOutputStream(new BufferedOutputStream(dest));
+
+for (int i = 0; i &lt; files.size(); i++) {
+
+                 int count;
+                 FileInputStream fis = new FileInputStream(files.get(i));
+                 bfs = new BufferedInputStream(fis);
+                 ZipEntry entry = new ZipEntry(files.get(i).getName());
+                 out.putNextEntry(entry);
+                 while ((count = bfs.read(data, 0, 1024)) != -1) {
+                      out.write(data, 0, count);
+                 }
+                 bfs.close();
+            }
+            out.close();
+</code></pre><h2 id="4-文件下载"><a href="#4-文件下载" class="headerlink" title="4.文件下载"></a>4.文件下载</h2><pre><code>File filedown=new File(path+&quot;/&quot;+&quot;导出数据.zip&quot;);
+            response.setHeader(&quot;Content-Disposition&quot;, &quot;attachment; filename=&quot;
+                    + &quot;data.zip&quot;);
+            response.setContentLength((int) filedown.length());
+            response.setContentType(&quot;application/zip&quot;);// 定义输出类型
+            try{
+                FileInputStream fis = new FileInputStream(filedown);
+                BufferedInputStream buff = new BufferedInputStream(fis);
+                byte[] b = new byte[1024];// 相当于我们的缓存
+                long k = 0;// 该值用于计算当前实际下载了多少字节
+                OutputStream myout = response.getOutputStream();// 从response对象中得到输出流,准备下载
+                // 开始循环下载
+                while (k &lt; filedown.length()) {
+                    int j = buff.read(b, 0, 1024);
+                    k += j;
+                    myout.write(b, 0, j);
+                }
+                myout.flush();
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+</code></pre>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/09/18/java学习路线图/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          java学习路线图
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/02/全文检索相关知识总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">全文检索相关知识总结</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="java导出批量文件，打包下载" data-title="java导出批量文件，打包下载" data-url="http://yoursite.com/2016/08/30/java导出批量文件，打包下载/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Mai Taozi
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
