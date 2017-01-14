@@ -23,7 +23,7 @@ slave1   10.108.103.13">
 master   10.108.101.210
 slave1   10.108.103.13">
 <meta property="og:image" content="http://7xruqa.com1.z0.glb.clouddn.com/spark%20on%20yarn%E8%BF%90%E8%A1%8C%E5%9B%BE.jpg">
-<meta property="og:updated_time" content="2017-01-14T07:18:36.000Z">
+<meta property="og:updated_time" content="2017-01-14T07:21:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hadoop2.6+spark1.6.3分布式计算框架的搭建">
 <meta name="twitter:description" content="软硬件设备及安装前的环境搭建
@@ -440,8 +440,7 @@ export PATH=$PATH:$SCALA_HOME/bin
 <pre><code>source /etc/profile
 </code></pre><p>测试环境变量设置</p>
 <pre><code>scala -version
-</code></pre><h2 id="Spark安装与配置"><a href="#Spark安装与配置" class="headerlink" title="Spark安装与配置"></a>Spark安装与配置</h2><p>###1.spark下载与解压</p>
-<p><a href="http://www.apache.org/dyn/closer.lua/spark/spark1.6.3/spark-1.6.3-bin-hadoop2.6.tgz" target="_blank" rel="external">Spark下载</a></p>
+</code></pre><h2 id="Spark安装与配置"><a href="#Spark安装与配置" class="headerlink" title="Spark安装与配置"></a>Spark安装与配置</h2><h3 id="1-spark下载与解压"><a href="#1-spark下载与解压" class="headerlink" title="1.spark下载与解压"></a>1.spark下载与解压</h3><p><a href="http://www.apache.org/dyn/closer.lua/spark/spark1.6.3/spark-1.6.3-bin-hadoop2.6.tgz" target="_blank" rel="external">Spark下载</a></p>
 <p>将压缩包解压至/usr/spark目录</p>
 <pre><code>tar zxvf /opt/spark1.6.3-bin-hadoop2.6.tgz -C /usr/spark
 </code></pre><p>将spark文件夹授权给hadoop用户</p>
