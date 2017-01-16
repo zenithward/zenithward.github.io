@@ -70,7 +70,7 @@
 						<li>Tags</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -172,6 +172,103 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-使用ajax-springmvc的controller无法页面跳转" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/12/使用ajax-springmvc的controller无法页面跳转/" class="article-date">
+  	<time datetime="2016-06-12T07:04:02.000Z" itemprop="datePublished">2016-06-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/12/使用ajax-springmvc的controller无法页面跳转/">使用ajax springmvc的controller无法页面跳转</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>问题</strong></p>
+<p>在使用ajax传递数据给controller并实现页面跳转时，发现controller中return的页面无法跳转成功，可能原因：ajax不提供跳转功能。</p>
+<p><strong>解决办法</strong></p>
+<p>如果想要实现上诉功能的话可以使用window.location.href=”xxxx.do”,这样访问我们的controller之后可以实现页面跳转，并且放在ModelAndView中的数据可以在下一个页面中取到。</p>
+<p>html代码</p>
+<pre><code>&lt;div class=&quot;cart&quot;&gt;
+&lt;a href=&quot;javascript:void(0)&quot; onclick=&quot;buy()&quot; class=&quot;bay&quot; &gt;立即购买&lt;/a&gt;
+&lt;a href=&quot;#&quot; class=&quot;bay&quot;&gt;加入购物车&lt;/a&gt;
+&lt;input type=&quot;text&quot; id=&quot;number&quot; class=&quot;number&quot; value=&quot;1&quot; /&gt;
+&lt;span&gt;Quantity:&lt;/span&gt;&lt;/div&gt;
+</code></pre><p>js代码</p>
+<pre><code>function buy(){
+var goodID=101; 
+var number=$(&quot;#number&quot;).val();
+var cost=$(&quot;#price_new&quot;).text();
+
+$.ajax({  
+    type: &quot;GET&quot;,  
+    success:function(data){  
+    window.location.href =&apos;&lt;%=path%&gt;/buy.do?goodID=&apos; + goodID + &apos;&amp;number=&apos;+number +&apos;&amp;price=&apos;+cost;  
+    },
+     //dataType: &apos;json&apos;,  
+}); 
+}
+</code></pre><p>controller代码</p>
+<pre><code>@RequestMapping(value = &quot;buy&quot;, method = RequestMethod.GET)
+public ModelAndView buy(HttpServletRequest request) throws Exception {
+
+     String goodID = request.getParameter(&quot;goodID&quot;);
+     String number = request.getParameter(&quot;number&quot;);  
+     String price =request.getParameter(&quot;price&quot;);
+
+
+
+            ModelAndView mav = new ModelAndView(&quot;checkout&quot;);
+
+            mav.addObject(&quot;goodID&quot;, goodID);
+            mav.addObject(&quot;number&quot;, number);
+            mav.addObject(&quot;price&quot;,price);
+            System.out
+                    .println(&quot;goodID=&quot; + goodID + &quot; number=&quot; + number+ &quot; price=&quot;+ price);
+
+            return mav ;
+
+}
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-Spring-MVC程序中得到网页的静态资源文件css-js-图片" class="article article-type-post" itemscope itemprop="blogPost">
   

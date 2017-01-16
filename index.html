@@ -70,7 +70,7 @@
 						<li>Tags</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -172,6 +172,238 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-Kafka集群搭建" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/01/14/Kafka集群搭建/" class="article-date">
+  	<time datetime="2017-01-14T07:22:52.000Z" itemprop="datePublished">2017-01-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/14/Kafka集群搭建/">Kafka集群搭建</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="kafka初识"><a href="#kafka初识" class="headerlink" title="kafka初识"></a>kafka初识</h2><h3 id="1-Kafka使用背景"><a href="#1-Kafka使用背景" class="headerlink" title="1.Kafka使用背景"></a>1.Kafka使用背景</h3><p>在我们大量使用分布式数据库，分布式计算集群的时候，是否会遇到这样的一些问题</p>
+<blockquote>
+<ul>
+<li>我们想分析下用户行为（pageviews），以便我们设计出更好的广告位</li>
+<li>我想对用户的搜索关键词进行统计，分析出当前的流行趋势</li>
+<li>有些数据，存储数据库浪费，直接存储硬盘效率又低</li>
+</ul>
+</blockquote>
+<font color="red">这些场景都有一个共同点：数据是由上游模块产生，使用上游模块的数据计算，统计，分析，这个时候就可以使用消息系统，尤其是分布式消息系统。</font>
+
+<h3 id="2-Kafka的定义"><a href="#2-Kafka的定义" class="headerlink" title="2.Kafka的定义"></a>2.Kafka的定义</h3><p><font color="blue">What is Kafka:</font>它是一个分布式消息系统，由linkedin使用scala编写，用作LinkedIn的活动流（Activity Stream）和运营数据处理管道（Pipeline）的基础，具有高水平扩展和高吞吐量。</p>
+<blockquote>
+<p>Zookeeper是一种在分布式系统中，被广泛用来作为：分布式状态管理，分布式协调管理，分布式配置管理和分布式锁服务的集群。kafka增加和减少服务器都会在Zookeeper节点上触发相应的事件kafka系统会捕获这些事件，进行新一轮的负载均衡。</p>
+</blockquote>
+<h2 id="Kafka相关概念"><a href="#Kafka相关概念" class="headerlink" title="Kafka相关概念"></a>Kafka相关概念</h2><h3 id="1-AMQP协议"><a href="#1-AMQP协议" class="headerlink" title="1.AMQP协议"></a>1.AMQP协议</h3><p>Advanced Message Queuing Protocol(高级消息队列协议)</p>
+<blockquote>
+<p>The Advanced Message Queuing Protocol（AMQP）：是一个标准开放的应用层的消息中间件（Message Oriented Middleware）协议。AMQP定义了通过网络发送的字节流的数据格式。因此兼容性非常好，任何实现AMQP协议的程序都可以和AMQP协议兼容的其他程序交互，可以很容易做到跨语言，跨平台。</p>
+</blockquote>
+<h3 id="2-一些基本的概念"><a href="#2-一些基本的概念" class="headerlink" title="2.一些基本的概念"></a>2.一些基本的概念</h3><p>1.消费者（Consumer）:从消息队列中请求消息的客户端应用程序</p>
+<p>2.生产者（Producer）:向broker发布消息的应用程序</p>
+<p>3.AMQP服务器（broker）:用来接收生产者发送消息并将这些消息路由给服务器中的队列，便于kafka将生产者发送的数据，动态的添加到磁盘病给每一条消息一个偏移量，所以对于Kafka一个broker就是一个应用程序的示例，可以使用以上任何一种语言和kafka服务器进行通信（即可以编写自己的consumer从kafka集群订阅消息也可以自己写producer程序）</p>
+<h3 id="3-Kafka架构"><a href="#3-Kafka架构" class="headerlink" title="3.Kafka架构"></a>3.Kafka架构</h3><blockquote>
+<p>主题（topic）:一个主题类似新闻中的体育，娱乐，教育等分类概念，在实际工程中通常一个业务一个主题</p>
+<p>分区（Partition）:一个Topic中的消息数据按照多个分区组织，分区时kafka消息队列组织的最小单位，一个分区可以看作是一个FIFO（First Input First Output的缩写，先入先出队列）的队列。</p>
+</blockquote>
+<p>kafka分区是提高kafka性能的关键所在，当你发现你的集群性能不高时，常用手段就是增加topic的分区，分区里面的消息是按照从新到老的顺序进行组织的，消费者从队列头订阅消息，生产者从队列尾添加消息。</p>
+<p><img src="http://7xruqa.com1.z0.glb.clouddn.com/kafka%E5%B7%A5%E4%BD%9C%E5%9B%BE.JPG" alt=""></p>
+<p>备份（Replication）:为了保证分布式可靠性，kafka0.8开始对每个分区的数据进行备份（不同的broker上）防止其中一个Broker宕机照成分区上的数据不可用。</p>
+<h2 id="Zookeeper集群搭建"><a href="#Zookeeper集群搭建" class="headerlink" title="Zookeeper集群搭建"></a>Zookeeper集群搭建</h2><p>Kafka集群时把状态保存在Zookeeper中的，首先要搭建Zookeeper集群</p>
+<h3 id="1-软件环境"><a href="#1-软件环境" class="headerlink" title="1.软件环境"></a>1.软件环境</h3><blockquote>
+<p>10.108.101.210   master</p>
+<p>10.108.103.137   slave1</p>
+<p>10.108.100.59    slave2</p>
+</blockquote>
+<p>1.linux服务器一台，三台，五台（2*n＋1）Zookeeper集群的宫缩时超过半数才能对外提供服务，3台中超过两台超过半数，允许1台挂掉，是否可以用偶数，其实没必要。</p>
+<p>2.Java jdk1.8 zookeeper时用java写的所以他的需要Java环境，java时运行在java虚拟机上的</p>
+<p>3.Zookeeper的稳定版</p>
+<h3 id="2-配置-amp-安装zookeeper"><a href="#2-配置-amp-安装zookeeper" class="headerlink" title="2.配置&amp;安装zookeeper"></a>2.配置&amp;安装zookeeper</h3><h4 id="1-安装Jdk"><a href="#1-安装Jdk" class="headerlink" title="1.安装Jdk"></a>1.安装Jdk</h4><h4 id="2-下载Zookeeper"><a href="#2-下载Zookeeper" class="headerlink" title="2.下载Zookeeper"></a>2.下载Zookeeper</h4><pre><code>＃统一放在/opt下面
+＃首先创建Zookeeper项目目录
+mkdir zookeeper  #项目目录
+mkdir zkdata  #存放快照日志
+mkdir zkdatalog  #存放事务日志
+</code></pre><p>下载Zookeeper</p>
+<pre><code>＃下载软件
+cd /opt/zookeeper
+wget http://mirrors.cnnic.cn/apache/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz
+#解压软件
+tar -zxvf zookeeper-3.4.6.tar.gz
+</code></pre><h3 id="3-修改配置文件"><a href="#3-修改配置文件" class="headerlink" title="3.修改配置文件"></a>3.修改配置文件</h3><p>进入到解压好的目录里面的conf目录中，查看</p>
+<pre><code>＃进入conf目录
+/opt/zookeeper/zookeeper-3.4.6/conf
+#查看 ll
+-rw-rw-r--. 1 1001 1001  535 8月  23 15:39 configuration.xsl
+-rw-rw-r--. 1 1001 1001 2161 8月  23 15:39 log4j.properties
+-rw-r--r--. 1 root root 1013 1月  15 2017 zoo.cfg
+-rw-rw-r--. 1 1001 1001  922 8月  23 15:39 zoo_sample.cfg
+</code></pre><p>zoo_sample.cfg 这个文件是官方给我们的zookeeper的样板文件，给他复制一份命名为zoo.cfg，zoo.cfg是官方指定的文件命名规则</p>
+<p>3台服务器的配置文件</p>
+<pre><code># The number of milliseconds of each tick
+tickTime=2000
+# The number of ticks that the initial 
+# synchronization phase can take
+initLimit=10
+# The number of ticks that can pass between 
+# sending a request and getting an acknowledgement
+syncLimit=5
+# the directory where the snapshot is stored.
+# do not use /tmp for storage, /tmp here is just 
+# example sakes.
+dataDir=/home/zookeeper-3.4.9/data
+# the port at which the clients will connect
+clientPort=12181
+server.1=master:2888:3888
+server.2=slave1:2888:3888
+server.3=slave2:2888:3888
+</code></pre><p>配置文件解释</p>
+<pre><code>＃tickTime
+这个时间是作为Zookeeper服务器之间或客户端与服务器之间维持心跳的时间间隔，也就是每个tickTime时间就会发送一个心跳
+＃initLimit
+这个配置项是用来配置Zookeeper接受客户端（这里所说的客户端不是用户连接Zookeeper服务器的客户端，而是Zookeeper服务器集群中连接到Leader的Follower服务器）初始化连接时最长能忍受多少个心跳时间间隔数，当已经超过5个心跳的时间（也就是tickTime）长度后Zookeeper服务器还没有收到客户端的返回信息，那么表明这个客户端连接失败，总的时间长度就是5*2000=10秒
+＃syncLimit
+这个配置项标识Leader与Follower之间发送消息，请求和应答时间长度，最长不能超过多少个tickTime的时间长度，总的时间长度就是5*2000=10秒
+＃dataDir
+快照日志的存储路径
+＃dataLogDir
+事务日志的存储路径，如果不配置这个那么事务日志会默认存储到dataDir制定的目录，这样会严重影响zk的性能，当zk的吞吐量较大的时候，产生的事务日志，快照日志太多
+＃clientPort
+这个端口就是客户端连接Zookeeper服务器的端口，Zookeeper会监听这个端口，接受客户端的请求访问，修改他的端口改大点
+</code></pre><p>创建myid文件</p>
+<pre><code>#server1
+echo &quot;1&quot; &gt; /home/zookeeper-3.4.6/data/myid
+#server2
+echo &quot;2&quot; &gt; /home/zookeeper-3.4.6/data/myid
+#server3
+echo &quot;3&quot; &gt; /home/zookeeper-3.4.6/data/myid
+</code></pre><h3 id="4-重要配置说明"><a href="#4-重要配置说明" class="headerlink" title="4.重要配置说明"></a>4.重要配置说明</h3><p>1.myid文件和server.myid在快照目录下存放的标识本台服务器的文件，他时整个zk集群用来发现彼此的一个重要标识</p>
+<p>2.zoo.cfg文件时zookeeper配置文件在conf目录里</p>
+<p>3.log4j.properties文件是zk的日志输出文件，在conf目录里用java写的程序基本上有个共同点日志都用log4j来进行管理</p>
+<p>4.zkServer.sh：主要管理程序文件  zkEnv.sh：是zookeeper集群启动时配置环境变量的文件</p>
+<p>5.Zookeeper server not remove old snapshots and log files when using the default configuration(see autopurge below),this is the responsibility of the operator zookeeper不会主动的清除旧的快照和日志文件，这个是操作者的责任</p>
+<h3 id="5-启动服务并查看"><a href="#5-启动服务并查看" class="headerlink" title="5.启动服务并查看"></a>5.启动服务并查看</h3><p>1.启动服务</p>
+<pre><code>#进入到zookeeper的bin目录下
+cd /opt/zookeeper/zookeeper-3.4.6/bin
+#启动服务（三台机子都需要操作）
+./zkServer.sh start
+</code></pre><p>2.检查服务状态</p>
+<pre><code>#检查服务器状态
+./zkServer.sh status
+</code></pre><p>通过status就能看到状态</p>
+<pre><code>./zkServer.sh status
+JMX enabled by default
+Using config:/opt/zookeeper-3.4.6/bin/../conf/zoo.cfg  #配置文件
+Mode:follower  ＃他是否为领导
+</code></pre><p>zk集群一般只有一个leader,多个follower，主一般是相应客户端的读写请求，而主从同步数据，当主挂掉之后就会从follower里投票选举一个leader出来</p>
+<p>可以用jps查看zk的进程，这个zk的整个工程的main</p>
+<pre><code>#执行命令jps
+20348 Jps
+4233  QuorumPeerMain
+</code></pre><h2 id="Kafka集群搭建"><a href="#Kafka集群搭建" class="headerlink" title="Kafka集群搭建"></a>Kafka集群搭建</h2><h3 id="1-软件环境-1"><a href="#1-软件环境-1" class="headerlink" title="1.软件环境"></a>1.软件环境</h3><blockquote>
+<ul>
+<li>linux一台或多台，大于等于2</li>
+<li>已经搭建好的zookeeper集群</li>
+<li>软件版本kafka_2.11-0.10.1.0.tgz</li>
+</ul>
+</blockquote>
+<h3 id="2-创建目录并下载安装软件"><a href="#2-创建目录并下载安装软件" class="headerlink" title="2.创建目录并下载安装软件"></a>2.创建目录并下载安装软件</h3><pre><code>#创建目录
+cd /opt/
+mkdir kafka
+cd kafka
+mkdir kafkalogs ＃创建kafka消息目录，主要存放kafka消息
+
+＃下载软件
+wget http://apache.opencas.org/kafka/0.10.1.0/kafka_2.11-0.10.1.0.tgz
+
+＃解压软件
+tar -zxvf kafka_2.11-0.10.1.0.tgz
+</code></pre><h3 id="3-修改配置文件-1"><a href="#3-修改配置文件-1" class="headerlink" title="3.修改配置文件"></a>3.修改配置文件</h3><p>进入到config目录</p>
+<pre><code>cd /opt/kafka/kafka_2.11-0.10.1.0/config/
+</code></pre><p>主要关注：server.properties这个文件即可，我们可以发现在目录下：有很多文件，这个可以发现有Zookeeper文件，我们可以根据Kafka内带的zk集群来启动，但是建议使用独立的zk集群</p>
+<p>实际的修改项为：</p>
+<pre><code>#broker.id=1   每台服务器的broker.id都不相同
+
+#hostname
+listeners=PLAINTEXT://master:9092
+
+log.dirs=/opt/kafka_2.11-0.10.1.0/kafkalogs/
+
+#在log.retention.hours=168 下面新增下面三项
+message.max.byte=5242880
+default.replication.factor=2
+replica.fetch.max.bytes=5242880
+
+#设置zookeeper的连接端口
+zookeeper.connect=master:12181,slave1:12181,slave2:12181
+</code></pre><h3 id="4-启动Kafka集群并测试"><a href="#4-启动Kafka集群并测试" class="headerlink" title="4.启动Kafka集群并测试"></a>4.启动Kafka集群并测试</h3><h4 id="1-启动服务"><a href="#1-启动服务" class="headerlink" title="1.启动服务"></a>1.启动服务</h4><pre><code>＃从后台启动kafka集群（3台都需要启动）
+cd /opt/kafka/kafka_2.11_0.10.1.0/bin   ＃进入到kafka的bin目录
+./kafka-server-start.sh -daemon ../config/server.properties
+</code></pre><h4 id="2-检查服务是否启动"><a href="#2-检查服务是否启动" class="headerlink" title="2.检查服务是否启动"></a>2.检查服务是否启动</h4><pre><code>#执行命令jps
+20348  Jps
+4233   QuorumPeerMain
+18991  Kafka
+</code></pre><h4 id="3-创建Topic来验证是否创建成功"><a href="#3-创建Topic来验证是否创建成功" class="headerlink" title="3.创建Topic来验证是否创建成功"></a>3.创建Topic来验证是否创建成功</h4><p>更多请看官方文档：<a href="http://kafka.apache.org/documentation.html" target="_blank" rel="external">http://kafka.apache.org/documentation.html</a></p>
+<pre><code>＃创建topic
+./kafka－topics.sh --create -zookeeper master:12181 --replication-facotor 1 --replications 1 --topic test
+
+＃解释
+--replication-facotor 1 #复制两份
+--partitions 1 ＃创建1个分区
+--topic 主题为test
+
+＃在一台服务器上创建一个发布者
+./kafka-console-producer.sh --broker-list master:9092 --topic test
+
+＃在一台服务器上穿件一个订阅则
+
+./kafka-console-consumer.sh --zookeeper localhost:12181 --topic test --from-beginning
+
+＃查看topic
+./kafka-topics.sh --list --zookeeper master:12181
+</code></pre><p>测试（在发布者那里发布消息看看订阅者那里是否能正常收到）</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-hadoop2-6-spark1-6-3分布式计算框架的搭建" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -1786,103 +2018,6 @@ window.location.href=window.location.href; //刷新当前页面
 <p>2.根据HTTP规范，POST表示可能修改服务器上的资源请求</p>
 <p>“GET方式提交的数据最多只能是1024字节”，因为GET是通过URL提交数据，那么GET可提交的数据量就跟URL的长度有直接关系了。而实际上，URL不存在参数上限的问题，HTTP协议规范没有对URL长度进行限制。这个限制是特定的浏览器及服务器对它的限制。</p>
 
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-使用ajax-springmvc的controller无法页面跳转" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/06/12/使用ajax-springmvc的controller无法页面跳转/" class="article-date">
-  	<time datetime="2016-06-12T07:04:02.000Z" itemprop="datePublished">2016-06-12</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/12/使用ajax-springmvc的controller无法页面跳转/">使用ajax springmvc的controller无法页面跳转</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>问题</strong></p>
-<p>在使用ajax传递数据给controller并实现页面跳转时，发现controller中return的页面无法跳转成功，可能原因：ajax不提供跳转功能。</p>
-<p><strong>解决办法</strong></p>
-<p>如果想要实现上诉功能的话可以使用window.location.href=”xxxx.do”,这样访问我们的controller之后可以实现页面跳转，并且放在ModelAndView中的数据可以在下一个页面中取到。</p>
-<p>html代码</p>
-<pre><code>&lt;div class=&quot;cart&quot;&gt;
-&lt;a href=&quot;javascript:void(0)&quot; onclick=&quot;buy()&quot; class=&quot;bay&quot; &gt;立即购买&lt;/a&gt;
-&lt;a href=&quot;#&quot; class=&quot;bay&quot;&gt;加入购物车&lt;/a&gt;
-&lt;input type=&quot;text&quot; id=&quot;number&quot; class=&quot;number&quot; value=&quot;1&quot; /&gt;
-&lt;span&gt;Quantity:&lt;/span&gt;&lt;/div&gt;
-</code></pre><p>js代码</p>
-<pre><code>function buy(){
-var goodID=101; 
-var number=$(&quot;#number&quot;).val();
-var cost=$(&quot;#price_new&quot;).text();
-
-$.ajax({  
-    type: &quot;GET&quot;,  
-    success:function(data){  
-    window.location.href =&apos;&lt;%=path%&gt;/buy.do?goodID=&apos; + goodID + &apos;&amp;number=&apos;+number +&apos;&amp;price=&apos;+cost;  
-    },
-     //dataType: &apos;json&apos;,  
-}); 
-}
-</code></pre><p>controller代码</p>
-<pre><code>@RequestMapping(value = &quot;buy&quot;, method = RequestMethod.GET)
-public ModelAndView buy(HttpServletRequest request) throws Exception {
-
-     String goodID = request.getParameter(&quot;goodID&quot;);
-     String number = request.getParameter(&quot;number&quot;);  
-     String price =request.getParameter(&quot;price&quot;);
-
-
-
-            ModelAndView mav = new ModelAndView(&quot;checkout&quot;);
-
-            mav.addObject(&quot;goodID&quot;, goodID);
-            mav.addObject(&quot;number&quot;, number);
-            mav.addObject(&quot;price&quot;,price);
-            System.out
-                    .println(&quot;goodID=&quot; + goodID + &quot; number=&quot; + number+ &quot; price=&quot;+ price);
-
-            return mav ;
-
-}
-</code></pre>
       
     </div>
     
