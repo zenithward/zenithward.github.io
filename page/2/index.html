@@ -70,7 +70,7 @@
 						<li>Tags</li>
 						
 						
-						<li>About</li>
+						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -172,6 +172,106 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-前端js的参数传递" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/13/前端js的参数传递/" class="article-date">
+  	<time datetime="2016-07-13T08:12:26.000Z" itemprop="datePublished">2016-07-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/13/前端js的参数传递/">前端js的参数传递</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>项目中用到的 利用js往后台传递参数</p>
+<h3 id="post方法"><a href="#post方法" class="headerlink" title="post方法"></a>post方法</h3><p>1）传递普通参数</p>
+<pre><code>$.post(&quot;/TaveenConsole/video/changepwdsuccess&quot; , 
+{password:encodeURI(passwordValue),oldpwd:encodeURI(oldpwd)} , 
+function(data , status){
+var result = JSON.parse(data.result).ret_code;
+
+if(result == &quot;0&quot;){
+    alert(&quot;密码修改成功!&quot;);
+     window.location.href=&quot;/TaveenConsole/video/homepage&quot;;
+} 
+else if(result == &quot;1&quot;) {
+    alert(&quot;密码修改失败!&quot;);
+} else if(result == &quot;2&quot;) {
+alert(&quot;原密码错误，修改失败&quot;)；
+window.location.href=window.location.href; //刷新当前页面
+}
+            });
+    });
+</code></pre><p>2）传递json类型的参数</p>
+<pre><code>$.ajax({
+        type: &quot;POST&quot;,
+        url: &quot;/Service/SimpleData&quot;,
+        contentType: &quot;application/json&quot;, //必须有
+        dataType: &quot;json&quot;, //表示返回值类型，不必须
+        data:JSON.stringify({&apos;username&apos;:username,&apos;password&apos;:passwordValue,&apos;oldpwd&apos;:oldpwd}),
+        success: function (jsonResult) {
+            alert(jsonResult);
+        }
+    });
+</code></pre><h3 id="get方法"><a href="#get方法" class="headerlink" title="get方法"></a>get方法</h3><pre><code>$(&quot;#update-node-buttton&quot;).click(function() {
+    isUpdate = true; // 点击保存则是更新
+
+    var url = &quot;/TaveenSetting/video/getdatabyid/&quot; + updateId;
+    $.get(url, function(data,status){
+        if(data.result == 0) { //获取成功
+            ...
+        }
+    });
+});
+</code></pre><p>GET请求的数据会附在URL之后（就是把数据放置在HTTP协议头中），以?分割URL和传输数据，参数之间以&amp;相连。GET方法提交的数据最多只能是1024字节，理论上POST没有限制。POST的安全性要比GET的安全性高。</p>
+<font color="red">更新于2016年7月29日</font>
+
+<p>1.根据HTTP规范，GET用于信息获取，而且应该是安全和幂等的</p>
+<p>（1）所谓的安全意味着该操作用于获取信息而非修改信息。换句话说，GET请求一般不应该产生副作用，就是说，它仅仅是获取资源信息，就像数据库查询一样，不会修改，增加数据，不会影响资源的状态。</p>
+<p>（2）幂等意味着对同一URL的多个请求应该返回同样的结果。幂等指的是对最终数据状态来讲的，举个例子，get每次用来获取最新的十条新闻数据可能都是不一样，但仍然是幂等的，因为从server端来讲，数据状态并没有发生任何改变。（前提是server在正常的工作状态下）</p>
+<p>2.根据HTTP规范，POST表示可能修改服务器上的资源请求</p>
+<p>“GET方式提交的数据最多只能是1024字节”，因为GET是通过URL提交数据，那么GET可提交的数据量就跟URL的长度有直接关系了。而实际上，URL不存在参数上限的问题，HTTP协议规范没有对URL长度进行限制。这个限制是特定的浏览器及服务器对它的限制。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-使用ajax-springmvc的controller无法页面跳转" class="article article-type-post" itemscope itemprop="blogPost">
   

@@ -70,7 +70,7 @@
 						<li>Tags</li>
 						
 						
-						<li>About</li>
+						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -172,6 +172,189 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-Java实现Kafka生产者" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/01/16/Java实现Kafka生产者/" class="article-date">
+  	<time datetime="2017-01-16T03:54:19.000Z" itemprop="datePublished">2017-01-16</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/16/Java实现Kafka生产者/">Java实现Kafka生产者</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>参考博客</p>
+<p><a href="blog.csdn.net/m_signals/article/details/53206207">kafka_2.11简单使用</a></p>
+</blockquote>
+<h2 id="创建Maven项目"><a href="#创建Maven项目" class="headerlink" title="创建Maven项目"></a>创建Maven项目</h2><p>eclipse</p>
+<p>new -&gt; Maven Projece -&gt; Group Id:org.apache.maven.archetypes ; Artifact Id:maven-archetype-quickstart -&gt;填写groupId,artifactId-&gt;finish</p>
+<blockquote>
+<ul>
+<li><p>GroupId是项目组织唯一的标识符，实际对应Java的包结果，是main目录里java的目录结构</p>
+</li>
+<li><p>ArtifactId就是项目唯一的标识符，实际对应项目的名称，就是项目根目录的名称</p>
+</li>
+<li><p>一般GroupId就是填com.leafive.test这样子</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="编写POM文件"><a href="#编写POM文件" class="headerlink" title="编写POM文件"></a>编写POM文件</h2><pre><code>&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;      xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+&lt;groupId&gt;cn.ly.kafka&lt;/groupId&gt;
+&lt;artifactId&gt;kafkaTest&lt;/artifactId&gt;
+&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+
+&lt;name&gt;kafkaTest&lt;/name&gt;
+&lt;url&gt;http://maven.apache.org&lt;/url&gt;
+
+&lt;properties&gt;
+   &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+&lt;/properties&gt;
+
+&lt;dependencies&gt;
+&lt;dependency&gt;
+     &lt;groupId&gt;org.apache.kafka&lt;/groupId&gt;
+     &lt;artifactId&gt;kafka-clients&lt;/artifactId&gt;
+     &lt;version&gt;0.10.1.0&lt;/version&gt;
+&lt;/dependency&gt;    
+&lt;/dependencies&gt;
+
+&lt;build&gt;
+    &lt;plugins&gt;
+        &lt;plugin&gt;
+            &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+            &lt;version&gt;2.3.2&lt;/version&gt;
+            &lt;configuration&gt;
+                &lt;source&gt;1.8&lt;/source&gt;
+                &lt;target&gt;1.8&lt;/target&gt;
+            &lt;/configuration&gt;
+        &lt;/plugin&gt;
+        &lt;plugin&gt;
+               &lt;artifactId&gt; maven-assembly-plugin &lt;/artifactId&gt;
+               &lt;configuration&gt;
+                    &lt;descriptorRefs&gt;
+                    &lt;descriptorRef&gt;jar-with-dependencies&lt;/descriptorRef&gt;
+                    &lt;/descriptorRefs&gt;
+                    &lt;archive&gt;
+                         &lt;manifest&gt;
+                              &lt;mainClass&gt;kafkaTest.ProducerTest&lt;/mainClass&gt;
+                         &lt;/manifest&gt;
+                    &lt;/archive&gt;
+               &lt;/configuration&gt;
+               &lt;executions&gt;
+                    &lt;execution&gt;
+                         &lt;id&gt;make-assembly&lt;/id&gt;
+                         &lt;phase&gt;package&lt;/phase&gt;
+                         &lt;goals&gt;
+                              &lt;goal&gt;single&lt;/goal&gt;
+                         &lt;/goals&gt;
+                    &lt;/execution&gt;
+               &lt;/executions&gt;
+          &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;
+</code></pre><p>执行右键项目－&gt;Maven-&gt;Update Project</p>
+<h2 id="编写生产者代码"><a href="#编写生产者代码" class="headerlink" title="编写生产者代码"></a>编写生产者代码</h2><pre><code>package kafkaTest;
+
+import java.util.Properties;
+import java.util.Random;
+
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.Producer;
+import org.apache.kafka.clients.producer.ProducerRecord;
+
+public class ProducerTest {
+
+public static void main(String[] args) {
+    Properties props = new Properties();
+    props.put(&quot;bootstrap.servers&quot;, &quot;10.108.101.210:9092&quot;);
+    props.put(&quot;acks&quot;, &quot;all&quot;);
+    props.put(&quot;retries&quot;, 0);
+    props.put(&quot;batch.size&quot;, 16384);
+    props.put(&quot;linger.ms&quot;, 1);
+    props.put(&quot;buffer.memory&quot;, 33554432);
+    props.put(&quot;key.serializer&quot;, &quot;org.apache.kafka.common.serialization.StringSerializer&quot;);
+    props.put(&quot;value.serializer&quot;, &quot;org.apache.kafka.common.serialization.StringSerializer&quot;);
+
+    Producer&lt;String,String&gt; producer = new KafkaProducer&lt;String,String&gt;(props);
+
+    /*for (int i = 0; i &lt; 10; i++) {
+        producer.send(new ProducerRecord&lt;String, String&gt;(&quot;user-behavior-topic&quot;, &quot;key-&quot;+i,&quot;value-&quot;+i)); 
+        System.out.println(&quot;yifasong&quot;);
+
+    }*/
+    Random rand=new Random();
+    int j=0;
+    while(j&lt;30){
+        int msgNum=rand.nextInt(3)+1;
+        for(int i=0;i&lt;msgNum;i++){
+            StringBuilder msg=new StringBuilder();
+            msg.append(&quot;page&quot;+(rand.nextInt(100)+1));
+            msg.append(&quot;|&quot;);
+            msg.append(rand.nextInt(5)+1);
+            msg.append(&quot;|&quot;);
+            msg.append(rand.nextInt(5)+rand.nextFloat());
+            msg.append(&quot;|&quot;);
+            msg.append(rand.nextInt(2)-1);
+            System.out.println(msg.toString());
+            producer.send(new ProducerRecord&lt;String,String&gt;(&quot;user-behavior-topic&quot;, &quot;key-&quot;+i,msg.toString())); 
+        }
+        j++;
+    }
+
+    producer.close();
+
+
+}
+
+}
+</code></pre><h2 id="项目打包运行"><a href="#项目打包运行" class="headerlink" title="项目打包运行"></a>项目打包运行</h2><p>项目右键－&gt;Run As－&gt;Maven clean</p>
+<p>项目右键－&gt;Run As－&gt;Maven install</p>
+<p>在项目目录下的target文件夹内得到打包好的jar包，上传到服务器</p>
+<p>运行</p>
+<pre><code>java -jar /home/kafkaTest-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-Kafka集群搭建" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -1919,106 +2102,6 @@ try {
 <pre><code>vi /ect/resolv.conf
 nameserver 192.168.1.1
 </code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-前端js的参数传递" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/07/13/前端js的参数传递/" class="article-date">
-  	<time datetime="2016-07-13T08:12:26.000Z" itemprop="datePublished">2016-07-13</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/13/前端js的参数传递/">前端js的参数传递</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>项目中用到的 利用js往后台传递参数</p>
-<h3 id="post方法"><a href="#post方法" class="headerlink" title="post方法"></a>post方法</h3><p>1）传递普通参数</p>
-<pre><code>$.post(&quot;/TaveenConsole/video/changepwdsuccess&quot; , 
-{password:encodeURI(passwordValue),oldpwd:encodeURI(oldpwd)} , 
-function(data , status){
-var result = JSON.parse(data.result).ret_code;
-
-if(result == &quot;0&quot;){
-    alert(&quot;密码修改成功!&quot;);
-     window.location.href=&quot;/TaveenConsole/video/homepage&quot;;
-} 
-else if(result == &quot;1&quot;) {
-    alert(&quot;密码修改失败!&quot;);
-} else if(result == &quot;2&quot;) {
-alert(&quot;原密码错误，修改失败&quot;)；
-window.location.href=window.location.href; //刷新当前页面
-}
-            });
-    });
-</code></pre><p>2）传递json类型的参数</p>
-<pre><code>$.ajax({
-        type: &quot;POST&quot;,
-        url: &quot;/Service/SimpleData&quot;,
-        contentType: &quot;application/json&quot;, //必须有
-        dataType: &quot;json&quot;, //表示返回值类型，不必须
-        data:JSON.stringify({&apos;username&apos;:username,&apos;password&apos;:passwordValue,&apos;oldpwd&apos;:oldpwd}),
-        success: function (jsonResult) {
-            alert(jsonResult);
-        }
-    });
-</code></pre><h3 id="get方法"><a href="#get方法" class="headerlink" title="get方法"></a>get方法</h3><pre><code>$(&quot;#update-node-buttton&quot;).click(function() {
-    isUpdate = true; // 点击保存则是更新
-
-    var url = &quot;/TaveenSetting/video/getdatabyid/&quot; + updateId;
-    $.get(url, function(data,status){
-        if(data.result == 0) { //获取成功
-            ...
-        }
-    });
-});
-</code></pre><p>GET请求的数据会附在URL之后（就是把数据放置在HTTP协议头中），以?分割URL和传输数据，参数之间以&amp;相连。GET方法提交的数据最多只能是1024字节，理论上POST没有限制。POST的安全性要比GET的安全性高。</p>
-<font color="red">更新于2016年7月29日</font>
-
-<p>1.根据HTTP规范，GET用于信息获取，而且应该是安全和幂等的</p>
-<p>（1）所谓的安全意味着该操作用于获取信息而非修改信息。换句话说，GET请求一般不应该产生副作用，就是说，它仅仅是获取资源信息，就像数据库查询一样，不会修改，增加数据，不会影响资源的状态。</p>
-<p>（2）幂等意味着对同一URL的多个请求应该返回同样的结果。幂等指的是对最终数据状态来讲的，举个例子，get每次用来获取最新的十条新闻数据可能都是不一样，但仍然是幂等的，因为从server端来讲，数据状态并没有发生任何改变。（前提是server在正常的工作状态下）</p>
-<p>2.根据HTTP规范，POST表示可能修改服务器上的资源请求</p>
-<p>“GET方式提交的数据最多只能是1024字节”，因为GET是通过URL提交数据，那么GET可提交的数据量就跟URL的长度有直接关系了。而实际上，URL不存在参数上限的问题，HTTP协议规范没有对URL长度进行限制。这个限制是特定的浏览器及服务器对它的限制。</p>
-
       
     </div>
     
