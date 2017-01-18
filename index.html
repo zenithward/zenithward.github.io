@@ -614,14 +614,16 @@ public static &lt;T&gt; void addToList (List&lt;T&gt; listArg, T... elements) {
 <p> 4.并发工具增强<br> 5.Networking增强<br> 6.Multithreaded Custom Class Loaders<br> 7.Security 增强<br> 8.Internationalization 增强 增加了对一些编码的支持和增加了一些显示方面的编码设置等<br> 9.jvm方面的一些特性增强。</p>
 <p> JDK1.8的新特性</p>
 <ol>
-<li><p>接口的默认方法<br>Java 8允许我们给接口添加一个非抽象的方法实现，只需要使用default关键字即可，这个特征又叫做扩展方法，示例如下</p>
-<p>interface Formula {<br>double calculate(int a);<br>default double sqrt(int a) {</p>
-<pre><code>    return Math.sqrt(a);
-}
-}
-</code></pre></li>
+<li>接口的默认方法</li>
 </ol>
-<p>Formula接口在拥有calculate方法之外同时还定义了sqrt方法，实现了Formula接口的子类只需要实现一个calculate方法，默认方法sqrt将在子类上可以直接使用</p>
+<p>Java 8允许我们给接口添加一个非抽象的方法实现，只需要使用default关键字即可，这个特征又叫做扩展方法，示例如下</p>
+<pre><code>interface Formula {
+double calculate(int a);
+default double sqrt(int a) {
+        return Math.sqrt(a);
+    }
+}
+</code></pre><p>Formula接口在拥有calculate方法之外同时还定义了sqrt方法，实现了Formula接口的子类只需要实现一个calculate方法，默认方法sqrt将在子类上可以直接使用</p>
 <pre><code>Formula formula=new Formula(){
    @Override
    public double calculate(int a){
@@ -630,17 +632,17 @@ public static &lt;T&gt; void addToList (List&lt;T&gt; listArg, T... elements) {
   }
 </code></pre><p>文中的formula被实现为一个匿名类的实例，该代码非常容易理解，6行代码实现了计算sqrt(a*100)。<br>    在Java中只有单继承，如果要让一个类赋予新的特性，通常是使用接口来实现，在C++中支持多继承，允许一个子类同时具有多个父类的接口与功能，在其他语言中，让一个类同时具有其他可复用代码的方法叫做mixin。新的Java 8的这个特性在编译器实现的角度上来说更接近Scala的trait</p>
 <ol>
-<li><p>Lambda表达式<br>首先看看老版本的Java是如何排列字符串的</p>
-<pre><code>List&lt;String&gt; names=Arrays.asList(&quot;peter&quot;,&quot;anna&quot;,&quot;mike&quot;,&quot;xenia&quot;);
-Collection.sort(names,new Comparator&lt;String&gt;(){
-@Override
-public int compare(String a,String b){
-     return b.compareTo(a);
-}
-});
-</code></pre></li>
+<li>Lambda表达式</li>
 </ol>
-<p>只需要给静态方法Collections.sort传入一个List对象以及一个比较器来按指定顺序排列，通常做法都是创建一个匿名的比较器对象然后将其传递给sort方法。</p>
+<p>首先看看老版本的Java是如何排列字符串的</p>
+<pre><code>List&lt;String&gt; names=Arrays.asList(&quot;peter&quot;,&quot;anna&quot;,&quot;mike&quot;,&quot;xenia&quot;);
+    Collection.sort(names,new Comparator&lt;String&gt;(){
+    @Override
+    public int compare(String a,String b){
+         return b.compareTo(a);
+    }
+    });
+</code></pre><p>只需要给静态方法Collections.sort传入一个List对象以及一个比较器来按指定顺序排列，通常做法都是创建一个匿名的比较器对象然后将其传递给sort方法。</p>
 <p>在Java1.8中你就没必要使用这种传统的匿名对象的方式了，Java 8提供了更简洁的语法，lambda表达式</p>
 <pre><code>Collections.sort(names,(String a,String b)-&gt;{
     return b.compareTo(a);
@@ -661,66 +663,71 @@ Integer converted = converter.convert(&quot;123&quot;);
 System.out.println(converted);
 </code></pre><p>需要注意如果@FunctionalInterface如果没有指定，上面的代码也是对的</p>
 <ol>
-<li><p>方法与构造函数引用<br>构造函数是如何使用:关键字来引用的，首先我们定义一个包含多个构造函数的简单类:</p>
-<pre><code>class Person{
- String firstName;
- String lastName;
- Person() {}
-
- Person(String firstName, String lastName) {
-    this.firstName = firstName;
-    this.lastName = lastName;
- }
-}
-</code></pre></li>
+<li>方法与构造函数引用</li>
 </ol>
-<p>接下来我们制定一个用来创建Person对象的对象工厂接口：</p>
-<pre><code>interface PersonFactory&lt;P extends Person&gt; {
-   P create(String firstName, String lastName);
+<p>构造函数是如何使用:关键字来引用的，首先我们定义一个包含多个构造函数的简单类:</p>
+<pre><code>class Person{
+String firstName;
+String lastName;
+Person() {}
+
+Person(String firstName, String lastName) {
+   this.firstName = firstName;
+   this.lastName = lastName;
 }
+}
+</code></pre><p>接下来我们制定一个用来创建Person对象的对象工厂接口：</p>
+<pre><code>interface PersonFactory&lt;P extends Person&gt; {
+        P create(String firstName, String lastName);
+     }
 </code></pre><p>这里我们使用构造函数引用来将他们关联起来，而不是实现一个完整的工厂：</p>
 <pre><code>PersonFactory&lt;Person&gt; personFactory = Person::new;
 Person person = personFactory.create(&quot;Peter&quot;, &quot;Parker&quot;);
 </code></pre><p>我们只需要使用Person：：new来获取Person类构造函数的引用，Java编译器会自动根据PersonFactory.create方法的签名来选择合适的构造函数。</p>
 <ol>
-<li><p>Lambda作用域<br>在lambda表达式中访问外层作用域和老版本的匿名对象中的方法很相似，你可以直接访问标记了final的外层局部变量，或者实例的字段以及静态变量。</p>
-</li>
-<li><p>访问局部变量<br>我们可以直接在lambda表达式中访问外层的局部变量：</p>
+<li>Lambda作用域</li>
+</ol>
+<p>在lambda表达式中访问外层作用域和老版本的匿名对象中的方法很相似，你可以直接访问标记了final的外层局部变量，或者实例的字段以及静态变量。</p>
+<ol>
+<li>访问局部变量</li>
+</ol>
+<p>我们可以直接在lambda表达式中访问外层的局部变量：</p>
 <pre><code>final int num = 1;
 Converter&lt;Integer, String&gt; stringConverter =
 (from) -&gt; String.valueOf(from + num); 
 stringConverter.convert(2);
-</code></pre></li>
-</ol>
-<p>但是和匿名对象不同的是，这里的变量可以不用声明为final，该代码同样正确：</p>
+</code></pre><p>但是和匿名对象不同的是，这里的变量可以不用声明为final，该代码同样正确：</p>
 <pre><code>int num = 1;
 Converter&lt;Integer, String&gt; stringConverter =
-</code></pre><p>   (from) -&gt; String.valueOf(from + num);<br>   stringConverter.convert(2);</p>
-<p>不过这里的num必须不可被后面的代码修改（即隐性的具有final的语义），例如下面的就无法编译</p>
+(from) -&gt; String.valueOf(from + num); 
+stringConverter.convert(2);
+</code></pre><p>不过这里的num必须不可被后面的代码修改（即隐性的具有final的语义），例如下面的就无法编译</p>
 <pre><code>int num = 1;
 Converter&lt;Integer, String&gt; stringConverter =
     (from) -&gt; String.valueOf(from + num);
 num = 3;
 </code></pre><p>在lambda表达式中试图修改num同样是不允许的。</p>
 <ol>
-<li><p>访问对象字段与静态变量<br>和本地变量不同的是lambda内部对于实例的字段以及静态变量是既可读又可写。该行为和匿名对象是一致的：</p>
-<pre><code>class Lambda4 {
- static int outerStaticNum;
-  int outerNum; 
-</code></pre></li>
+<li>访问对象字段与静态变量</li>
 </ol>
-<pre><code>void testScopes() {
+<p>和本地变量不同的是lambda内部对于实例的字段以及静态变量是既可读又可写。该行为和匿名对象是一致的：</p>
+<pre><code>class Lambda4 {
+static int outerStaticNum;
+int outerNum; 
+
+
+void testScopes() {
 Converter&lt;Integer, String&gt; stringConverter1 = (from) -&gt; {
     outerNum = 23;
     return String.valueOf(from);
-};
+ };
 
 
 Converter&lt;Integer, String&gt; stringConverter2 = (from) -&gt; {
     outerStaticNum = 72;
     return String.valueOf(from);
-};
-}
+ };
+ }
 }
 </code></pre><ol>
 <li>访问接口的默认方法</li>
@@ -811,14 +818,18 @@ String string = formatter.format(parsed);
 System.out.println(string);
 </code></pre><p>和java.text.NumberFormat不一样的是新版的DateTimeFormatter是不可变的，所以它是线程安全。</p>
 <ol>
-<li><p>Annotation注解<br>在java 8中支持多重注解了，先看个例子来理解一下是什么意思<br>首先定义一个包装类Hints注解用来放置一组具体的Hint注解</p>
-<p>@interface Hints{</p>
-<pre><code>Hint[] value();
-</code></pre><p>}</p>
-<p>@Repeatable(Hints.class)<br>@interface Hint{<br>   String value();<br>}</p>
-</li>
+<li>Annotation注解</li>
 </ol>
-<p>Java 8允许我们把同一个类型的注解使用多次，只需要给注解标注一下@Repeatable即可</p>
+<p>在java 8中支持多重注解了，先看个例子来理解一下是什么意思<br>首先定义一个包装类Hints注解用来放置一组具体的Hint注解</p>
+<pre><code>@interface Hints{
+    Hint[] value();
+}
+
+@Repeatable(Hints.class)
+@interface Hint{
+   String value();
+}
+</code></pre><p>Java 8允许我们把同一个类型的注解使用多次，只需要给注解标注一下@Repeatable即可</p>
 <p>例1：使用包装类当容器来存多个注解（老方法）</p>
 <pre><code>@Hints（{@Hint（&quot;hints&quot;）,@Hint(&quot;hints&quot;)}）
 class Person{}
