@@ -843,35 +843,37 @@ System.out.println(hint);
 
 Hints hints1=Person.class.getAnnotation(Hints.class);
 System.out.println(hints2.length);    
-</code></pre><h3 id="36-设计模式：单例、工厂、适配器、责任链、观察者等等"><a href="#36-设计模式：单例、工厂、适配器、责任链、观察者等等" class="headerlink" title="36. 设计模式：单例、工厂、适配器、责任链、观察者等等"></a>36. 设计模式：单例、工厂、适配器、责任链、观察者等等</h3><p>（1）单例<br>Singleton模式要求一个类有且仅有一个实例，并且提供了一个全局的访问点。这就提出了一个问题，如何绕过常规的构造器，提供一种机制来保证一个类只有一个实例？客户程序在调用某一个类时，它是不会考虑这个类是否只能有一个实例等问题的，所以这应该是类设计者得责任，而不是类使用者的责任。从另一个角度来说，Singleton模式其实也是一种职责型模式，因为我们创建了一个对象，这个对象扮演了独一无二的角色，在这个单独的对象实例中，它集中了它所属类的所有权利，同时它也肩负了行驶这种权利的职责。</p>
+</code></pre><h3 id="36-设计模式：单例、工厂、适配器、责任链、观察者等等"><a href="#36-设计模式：单例、工厂、适配器、责任链、观察者等等" class="headerlink" title="36. 设计模式：单例、工厂、适配器、责任链、观察者等等"></a>36. 设计模式：单例、工厂、适配器、责任链、观察者等等</h3><p>（1）单例</p>
+<p>Singleton模式要求一个类有且仅有一个实例，并且提供了一个全局的访问点。这就提出了一个问题，如何绕过常规的构造器，提供一种机制来保证一个类只有一个实例？客户程序在调用某一个类时，它是不会考虑这个类是否只能有一个实例等问题的，所以这应该是类设计者得责任，而不是类使用者的责任。从另一个角度来说，Singleton模式其实也是一种职责型模式，因为我们创建了一个对象，这个对象扮演了独一无二的角色，在这个单独的对象实例中，它集中了它所属类的所有权利，同时它也肩负了行驶这种权利的职责。</p>
 <blockquote>
 <p>生活中的例子<br>美国总统的职位是Singleton，美国宪法规定了总统的选举，任期以及继任的顺序。这样，在任何时刻只能有一个现任的总统，无论现任总统的身份为何，其头衔“美利坚合众国总统”是访问这个职位的人的一个全局访问点。</p>
 </blockquote>
 <p>在Java应用中，单例对象能保证在一个JVM中，该对象只有一个实例存在，这样的模式有几个好处：</p>
+<blockquote>
 <ul>
 <li>某些类创建比较频繁，对于一些大型的对象，这是一笔很大的系统开销</li>
 <li>省去了new操作符，降低了系统内存的使用频率，减轻GC压力</li>
-<li><p>有些类比如交易所的核心交易引擎，控制着交易流程，如果该类可以创建多个的话，系统完全乱了，所以只有使用单例模式，才能保证核心交易服务器独立控制整个流程。</p>
-<p>  public class Singleton{</p>
-<pre><code>//持有私有静态实例，防止被引用，此处赋值为null，目的是为了实现延迟加载
-private static Singleton instance=null;
-//私有构造方法，防止被实例化
-private Singleton(){
-}
-//静态工程方法，创建实例
-public static Singleton getInstance(){
-    if(instance==null){
-         instance=new Singleton();
-    }
-    return instance;
-}
-public Object readReslove(){
-    return instance;
-}
-</code></pre><p>  }</p>
-</li>
+<li>有些类比如交易所的核心交易引擎，控制着交易流程，如果该类可以创建多个的话，系统完全乱了，所以只有使用单例模式，才能保证核心交易服务器独立控制整个流程。</li>
 </ul>
-<p>这个类可以满足基本要求，但是，像这样毫无线程安全保护的类，如果我们把它放入多线程的环境下，肯定就会出现问题了，如何解决，我们首先会想到对getInstance方法加synchronized关键字，如下：</p>
+</blockquote>
+<pre><code>public class Singleton{
+    //持有私有静态实例，防止被引用，此处赋值为null，目的是为了实现延迟加载
+ private static Singleton instance=null;
+    //私有构造方法，防止被实例化
+    private Singleton(){
+    }
+    //静态工程方法，创建实例
+    public static Singleton getInstance(){
+        if(instance==null){
+             instance=new Singleton();
+        }
+        return instance;
+    }
+    public Object readReslove(){
+        return instance;
+    }
+}
+</code></pre><p>这个类可以满足基本要求，但是，像这样毫无线程安全保护的类，如果我们把它放入多线程的环境下，肯定就会出现问题了，如何解决，我们首先会想到对getInstance方法加synchronized关键字，如下：</p>
 <pre><code>public static synchronized Singleton getInstance(){
     if(isntance==null){
         instance=new Singleton();
