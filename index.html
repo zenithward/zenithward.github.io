@@ -70,7 +70,7 @@
 						<li>Tags</li>
 						
 						
-						<li>About</li>
+						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -943,7 +943,7 @@ System.out.println(hints2.length);
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-九种基本数据类型的大小，以及他们的封装类"><a href="#1-九种基本数据类型的大小，以及他们的封装类" class="headerlink" title="1.九种基本数据类型的大小，以及他们的封装类"></a>1.九种基本数据类型的大小，以及他们的封装类</h3><pre><code>byte（Byte）：1字节
+        <h2 id="1-九种基本数据类型的大小，以及他们的封装类"><a href="#1-九种基本数据类型的大小，以及他们的封装类" class="headerlink" title="1.九种基本数据类型的大小，以及他们的封装类"></a>1.九种基本数据类型的大小，以及他们的封装类</h2><pre><code>byte（Byte）：1字节
 short（Short）：2字节
 int（Integer）：4字节
 long（Long）：8字节
@@ -952,9 +952,9 @@ double（Double）：8字节
 boolean（Boolean）
 char（Character）：2字节
 void（Void）
-</code></pre><h3 id="2-Switch能否用string做参数？"><a href="#2-Switch能否用string做参数？" class="headerlink" title="2.Switch能否用string做参数？"></a>2.Switch能否用string做参数？</h3><p>char int byte short可以，java 7之后可以使用string做参数</p>
-<h3 id="3-equals和-的区别"><a href="#3-equals和-的区别" class="headerlink" title="3.equals和==的区别"></a>3.equals和==的区别</h3><p>“==”是一个运算符，而equals是object里面的一个方法<br>对于基本类型，在比较大小的时候可以使用“==”，看两个元素是否相等。equals没有用武之地。<br>对于对象之间的比较，“==”是比较两个对象的内存地址是否相等，equals在object也是使用“==”运算符实现的，所以不重写equals方法的类使用是一样的，但是我们一般会在子类中重写他，比较两个对象的内容是否一样。</p>
-<h3 id="4-Object有哪些公用方法？"><a href="#4-Object有哪些公用方法？" class="headerlink" title="4.Object有哪些公用方法？"></a>4.Object有哪些公用方法？</h3><p>Object是所有类的父类，任何类都默认继承Object。</p>
+</code></pre><h2 id="2-Switch能否用string做参数？"><a href="#2-Switch能否用string做参数？" class="headerlink" title="2.Switch能否用string做参数？"></a>2.Switch能否用string做参数？</h2><p>char int byte short可以，java 7之后可以使用string做参数</p>
+<h2 id="3-equals和-的区别"><a href="#3-equals和-的区别" class="headerlink" title="3.equals和==的区别"></a>3.equals和==的区别</h2><p>“==”是一个运算符，而equals是object里面的一个方法<br>对于基本类型，在比较大小的时候可以使用“==”，看两个元素是否相等。equals没有用武之地。<br>对于对象之间的比较，“==”是比较两个对象的内存地址是否相等，equals在object也是使用“==”运算符实现的，所以不重写equals方法的类使用是一样的，但是我们一般会在子类中重写他，比较两个对象的内容是否一样。</p>
+<h2 id="4-Object有哪些公用方法？"><a href="#4-Object有哪些公用方法？" class="headerlink" title="4.Object有哪些公用方法？"></a>4.Object有哪些公用方法？</h2><p>Object是所有类的父类，任何类都默认继承Object。</p>
 <p>1）clone：protect方法，实现对象的浅复制，只有实现了Cloneable接口才可以调用该方法，否则抛出CloneNotSupportedException异常</p>
 <p>2）equals：在Object中与“==”是一样的，子类一般都重写该方法</p>
 <p>3）hashcode：该方法用于哈希查找，重写equals方法一般都要重写hashCode方法。这个方法在一些具有哈希功能的Collection中用到。</p>
@@ -963,31 +963,32 @@ void（Void）
 <p>6）notify：唤醒在该对象上等待的某个线程</p>
 <p>7）notifyAll：唤醒在该对象上等待的所有县城</p>
 <p>8）toString：转换成字符串，一般子类都有重写，否则打印句柄</p>
-<h3 id="5-Object有哪些公用方法？"><a href="#5-Object有哪些公用方法？" class="headerlink" title="5.Object有哪些公用方法？"></a>5.Object有哪些公用方法？</h3><p>从JDK1.2版本开始，把对象的引用分为四种级别，从而使程序能更加灵活的控制对象的生命周期。这四种级别由高到低依次为：强引用，软引用，弱引用和虚引用</p>
+<h2 id="5-Object有哪些公用方法？"><a href="#5-Object有哪些公用方法？" class="headerlink" title="5.Object有哪些公用方法？"></a>5.Object有哪些公用方法？</h2><p>从JDK1.2版本开始，把对象的引用分为四种级别，从而使程序能更加灵活的控制对象的生命周期。这四种级别由高到低依次为：强引用，软引用，弱引用和虚引用</p>
 <p>1）强引用<br>以前我们使用的大部分引用时间上都是强引用，这是使用最普遍的引用，如果一个对象具有强引用，那就类似于必不可少的生活用品，垃圾回收器绝不会回收它，当内存空间不足，Java虚拟机宁愿抛出OutOfMemoryError错误，是程序异常终止，也不会随意回收具有抢引用的对象来解决内存不足问题。</p>
 <p>２）软引用（SoftReference）<br>如果一个对象只具有软引用，那就类似于可有可无的生活用品，如果内存空间足够垃圾回收器就不会回收它，如果内存空间不足了，就会回收这些对象的内存，只要垃圾回收器没有回收它，该对象就可以被程序使用，软引用可用来实现内存敏感的高速缓存。<br>软引用可以和一个引用队列（ReferenceQueue）联合使用，如果软引用所引用的对象被垃圾回收，JAVA虚拟机就会把这个软引用加入到与之关联的引用队列中。</p>
 <p>３）弱引用（WeakReference）<br>如果一个对象只具有弱引用，那就类似于可有可无的生活用品，弱引用和软引用的区别在于：只有弱引用的对象拥有更短暂的生命周期。在垃圾回收器线程扫描它所管辖的内存区域的过程中，一旦发现了只具有弱引用的对象，不管当前内存空间足够与否，都会回收他的内存。不过，由于垃圾回收器是一个优先级很低的线程，因此不一定会很快发现那些只有弱引用的对象。<br>弱引用可以和一个引用队列（ReferenceQueue）联合使用，如果弱引用锁引用的对象被垃圾回收，Java虚拟机就会把这个弱引用加入到与之关联的引用队列中。</p>
 <p>４）虚引用（PhantomReference）<br>“虚引用”顾名思义，就是形同虚设，与其他几种引用都不同，虚引用并不会决定对象的生命周期，如果一个对象仅持有虚引用，那么他就和没有任何引用一样，在任何时候都可能被垃圾回收。<br>虚引用主要用来跟踪对象被垃圾回收的活动。虚引用与软引用和弱引用的一个区别在于：虚引用必须和引用队列（ReferenceQueue）联合使用。当垃圾回收器准备回收一个对象时，如果发现它还有虚引用，就会再回收对象的引用之前，把这个虚引用引入到与之关联的引用队列中。程序可以通过判断引用队列中是否已经加入了虚引用，来了解被引用的对象是否将要被垃圾回收。程序如果发现某个虚引用已经被加入到引用队列，那么久可以在所引用的对象内存被回收之前采取必要的行动。</p>
-<p>###６.Hashcode的作用。<br>hashCode的存在主要是用于查找的快捷性,如Hashtable,HashMap等,hashCode是用来在散列存储结构中确定对象的存储地址的</p>
-<h3 id="7-ArrayList-LinkedList-Vector的区别"><a href="#7-ArrayList-LinkedList-Vector的区别" class="headerlink" title="7.ArrayList,LinkedList,Vector的区别"></a>7.ArrayList,LinkedList,Vector的区别</h3><p>ArrayList和Vector是采用数组方式存储数据,此数组元素大于实际存储的数据以便增加和插入元素,都允许直接序号索引元素,但是插入数据要涉及到数组元素移动等内存操作,所以索引数据块插入数据慢,vector由于使用了synchronized方法(线程安全)所以性能上比ArrayList要差,LinkedList使用双向链表实现存储,按序号索引数据需要进行向前或向后遍历,但是插入数据只需要记录本项的前后项即可,所以插入数据较快.</p>
+<p>##６.Hashcode的作用。</p>
+<p>hashCode的存在主要是用于查找的快捷性,如Hashtable,HashMap等,hashCode是用来在散列存储结构中确定对象的存储地址的</p>
+<h2 id="7-ArrayList-LinkedList-Vector的区别"><a href="#7-ArrayList-LinkedList-Vector的区别" class="headerlink" title="7.ArrayList,LinkedList,Vector的区别"></a>7.ArrayList,LinkedList,Vector的区别</h2><p>ArrayList和Vector是采用数组方式存储数据,此数组元素大于实际存储的数据以便增加和插入元素,都允许直接序号索引元素,但是插入数据要涉及到数组元素移动等内存操作,所以索引数据块插入数据慢,vector由于使用了synchronized方法(线程安全)所以性能上比ArrayList要差,LinkedList使用双向链表实现存储,按序号索引数据需要进行向前或向后遍历,但是插入数据只需要记录本项的前后项即可,所以插入数据较快.</p>
 <p>synchronized</p>
 <p>java语音的关键字,当他用来修饰一个方法或者一个代码块的时候,能够保证在同一时刻最多只有一个线程执行该段代码.<br>1)当两个并发线程访问同一个对象object中的这个synchronized(this)同步代码块时,一个时间内只能有一个线程得到执行,另一个线程必须等待当前线程执行完这个代码块后才能执行该代码块.<br>2)然而,当一个县城访问object的一个sunochronized(this)同步代码块时,另一个线程任然可以访问该object中的非synchronized(this)同步代码块.<br>3)尤其关键的是,当一个线程访问object的一个synchronized(this)同步代码块时,其他线程对object中所有其他synchronized(this)同步代码块的访问被阻塞.<br>4)第三个例子同样适用于其他同步代码块.也就是说,当一个线程访问object的一个synchronized(this)同步代码块时,他就获得了这个object的对象锁。结果，其他线程对该object对象所有同步代码部分的访问都被暂时阻塞。</p>
-<h3 id="8-String、StringBuffer与StringBuilder的区别。"><a href="#8-String、StringBuffer与StringBuilder的区别。" class="headerlink" title="8. String、StringBuffer与StringBuilder的区别。"></a>8. String、StringBuffer与StringBuilder的区别。</h3><p>String：字符串常量<br>StringBuffer：字符串变量（线程安全）<br>StringBuilder：字符串变量（非线程安全）</p>
+<h2 id="8-String、StringBuffer与StringBuilder的区别。"><a href="#8-String、StringBuffer与StringBuilder的区别。" class="headerlink" title="8.String、StringBuffer与StringBuilder的区别。"></a>8.String、StringBuffer与StringBuilder的区别。</h2><p>String：字符串常量<br>StringBuffer：字符串变量（线程安全）<br>StringBuilder：字符串变量（非线程安全）</p>
 <p>1）String类型是Java内的对象，是一个不可变的对象，当每次对String进行改变时都需要生成一个新的String对象，然后将指针指向一个新的对象，如果在一个循环里面，不断的改变一个对象，就要不断的生成新的对象，而且对象多了，Java的垃圾自动回收机制会开始工作，所以效率很低，建议在不断改变String对象的地方不要使用String类型</p>
 <p>2）StringBuffer是个可变的对象，就是每次操作都是对对象本身进行操作，而不用生成新的对象，这样效率肯定就会有很大的提高，在大部分情况下StringBuffer的效率要比String类型高</p>
 <p>3）StringBuilder与StringBuffer一样是个可变的字符串序列，提供与StringBuffer兼容的API，但是不能保证同步，用在字符串缓冲区被耽搁线程使用的情况，在单机非多线程的情况下使用StringBuilder会有比较好的效率，因为StringBuilder没有处理同步（Synchronized）问题。StringBuffer则会处理同步问题，如果StringBuilder会在多线程下被操作，则要改用StringBuffer，让对象自行管理同步问题。</p>
 <p>注意点:<br>在使用StringBuffer时指定其容量，会比不指定其容量要快40%到50%左右，甚至比不指定容量的StringBuilder要快。所以在使用时最后指定其容量，对于性能有很大的提升。</p>
-<h3 id="9-Map、Set、List、Queue、Stack的特点与用法。"><a href="#9-Map、Set、List、Queue、Stack的特点与用法。" class="headerlink" title="9.Map、Set、List、Queue、Stack的特点与用法。"></a>9.Map、Set、List、Queue、Stack的特点与用法。</h3><p>Map：是键值对，键key是唯一不能重复的，一个键对应一个值，值可以重复<br>TreeMap可以保证顺序，HashMap不保证顺序，即为无序的。<br>Map中可以将key和value单独抽取出来，其中KeySet()方法可以将所有的keys抽取成一个set，而Values()方法可以将map中所有的values抽取成一个集合</p>
+<h2 id="9-Map、Set、List、Queue、Stack的特点与用法。"><a href="#9-Map、Set、List、Queue、Stack的特点与用法。" class="headerlink" title="9.Map、Set、List、Queue、Stack的特点与用法。"></a>9.Map、Set、List、Queue、Stack的特点与用法。</h2><p>Map：是键值对，键key是唯一不能重复的，一个键对应一个值，值可以重复<br>TreeMap可以保证顺序，HashMap不保证顺序，即为无序的。<br>Map中可以将key和value单独抽取出来，其中KeySet()方法可以将所有的keys抽取成一个set，而Values()方法可以将map中所有的values抽取成一个集合</p>
 <p>set：不包含重复元素的集合，set中最多包含一个null元素，只能用Iterator实现单项遍历，set中没有同步方法。</p>
 <p>List：有序的可重复集合，可以再任意位置增加删除元素</p>
 <p>Queue：遵从先进先出的原则，使用时尽量避免使用add（）和remove（）方法，而是使用offer（）来添加元素，使用poll（）来移除元素，他的有点事可以通过返回值来判断是否成功。LinkedList实现了Queue接口</p>
 <p>stack：遵从后进先出的原则，Stack继承自vector。它通过五个操作对类Vector进行扩展，允许将向量视为堆栈，它提供了通常的push和pop操作，以及去堆栈顶点的peek()方法，测试堆栈是否为空的empty方法等。</p>
-<h3 id="10-HashMap和HashTable的区别。"><a href="#10-HashMap和HashTable的区别。" class="headerlink" title="10.HashMap和HashTable的区别。"></a>10.HashMap和HashTable的区别。</h3><p>1）HashMap几乎可以等价于Hashtable，除了HashMap是非synchronized的，并可以接受null（hashMap可以接受null的键（key）和值（value），而hashTable则不行）</p>
+<h2 id="10-HashMap和HashTable的区别。"><a href="#10-HashMap和HashTable的区别。" class="headerlink" title="10.HashMap和HashTable的区别。"></a>10.HashMap和HashTable的区别。</h2><p>1）HashMap几乎可以等价于Hashtable，除了HashMap是非synchronized的，并可以接受null（hashMap可以接受null的键（key）和值（value），而hashTable则不行）</p>
 <p>2）HashMap是非synchronized，而hashtable是synchronized，这意味着hashtable是线程安全的，多个线程一个共享一个hashtable，而如果没有正确的同步的话，多个线程是不能共享hashMap的。</p>
 <p>3）另一个区别是HashMap的迭代器(Iterator)是fail-fast迭代器，而HashTable的enumerator迭代器不是fail-fast的。所以当有其它线程改变了HashMap的结构（增加或者移除元素），将会抛出ConcurrentModificationException，但迭代器本身的remove()方法移除元素则不会抛出ConcurrentModificationException异常。但这并不是一个一定发生的行为，要看JVM。</p>
 <p>4）由于hashTable是线程安全的也是synchronized，所以在单线程环境下它比hashMap要慢。如果你不需要同步，只需要单一线程，那么使用hashmap性能要好过HashTable。</p>
 <p>5）HashMap不能保证随着时间的推移map中的元素次序是不变的。</p>
-<h3 id="11-HashMap和ConcurrentHashMap的区别，HashMap的底层源码。"><a href="#11-HashMap和ConcurrentHashMap的区别，HashMap的底层源码。" class="headerlink" title="11.HashMap和ConcurrentHashMap的区别，HashMap的底层源码。"></a>11.HashMap和ConcurrentHashMap的区别，HashMap的底层源码。</h3><p>ConcurrentHashMap融合了hashmap和hashtable二者的优势。hashtable是做了同步的，hashmap未考虑同步，所以hashmap在单线程情况下效率较高，hashtable在多线程情况下，同步操作能保证程序执行的正确性。但是hashtable每次同步执行的时候都要锁住整个结构。</p>
+<h2 id="11-HashMap和ConcurrentHashMap的区别，HashMap的底层源码。"><a href="#11-HashMap和ConcurrentHashMap的区别，HashMap的底层源码。" class="headerlink" title="11.HashMap和ConcurrentHashMap的区别，HashMap的底层源码。"></a>11.HashMap和ConcurrentHashMap的区别，HashMap的底层源码。</h2><p>ConcurrentHashMap融合了hashmap和hashtable二者的优势。hashtable是做了同步的，hashmap未考虑同步，所以hashmap在单线程情况下效率较高，hashtable在多线程情况下，同步操作能保证程序执行的正确性。但是hashtable每次同步执行的时候都要锁住整个结构。</p>
 <p>ConcurrentHashMap正式为了解决这个问题而诞生的。ConcurrentHashMap锁的当时是稍微细粒度的。ConcurrentHashMap将hash表分为16个桶（默认值），诸如get，put，remove等常用操作只锁住当前需要用到的桶。</p>
 <p>试想，原来只能一个线程进入，现在却能同时16个写线程进入（写线程才需要锁定，而而读线程几乎不受限制），并发性的提升是显而易见的。</p>
 <p>更令人惊讶的是Concurrenthashmap的读取并发，因为在读取的大多数时候都没有用到锁定，所以读取操作几乎是完全的并发操作，而写操作的锁定的粒度又非常细，比起之前又更加快速（这一点在桶更多时表现的更明显些）。只有在求size等操作时才需要锁定这个表。</p>
@@ -1123,16 +1124,16 @@ static int hash(int h){
     return null;
 }
 </code></pre><p>有了上面存储时的hash算法作为基础，理解起来这段代码就很容易了。从上面的源代码中可以看出：从HashMap中get元素时，首先计算key的hashCode，找到数组中对应位置的某一元素，然后通过key的equals方法在对应位置的链表中找到需要的元素。</p>
-<h3 id="12-TreeMap-HashMap-LindedHashMap的区别"><a href="#12-TreeMap-HashMap-LindedHashMap的区别" class="headerlink" title="12.TreeMap,HashMap,LindedHashMap的区别"></a>12.TreeMap,HashMap,LindedHashMap的区别</h3><p>Map主要用于存储键值对，根据键得到值，因此不允许键重复（重复了覆盖），但允许值重复。</p>
+<h2 id="12-TreeMap-HashMap-LindedHashMap的区别"><a href="#12-TreeMap-HashMap-LindedHashMap的区别" class="headerlink" title="12.TreeMap,HashMap,LindedHashMap的区别"></a>12.TreeMap,HashMap,LindedHashMap的区别</h2><p>Map主要用于存储键值对，根据键得到值，因此不允许键重复（重复了覆盖），但允许值重复。</p>
 <p>HashMap是一个最常用的Map，他根据键的HashCode值存储数据，根据键可以直接获取他的值，具有很快的访问速度，遍历时，取得数据的顺序是完全随机的。Hashmap最多只允许一条记录的键为null；允许多条记录的值为null；HashMap不支持线程的同步，即任一时刻可以有多个线程同时写HashMap；可能会导致数据的不一致，如果需要同步，可以用collections的synchronizedMap方法使HashMap具有同步的能力，或者使用ConcurrenthashMap.</p>
 <p>Hashtable与HashMap类似，它继承自Dictionary类，不同的是，它不允许记录的键或者值为空，它支持线程的同步，即任一时刻只有一个线程能写Hashtable，因此也导致了Hashtable在写入时会比较慢。</p>
 <p>LinkedHashMap保存了记录的插入顺序，在用Iterator遍历LinkedHashMap时，先得到的记录肯定是先插入的，也可以在构造时用带参数，按照应用次数排序。在遍历的时候回比hashMap慢，不过有种情况例外，当HashMap容量很大，实际数据较少时，遍历起来可能会比LinkendHashmap慢，因为LinkedHashMap的遍历速度只和实际熟读有关，和容量无关，而Hashmap遍历的速度和他的容量有关。</p>
 <p>TreeMap实现SortMap接口，能够把它保存的记录根据键排序，默认是按键值得升序排序，也可以制定排序的比较器，当用Iterator遍历TreeMap时，使得记录是排过序的。</p>
 <p>一般情况下，我们用的最多的是HashMap，HashMap里面存入的键值对在取出的时候是随机的，它根据键的HashCode值存储数据，根据键可以直接获取它的值，具有很快的访问速度。在Map中插入，删除，定位元素，Hashmap是最好的选择。<br>TreeMap取出来的是排序后的键值对，但如果你要按自然顺序，或自定义排序遍历键，那么TreeMap会更好。<br>LindedHashMap是HashMap的一个子类，如果需要输出的顺序和输入的相同，那么用linkedHashMap可以实现，它还可以按读取顺序来排列，像连接池中可以应用。</p>
-<h3 id="13-Collection包结构，与Collections的区别。"><a href="#13-Collection包结构，与Collections的区别。" class="headerlink" title="13.Collection包结构，与Collections的区别。"></a>13.Collection包结构，与Collections的区别。</h3><p>Collection<br>├List<br>│├LinkedList<br>│├ArrayList<br>│└Vector<br>│　└Stack<br>└Set </p>
+<h2 id="13-Collection包结构，与Collections的区别。"><a href="#13-Collection包结构，与Collections的区别。" class="headerlink" title="13.Collection包结构，与Collections的区别。"></a>13.Collection包结构，与Collections的区别。</h2><p>Collection<br>├List<br>│├LinkedList<br>│├ArrayList<br>│└Vector<br>│　└Stack<br>└Set </p>
 <p>Collection是集合类的上级接口，子接口主要有Set 和List、Map。<br>Collections是针对集合类的一个帮助类，提供了操作集合的工具方法：一系列静态方法实现对各种集合的搜索、排序、线程安全化等操作。</p>
-<h3 id="14-try-catch-finally，try里有return，finally还执行么？"><a href="#14-try-catch-finally，try里有return，finally还执行么？" class="headerlink" title="14. try catch finally，try里有return，finally还执行么？"></a>14. try catch finally，try里有return，finally还执行么？</h3><p>1.不管是否有出现异常，finally块中代码都会执行；<br>2.当try和catch中有return时，finally仍然会执行；<br>3.finally是在return后面的表达式运算后执行的（此时并没有返回运算后的值，而是先把药返回的值保存起来，不管finally中的代码怎么样，返回的值都不会改变，仍然是之前保存的值）所以函数返回值是在finally执行前确定的；<br>4.finally中最好不要包含return，否则程序会提前退出，返回值不是try或catch中保存的值</p>
-<h3 id="15-Excption与Error包结构。OOM你遇到过哪些情况，SOF你遇到过哪些情况。"><a href="#15-Excption与Error包结构。OOM你遇到过哪些情况，SOF你遇到过哪些情况。" class="headerlink" title="15.Excption与Error包结构。OOM你遇到过哪些情况，SOF你遇到过哪些情况。"></a>15.Excption与Error包结构。OOM你遇到过哪些情况，SOF你遇到过哪些情况。</h3><p><img src="http://7xruqa.com1.z0.glb.clouddn.com/%E6%96%B9%E6%B3%95%E8%A1%A8.PNG" alt="java异常架构图"></p>
+<h2 id="14-try-catch-finally，try里有return，finally还执行么？"><a href="#14-try-catch-finally，try里有return，finally还执行么？" class="headerlink" title="14. try catch finally，try里有return，finally还执行么？"></a>14. try catch finally，try里有return，finally还执行么？</h2><p>1.不管是否有出现异常，finally块中代码都会执行；<br>2.当try和catch中有return时，finally仍然会执行；<br>3.finally是在return后面的表达式运算后执行的（此时并没有返回运算后的值，而是先把药返回的值保存起来，不管finally中的代码怎么样，返回的值都不会改变，仍然是之前保存的值）所以函数返回值是在finally执行前确定的；<br>4.finally中最好不要包含return，否则程序会提前退出，返回值不是try或catch中保存的值</p>
+<h2 id="15-Excption与Error包结构。OOM你遇到过哪些情况，SOF你遇到过哪些情况。"><a href="#15-Excption与Error包结构。OOM你遇到过哪些情况，SOF你遇到过哪些情况。" class="headerlink" title="15.Excption与Error包结构。OOM你遇到过哪些情况，SOF你遇到过哪些情况。"></a>15.Excption与Error包结构。OOM你遇到过哪些情况，SOF你遇到过哪些情况。</h2><p><img src="http://7xruqa.com1.z0.glb.clouddn.com/%E6%96%B9%E6%B3%95%E8%A1%A8.PNG" alt="java异常架构图"></p>
 <p>1.Throwable<br>Throwable是java语言中所有错误或异常的超类。<br>Throwable包含两个子类：Error和Exception。它们通常用于指示放生了异常情况。<br>Throwable包含了其线程创建时线程执行堆栈的快照，它提供了printStartTrace（）等接口用于捕获堆栈跟踪数据等信息。</p>
 <p>2.Exception<br>Exception及其子类是Throwable的一种形式，它指出了合理的应用程序想要捕获的条件。</p>
 <ol>
@@ -1154,22 +1155,22 @@ static int hash(int h){
 <p>异常信息：java.lang.OutOfMemoryError:PermGen space</p>
 <p>如果要向运行时常量池中添加内容，最简单的做法就是使用String.intern()这个Native方法。该方法的作用是：如果池中已经包含一个等于此String的字符串，则返回代表池中这个字符串的String对象；否则，将此String对象包含的字符串添加到常量池中，并且返回此String对象的引用。由于常量池分配在方法区内，我们可以通过-XX:PermSize和-XX:MaxPermSize限制方法区的大小，从而间接限制其中常量池的容量。</p>
 <p>（4）方法区溢出<br>方法区用于存放Class的相关信息，如类名，访问修饰符，常量池，字段描述，方法描述等。<br>异常信息：java.lang.OutOfMemoryError:PermGen space<br>方法区溢出也是一种常见的内存溢出异常，一个类如果要被垃圾收集器回收，判定条件是很苛刻的。在经常动态生成大量class的应用中，要特别注意这点。</p>
-<h3 id="16-java面向对象的三个特征与含义"><a href="#16-java面向对象的三个特征与含义" class="headerlink" title="16.java面向对象的三个特征与含义"></a>16.java面向对象的三个特征与含义</h3><p>对象是类的一个实例，有状态和行为。<br>类是一个末班，它描述一类对象的行为和状态</p>
+<h2 id="16-java面向对象的三个特征与含义"><a href="#16-java面向对象的三个特征与含义" class="headerlink" title="16.java面向对象的三个特征与含义"></a>16.java面向对象的三个特征与含义</h2><p>对象是类的一个实例，有状态和行为。<br>类是一个末班，它描述一类对象的行为和状态</p>
 <p>（1）封装性：将对象的状态信息尽可能的隐藏在对象内部，只保留有限的接口和方法与外界进行交互，从而避免了外界对对象内部属性的破坏。java中使用访问控制符来保护对类，变量，方法和构造方法的访问。</p>
 <p>java中支持4种不同的访问权限、<br>默认的，也称为default，在同一包内可见，不使用任何修饰符。<br>私有的，以private修饰符制定，在同一类内可见<br>共有的，以public修饰符指定，对所有类可见。<br>受保护的，以protected修饰符指定，对同一包内的类和所有子类可见</p>
 <p>（2）继承</p>
 <p>java通过继承创建分等级层次的类，可以理解为一个对象从另一个对象获取属性的过程。类的继承是单一继承，也就是说，一个子类只能拥有一个父类。<br>子类拥有父类所有的成员变量，但对于父类private的成员变量却没有访问权限，这保障了父类的封装性</p>
 <p>（3）多态</p>
 <p>多态是同一个行为具有多个不同表现形式或形态的能力，多态性是对象多种表现形式的体现。</p>
-<h3 id="17-Override和Overload的含义区别。"><a href="#17-Override和Overload的含义区别。" class="headerlink" title="17.Override和Overload的含义区别。"></a>17.Override和Overload的含义区别。</h3><p>方法的重写（Overriding）和重载（Overloading）是java多态性的不同表现。<br>重写（Overriding）是父类与子类之间多态性的一种表现，而重载（Overriding）是一个类中多态性的一种表现，如果在子类中定义某方法与其父类有相同的名称和参数，我们说该方法被重写（Overriding）。子类的对象使用这个方法时，将调用子类中的定义，对它而言，父类中的定义如同被屏蔽了。如果在一个类中定义了多个同名的方法，他们或有不同的参数个数或有不同的参数类型或有不同的参数次序，则称为方法的重载（Overloading）。不能通过访问权限，返回类型，抛出的异常进行重载。</p>
+<h2 id="17-Override和Overload的含义区别。"><a href="#17-Override和Overload的含义区别。" class="headerlink" title="17.Override和Overload的含义区别。"></a>17.Override和Overload的含义区别。</h2><p>方法的重写（Overriding）和重载（Overloading）是java多态性的不同表现。<br>重写（Overriding）是父类与子类之间多态性的一种表现，而重载（Overriding）是一个类中多态性的一种表现，如果在子类中定义某方法与其父类有相同的名称和参数，我们说该方法被重写（Overriding）。子类的对象使用这个方法时，将调用子类中的定义，对它而言，父类中的定义如同被屏蔽了。如果在一个类中定义了多个同名的方法，他们或有不同的参数个数或有不同的参数类型或有不同的参数次序，则称为方法的重载（Overloading）。不能通过访问权限，返回类型，抛出的异常进行重载。</p>
 <p>（1）Override特点<br>1&gt;覆盖的方法标志必须要和被覆盖的方法的标志完全匹配，才能达到覆盖的效果；<br>2&gt;覆盖的方法返回值必须和被覆盖的方法返回一致<br>3&gt;覆盖的方法所抛出的异常必须哟啊和被覆盖方法所抛出的异常一致，或者是其子类；<br>4&gt;方法被定义为final不能被重写<br>5&gt;对于继承来说，如果某一方法在父类中访问权限是private，那么久不能在子类对其进行重写覆盖，如果定义的话，也只是定义了一个新方法，而不会达到重写覆盖的效果。</p>
 <p>（2）Overload特点<br>1&gt;在使用重载时只能通过不同的参数样式。例如不同的参数类型，不同的参数个数，不同的参数顺序（当然，同一个方法内的几个参数类型必须不一致）<br>2&gt;不能通过访问权限，返回类型，抛出的异常进行重载<br>3&gt;方法的异常类型和数目不会对重载造成影响<br>4&gt;重载事件通常发生在一个类中，不同方法之间的现象<br>5&gt;存在于同一类中，但是只有虚方法和抽象方法才能被覆写</p>
 <p>overload是重载，重载是一种参数多态机制，即代码通过参数的类型或个数不同而实现的多态机制。 是一种静态的绑定机制（在编译时已经知道具体执行的是哪个代码段）。   </p>
 <p>override是覆盖。覆盖是一种动态绑定的多态机制。即在父类和子类中同名元素（如成员函数）有不同 的实现代码。执行的是哪个代码是根据运行时实际情况而定的。 </p>
-<h3 id="18-Interface与abstract类的区别。"><a href="#18-Interface与abstract类的区别。" class="headerlink" title="18.Interface与abstract类的区别。"></a>18.Interface与abstract类的区别。</h3><p>(1)抽象类是不能被实例化的类，只能作为其他类继承的基类；<br>   接口则定义了实现某种服务的一般规范（Objective-C中将接口称为“协议”（protocol））,声明了必须的函数和常量，但不指定如何实现<br>(2)子类通过extends关键字来继承抽象类（且只能继承一个）<br>   类通过implenments关键字来实现接口（可以实现多个）<br>(3)在抽象类中定义的所有方法都必须在子类中实现；<br>   当类实现了接口后，接口中的所有方法都必须实现。如果实现类没有实现接口中的所有方法，则必须声明为抽象类。<br>(4)在抽象类中可以实现一些行为（实际上，抽象类可以完全实现，部分实现，根本不实现）<br>   在接口中只能定义方法，不能实现方法</p>
+<h2 id="18-Interface与abstract类的区别。"><a href="#18-Interface与abstract类的区别。" class="headerlink" title="18.Interface与abstract类的区别。"></a>18.Interface与abstract类的区别。</h2><p>(1)抽象类是不能被实例化的类，只能作为其他类继承的基类；<br>   接口则定义了实现某种服务的一般规范（Objective-C中将接口称为“协议”（protocol））,声明了必须的函数和常量，但不指定如何实现<br>(2)子类通过extends关键字来继承抽象类（且只能继承一个）<br>   类通过implenments关键字来实现接口（可以实现多个）<br>(3)在抽象类中定义的所有方法都必须在子类中实现；<br>   当类实现了接口后，接口中的所有方法都必须实现。如果实现类没有实现接口中的所有方法，则必须声明为抽象类。<br>(4)在抽象类中可以实现一些行为（实际上，抽象类可以完全实现，部分实现，根本不实现）<br>   在接口中只能定义方法，不能实现方法</p>
 <p>抽象类和接口的选择问题：<br>1.如果要创建一个模型，这个模型将由一些紧密相关的对象采用，就可以使用抽象类，如果要创建由一些不相关对象采用的功能，就使用接口<br>2.如果必须从多个来源继承行为，就是用接口<br>3.如果知道所有类都会共享一个公共的行为实现，就是用抽象类，并在其中实现该行为。在接口中无法实现行为。</p>
-<h3 id="19-Static-class-与non-static-class的区别。"><a href="#19-Static-class-与non-static-class的区别。" class="headerlink" title="19.Static class 与non static class的区别。"></a>19.Static class 与non static class的区别。</h3><p>静态类是指在一个类的内部，有定义了一个用static修饰的类，那静态类的功能又体现在哪里呢？可以用C中的结构体内嵌结构体来理解，其次需要了解两个概念：内部类和静态修饰符static。<br>A.首先，用内部类是因为内部类与所在外部类有一定的关系，往往只有该外部类调用此内部类，所以没必要专门用一个Java文件存放这个类。<br>B.静态都是用来修饰类的内部成员的。比如静态方法，静态成员变量。它唯一的作用就是随着类的加载（而不是随着对象的产生）而产生，以致可以用类名+静态成员名直接获得。这样静态内部类就可以理解了，他可以直接被用外部类名+内部类名 获得。</p>
-<h3 id="20-java多态的实现原理"><a href="#20-java多态的实现原理" class="headerlink" title="20.java多态的实现原理"></a>20.java多态的实现原理</h3><p>（1）Java多态概述<br>多态是面向对象编程语言的重要特性，它允许基类的指针或引用指向派生类的对象，而在具体访问时实现方法的动态绑定。java对于方法调用动态绑定的实现主要依赖于方法表，但通过类引用调用（invokevitual）和接口引用调用（invokeinterface）的实现则有所不同。</p>
+<h2 id="19-Static-class-与non-static-class的区别。"><a href="#19-Static-class-与non-static-class的区别。" class="headerlink" title="19.Static class 与non static class的区别。"></a>19.Static class 与non static class的区别。</h2><p>静态类是指在一个类的内部，有定义了一个用static修饰的类，那静态类的功能又体现在哪里呢？可以用C中的结构体内嵌结构体来理解，其次需要了解两个概念：内部类和静态修饰符static。<br>A.首先，用内部类是因为内部类与所在外部类有一定的关系，往往只有该外部类调用此内部类，所以没必要专门用一个Java文件存放这个类。<br>B.静态都是用来修饰类的内部成员的。比如静态方法，静态成员变量。它唯一的作用就是随着类的加载（而不是随着对象的产生）而产生，以致可以用类名+静态成员名直接获得。这样静态内部类就可以理解了，他可以直接被用外部类名+内部类名 获得。</p>
+<h2 id="20-java多态的实现原理"><a href="#20-java多态的实现原理" class="headerlink" title="20.java多态的实现原理"></a>20.java多态的实现原理</h2><p>（1）Java多态概述<br>多态是面向对象编程语言的重要特性，它允许基类的指针或引用指向派生类的对象，而在具体访问时实现方法的动态绑定。java对于方法调用动态绑定的实现主要依赖于方法表，但通过类引用调用（invokevitual）和接口引用调用（invokeinterface）的实现则有所不同。</p>
 <p>类引用调用的大致过程为：Java编译器将Java源代码编译成class文件，在编译过程中，会根据静态类型将调用的符号引用写到class文件中。在执行时JVM根据class文件找到调用方法的符号引用，然后在静态类型的方法表中找到偏移量，然后根据this指针确定对象的实际类型，使用实际类型的方法表，偏移量跟静态类型中的方法表的偏移量一样，如果在实际类型的方法表中找到该方法，则直接调用，否则，认为没有重写父类该方法，按照继承关系从下往上搜索。</p>
 <p>![JVM运行时结构][2]</p>
 <p>  从上图可以看出，当程序运行时，需要某个类时，类载入子系统会将相应的class文件载入到JVM中，并在内部建立该类的类型信息（这个类型信息其实就是class文件在JVM中存储的一种数据结构），包含java类定义的所有信息，包括方法代码，类变量，成员变量，以及方法表。这个类型信息就存储在方法区。<br>  注意，这个方法区中的类型信息跟在堆中存放的class对象是不同的。在方法区中，这个class的类型信息只有唯一的实例（所以是各个线程共享的内存区域），而在堆中可以有多个该class对象。可以通过堆中的class对象访问到方法区中类型信息。就像java反射机制那样，通过class对象可以访问到该类的所有信息一样。<br>  【重点】<br>  方法表是实现动态调用的核心，上面讲过方法表存放在方法区中的类型信息，为了优化对象调用方法的速度，方法区的类型会增加一个指针，该指针指向一个记录该类方法的方法表，方法表中的每一个想都是对应方法的指针。<br>  【扩展】<br>  方法区：方法区和JAVA堆一样，是各个线程共享的内存区域，用于存储已被虚拟机加载的类信息，常量，静态变量，即时编译器编译后的代码等数据。<br>  运行时常量池：它是方法区的一部分，Class文件中除了有类的版本，方法，字段等描述信息外，还有一项信息是常量池，用于存放编译器生成的各种符号引用，这部分信息在类加载时进入方法区的运行时常量池中。<br>  方法区的内存回收目标是针对常量池的回收及对类型的卸载。</p>
@@ -1238,7 +1239,7 @@ class Snake implements IDance{
     }
 }
 </code></pre><p>可以看到由于接口的接入，继承自于接口IDance的方法dance()在类Dancer和Snake的方法表种的位置已经不一样了，我们无法仅根据偏移量来进行方法的调用。<br>Java对于接口方法的调用时采用搜索方法表的方式，如要在Dancer的方法表种找到dance()方法，必须搜索Dancer的整个方法表。<br>因为每次接口调用都要搜索方法表，所以从效率上来说，接口方法的调用总是满语接口方法的调用。</p>
-<h3 id="21-实现多线程的两种方法，Thread和Runable"><a href="#21-实现多线程的两种方法，Thread和Runable" class="headerlink" title="21.实现多线程的两种方法，Thread和Runable"></a>21.实现多线程的两种方法，Thread和Runable</h3><p>线程的概念：线程（Thread）是指一个任务从头至尾的执行流，线程提供一个运行任务的机制，对于java而言，一个程序中可以并发的执行多个线程，这些线程可以在多处理器上面同时进行，当程序作为一个应用程序运行时，java解释器为main（）方法启动一个线程。</p>
+<h2 id="21-实现多线程的两种方法，Thread和Runable"><a href="#21-实现多线程的两种方法，Thread和Runable" class="headerlink" title="21.实现多线程的两种方法，Thread和Runable"></a>21.实现多线程的两种方法，Thread和Runable</h2><p>线程的概念：线程（Thread）是指一个任务从头至尾的执行流，线程提供一个运行任务的机制，对于java而言，一个程序中可以并发的执行多个线程，这些线程可以在多处理器上面同时进行，当程序作为一个应用程序运行时，java解释器为main（）方法启动一个线程。</p>
 <p>并行与并发</p>
 <blockquote>
 <p>并发：在单处理器系统中，多个线程共享CPU时间，而操作系统负责调度与分配资源给它们<br>并行：在多处理器系统中，多个处理器可以同时运行多个线程，这些线程在同一时间可以同时运行，而不同于并发，只能多个线程共享CPU时间，同一时间只能运行一个线程。</p>
@@ -1354,7 +1355,7 @@ $Thread-0(0)
 <blockquote>
 <p>1）优点：线程类只是实现了Runnable接口，还可以继承其他的类。在这种情况下，多个线程共享一个目标对象，所以非常适合多个祥泰线程来处理同一份资源的情况，从而可以将CPU代码和数据分开，形成清晰的模型，较好地体现了面向对象的思想。<br>2）缺点：编程稍微复杂，如果需要访问当前线程，必须使用Thread.currentThread（）方法。</p>
 </blockquote>
-<h3 id="22-线程同步的方法：sychronized、lock、reentrantLock等"><a href="#22-线程同步的方法：sychronized、lock、reentrantLock等" class="headerlink" title="22. 线程同步的方法：sychronized、lock、reentrantLock等"></a>22. 线程同步的方法：sychronized、lock、reentrantLock等</h3><p>如果你想一个变量写值，而这个变量接下来可能会被另一个线程读取，或者你从一个变量读值，而它的值可能是前面由另一个线程写入的，此时你就必须使用同步</p>
+<h2 id="22-线程同步的方法：sychronized、lock、reentrantLock等"><a href="#22-线程同步的方法：sychronized、lock、reentrantLock等" class="headerlink" title="22. 线程同步的方法：sychronized、lock、reentrantLock等"></a>22. 线程同步的方法：sychronized、lock、reentrantLock等</h2><p>如果你想一个变量写值，而这个变量接下来可能会被另一个线程读取，或者你从一个变量读值，而它的值可能是前面由另一个线程写入的，此时你就必须使用同步</p>
 <p>例子：</p>
 <pre><code>package cn.outofmemory.locks;
 
@@ -1426,7 +1427,7 @@ public void run(){
 <blockquote>
 <p>1.如果synchronized关键字适合程序，尽量使用它，可以减少代码出错的几率和代码数量<br>2.如果特别需要Lock/Condition结构提供的独有特性，才使用它们<br>3.许多情况下可以使用java.util.concurrent包中的一种机制，它会处理你所有的加锁情况</p>
 </blockquote>
-<h3 id="23-锁的等级：方法锁、对象锁、类锁"><a href="#23-锁的等级：方法锁、对象锁、类锁" class="headerlink" title="23. 锁的等级：方法锁、对象锁、类锁"></a>23. 锁的等级：方法锁、对象锁、类锁</h3><p>方法锁（synchronized修饰方法时）</p>
+<h2 id="23-锁的等级：方法锁、对象锁、类锁"><a href="#23-锁的等级：方法锁、对象锁、类锁" class="headerlink" title="23. 锁的等级：方法锁、对象锁、类锁"></a>23. 锁的等级：方法锁、对象锁、类锁</h2><p>方法锁（synchronized修饰方法时）</p>
 <p>通过在方法声明中加入synchronized关键字来声明synchrozied方法。synchronized方法控制对类成员变量的访问：每个类实例对应一把锁，每个synchronized方法都必须获得调用该方法的类实例的锁方能执行。否则所属线程阻塞，方法一旦执行，就独占该锁，只当从该方法返回时才将锁释放，此后被阻塞的线程方能获得该锁，重新进入可执行状态。这种机制确保了同一时刻对于每一个类实例，其所有声明为synchronized的成员函数至多只有一个处于可执行状态，从而有效避免了类成员变量的访问冲突。</p>
 <p>对象锁（synchronized修饰方法块或代码块）<br>当一个对象中有synchronized method或synchronized block的时候调用此对象的同步方法，或进入其同步区域时，就必须先获得对象锁，如果此对象的对象锁已被其他调用者占用，则需要等待此锁被释放（方法锁也是对象锁）</p>
 <p>java的所有对象都包含一个互斥锁，这个锁由JVM自动获取和释放，线程进入synchronized方法的时候获取该对象的锁，当然如果已经有线程获取了这个对象的锁，那么当前线程会等待，synchronized方法正常返回或者异常而终止，JVM会自动释放对象锁。这里也体现了用synchronized来加锁的一个好处，方法抛出异常的时候，锁仍然可以由JVM来自动释放</p>
@@ -1499,7 +1500,7 @@ public void Method２()
     }
 
 }
-</code></pre><h3 id="24-写出生产者消费者模式"><a href="#24-写出生产者消费者模式" class="headerlink" title="24.写出生产者消费者模式"></a>24.写出生产者消费者模式</h3><blockquote>
+</code></pre><h2 id="24-写出生产者消费者模式"><a href="#24-写出生产者消费者模式" class="headerlink" title="24.写出生产者消费者模式"></a>24.写出生产者消费者模式</h2><blockquote>
 <p>生产者消费者问题是研究多线程程序时绕不开的经典问题之一，它描述的是有一块缓冲区作为仓库，生产者可以将产品放入仓库，消费者则可以从仓库中取走产品，解决生产者/消费者问题的方法可分为两类：（1）采用某种机制保护生产者和消费者之间的同步；（2）在 生产者和消费者之间建立一个管道。第一种方式有较高的效率，并且易于实现，代码的可控性较好，属于常用的模式。第二种管道缓冲区不易控制，被传输数据对象不易于封装等，实用性不强。</p>
 </blockquote>
 <p>1.wait()/notify()方法</p>
@@ -1784,7 +1785,7 @@ public int getMAX_SIZE(){
 }
 }
 </code></pre><p>有时使用BlockingQueue可能会出现put()和System.out.println()输出不匹配的情况，这是由于它们之间没有同步造成的。当缓冲区已满，生产者在put()操作时，put()内部调用了await()方法，放弃了线程的执行，然后消费者线程执行，调用take()方法，take()内部调用了signal()方法，通知生产者线程可以执行，致使在消费者的println()还没运行的情况下生产者的println()先被执行，所以有了输出不匹配的情况。</p>
-<h3 id="25-ThreadLocal的设计理念与作用"><a href="#25-ThreadLocal的设计理念与作用" class="headerlink" title="25.ThreadLocal的设计理念与作用"></a>25.ThreadLocal的设计理念与作用</h3><p>Jav中的ThreadLocal类允许我们创建只能被同一个线程读写的变量。因此，如果一段代码含有一个ThreadLocal变量的引用，即使两个线程同时执行这段代码，他们也无法访问到对方的ThreadLocal变量。</p>
+<h2 id="25-ThreadLocal的设计理念与作用"><a href="#25-ThreadLocal的设计理念与作用" class="headerlink" title="25.ThreadLocal的设计理念与作用"></a>25.ThreadLocal的设计理念与作用</h2><p>Jav中的ThreadLocal类允许我们创建只能被同一个线程读写的变量。因此，如果一段代码含有一个ThreadLocal变量的引用，即使两个线程同时执行这段代码，他们也无法访问到对方的ThreadLocal变量。</p>
 <p>1）如何创建ThreadLocal变量</p>
 <pre><code>private ThreadLocal myThreadLocal=new ThreadLocal();
 </code></pre><p>通过这段代码实例化了一个ThreadLocal对象。我们只需要实例化对象一次，而且也不需要知道它是被哪个线程实例化，虽然所有的线程都能访问到这个ThreadLocal实例，但是每个线程却只能访问到自己通过调用ThreadLocal的set（）方法设置的值，即使是两个不同的线程在同一个ThreadLocal对象上设置了不同的值，他们仍然无法访问到对方的值。</p>
@@ -1831,7 +1832,7 @@ protect String initialValue(){
      }
 
 上面例子创建一个MyRunnable实例，并将该实例作为参数传递给两个线程。两个线程分别执行run（）方法，并且都在ThreadLocal实例上保存了不同的值，如果他们访问的不是ThreadLocal对象并且调用的set（）方法被同步了，则第二个线程会覆盖掉第一个线程设置的值，但是由于他们访问的是一个ThreadLocal对象，因此这两个线程都无法看到对方的值，也就是说他们取存的是两个不同的值。
-</code></pre><h3 id="26-ThreadPool用法与优势"><a href="#26-ThreadPool用法与优势" class="headerlink" title="26. ThreadPool用法与优势"></a>26. ThreadPool用法与优势</h3><p>Java通过Executors提供四种线程池，分别为：<br>newCachedThreadPool创建一个可缓存的线程池，如果线程池长度超过处理需要，可灵活回收空线程，若无可回收，则新建线程<br>newFixedThreadPool创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。<br>newScheduledThreadPool创建一个定长线程池，支持定时及周期性任务执行<br>newSingleThreadExcutor创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序（FIFO,LIFO,优先级）执行。</p>
+</code></pre><h2 id="26-ThreadPool用法与优势"><a href="#26-ThreadPool用法与优势" class="headerlink" title="26. ThreadPool用法与优势"></a>26. ThreadPool用法与优势</h2><p>Java通过Executors提供四种线程池，分别为：<br>newCachedThreadPool创建一个可缓存的线程池，如果线程池长度超过处理需要，可灵活回收空线程，若无可回收，则新建线程<br>newFixedThreadPool创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。<br>newScheduledThreadPool创建一个定长线程池，支持定时及周期性任务执行<br>newSingleThreadExcutor创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序（FIFO,LIFO,优先级）执行。</p>
 <p>1）newCachedThreadPool<br>创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程，示例的代码：</p>
 <pre><code>ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
 for(int i=0;i&lt;10;i++){
@@ -1909,7 +1910,7 @@ for(int i=0;i&lt;10;i++){
 <li>提高线程的可管理性，线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一的分配，调优和监控。但是要做到合理的利用县城吃，必须对其原理了如指掌</li>
 </ul>
 </blockquote>
-<h3 id="27-Concurrent包里的其他东西：ArrayBlockingQueue、CountDownLatch等等。"><a href="#27-Concurrent包里的其他东西：ArrayBlockingQueue、CountDownLatch等等。" class="headerlink" title="27. Concurrent包里的其他东西：ArrayBlockingQueue、CountDownLatch等等。"></a>27. Concurrent包里的其他东西：ArrayBlockingQueue、CountDownLatch等等。</h3><p>java.util.concurrent包含许多线程安全，测试良好，高性能的并发构建块。通过提供一组可靠的，高性能并发构建块，开发人员可以提高并发类的线程安全，可伸缩性，性能，可读性和可靠性。</p>
+<h2 id="27-Concurrent包里的其他东西：ArrayBlockingQueue、CountDownLatch等等。"><a href="#27-Concurrent包里的其他东西：ArrayBlockingQueue、CountDownLatch等等。" class="headerlink" title="27. Concurrent包里的其他东西：ArrayBlockingQueue、CountDownLatch等等。"></a>27. Concurrent包里的其他东西：ArrayBlockingQueue、CountDownLatch等等。</h2><p>java.util.concurrent包含许多线程安全，测试良好，高性能的并发构建块。通过提供一组可靠的，高性能并发构建块，开发人员可以提高并发类的线程安全，可伸缩性，性能，可读性和可靠性。</p>
 <p>使用线程的理由：</p>
 <blockquote>
 <ul>
