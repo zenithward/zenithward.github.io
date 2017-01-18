@@ -18,7 +18,7 @@
 
 28. wait()和sleep()的区别1）这两个方法来自不同的类，分别是Sleep来自Thread类，wait来自Object类。sleep是Thread的静态类方法，谁调用谁去睡觉，即使在a线程里调用b的sleep方法，实际上还是a去睡觉，要让b线程睡觉要在b的代码中调用sleep。
 2）锁：最主要是sleep方法没有释放锁，而wait方法">
-<meta property="og:updated_time" content="2017-01-18T03:02:54.000Z">
+<meta property="og:updated_time" content="2017-01-18T03:18:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java面试（下）">
 <meta name="twitter:description" content="Java 面试（二）标签（空格分隔）： java
@@ -897,7 +897,8 @@ public Object readReslove(){
          }
        }
 }
-</code></pre>
+</code></pre><p>似乎解决了之前提到的问题，将synchronized关键字加在内部，也就是说当调用的时候是不需要加锁的，只有在instance为null，并创建对象的时候才需要加锁，性能有一定的提升。但是，这样的情况，还是有可能有问题的，看下面的情况：在Java指令中创建脆响和赋值操作时分开进行的，也就是说instance＝new Singleton()；语句时分两步进行的。但是JVM并不保证这两个操作的先后顺序，也就是说有可能JVM会为新的Singleton实例分配空间，然后直接赋值给instance成员，然后再去初始化这个Singleton实例。这样就可能出错了，我们以A，B两个线程为例：</p>
+
       
     </div>
     
