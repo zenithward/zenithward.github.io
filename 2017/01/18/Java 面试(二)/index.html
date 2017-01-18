@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>麦桃子的部落格</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Java 面试（二）标签（空格分隔）： java
+
+28. wait()和sleep()的区别1）这两个方法来自不同的类，分别是Sleep来自Thread类，wait来自Object类。sleep是Thread的静态类方法，谁调用谁去睡觉，即使在a线程里调用b的sleep方法，实际上还是a去睡觉，要让b线程睡觉要在b的代码中调用sleep。
+2）锁：最主要是sleep方法没有释放锁，而wait方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="麦桃子的部落格">
+<meta property="og:url" content="http://yoursite.com/2017/01/18/Java 面试(二)/index.html">
+<meta property="og:site_name" content="麦桃子的部落格">
+<meta property="og:description" content="Java 面试（二）标签（空格分隔）： java
+
+28. wait()和sleep()的区别1）这两个方法来自不同的类，分别是Sleep来自Thread类，wait来自Object类。sleep是Thread的静态类方法，谁调用谁去睡觉，即使在a线程里调用b的sleep方法，实际上还是a去睡觉，要让b线程睡觉要在b的代码中调用sleep。
+2）锁：最主要是sleep方法没有释放锁，而wait方法">
+<meta property="og:updated_time" content="2017-01-18T02:39:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="麦桃子的部落格">
+<meta name="twitter:description" content="Java 面试（二）标签（空格分隔）： java
+
+28. wait()和sleep()的区别1）这两个方法来自不同的类，分别是Sleep来自Thread类，wait来自Object类。sleep是Thread的静态类方法，谁调用谁去睡觉，即使在a线程里调用b的sleep方法，实际上还是a去睡觉，要让b线程睡觉要在b的代码中调用sleep。
+2）锁：最主要是sleep方法没有释放锁，而wait方法">
+  
+    <link rel="alternative" href="/atom.xml" title="麦桃子的部落格" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xruqa.com1.z0.glb.clouddn.com/IMG_myphoto.JPG" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Mai Taozi</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">越努力 越幸运</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Mai Taozi</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://7xruqa.com1.z0.glb.clouddn.com/IMG_myphoto.JPG" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Mai Taozi</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-Java 面试(二)" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/01/18/Java 面试(二)/" class="article-date">
+  	<time datetime="2017-01-18T02:39:18.000Z" itemprop="datePublished">2017-01-18</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Java-面试（二）"><a href="#Java-面试（二）" class="headerlink" title="Java 面试（二）"></a>Java 面试（二）</h1><p>标签（空格分隔）： java</p>
+<hr>
+<h3 id="28-wait-和sleep-的区别"><a href="#28-wait-和sleep-的区别" class="headerlink" title="28. wait()和sleep()的区别"></a>28. wait()和sleep()的区别</h3><p>1）这两个方法来自不同的类，分别是Sleep来自Thread类，wait来自Object类。sleep是Thread的静态类方法，谁调用谁去睡觉，即使在a线程里调用b的sleep方法，实际上还是a去睡觉，要让b线程睡觉要在b的代码中调用sleep。</p>
+<p>2）锁：最主要是sleep方法没有释放锁，而wait方法释放了锁，使得其他线程可以同步控制块或者方法。sleep不出让系统资源，wait是进入线程等待吃等待，出让系统资源，其他线程可以占用CPU。一般wait不会加时间限制，因为如果wait线程的运行资源不够，要等待其他县城调用notify/notifyAll唤醒等待池中的所有县城，才会进入就绪队列等待OS分配系统资源。sleep（milliseconds）可以用时间指定使它自动唤醒过来，如果时间不到只能用interrupt（）强行打断。<br>Thread.sleep(0)的作用是“触发操作系统立刻重新进行一次CPU竞争”。</p>
+<p>3）使用范围：wait，notify和notifyAll只能在同步控制方法或者同步控制块里面使用，而sleep可以在任何地方使用。</p>
+<pre><code>synchronized（x）{
+     x.notify()
+     //或者wait()
+}
+</code></pre><h3 id="29-foreach与正常for循环效率对比"><a href="#29-foreach与正常for循环效率对比" class="headerlink" title="29. foreach与正常for循环效率对比"></a>29. foreach与正常for循环效率对比</h3><p>foreach语句是java5新增的，在遍历数组，集合的时候，foreach有不错的性能。foreach是for语句的简化，但是foreach并不能替代for循环，可以这么说，任何foreach都鞥改写为for循环，但是反之则行不通。foreach 不是java中的关键字，foreach的循环对象一般是一个集合，List，ArrayList,LinkedList,Vector数组等。</p>
+<h3 id="30-Java-IO与NIO"><a href="#30-Java-IO与NIO" class="headerlink" title="30. Java IO与NIO"></a>30. Java IO与NIO</h3><p>新的输入/输出（NIO）库是在JDK1.4种引入的。NIO弥补了原来的I/O的不足，它在标准java代码中提供了高速的，面向块的I/O。</p>
+<p>面向流与面向缓冲</p>
+<blockquote>
+<p>Java NIO和IO之间第一个最大的区别是，IO是面向流的，NIO是面向缓冲的。Java IO面向流意味着每从流中读一个或多个字节，直至读取所有字节，他们没有被缓存在任何地方。此外，它不能前后移动流中的数据，如果需要前后移动流中读取的数据，需要先将它缓存到一个缓冲区。Java NIO的缓冲导向方法略有不同，数据读取到一个它稍后处理的缓冲区，需要时可在缓冲区中前后移动，这就增加了处理过程中的灵活性。但是，还需要检查是否该缓冲区中包含所有您需要处理的数据，而且，需确保当更多的数据读入缓冲区时，不要覆盖缓冲区里尚未处理的数据。</p>
+</blockquote>
+<p>阻塞和非阻塞IO</p>
+<blockquote>
+<p>Java IO的各种流是阻塞的，这意味着，当一个线程调用read()或write()时，该线程被阻塞，知道有一些数据被读取，或数据完全写入。该线程在此期间不能再干任何事情了。Java NIO的非阻塞模式，使一个线程从某通道发送请求读取数据，但是它仅能得到目前可用的数据，如果目前没有数据可用时，就什么都不会获取。而不是保持线程阻塞，所以直至线程变得可以读取之前，该线程可以继续做其他的事情。非阻塞写也是如此。一个线程请求写入一些数据到某通道，但不需要等待他完全写入，这个线程同时可以去做别的事情。线程通常将非阻塞IO的空闲时间用于在其他通道上执行IO操作，所以一个单独的线程现在可以管理多个输入和输出通道。</p>
+</blockquote>
+<p>选择器（Selectors）</p>
+<blockquote>
+<p>Java NIO的选择器允许一个单独的线程来监视多个输入通道，你可以注册多个通道使用一个选择器，然后使用一个单独的线程来“选择”通道：这些通道里已经有可以处理的输入，或者选择已准备写入的通道，这种选择机制，使得一个单独的线程很容易来管理多个通道。</p>
+</blockquote>
+<h3 id="31-反射的作用与原理。"><a href="#31-反射的作用与原理。" class="headerlink" title="31. 反射的作用与原理。"></a>31. 反射的作用与原理。</h3><p>1）什么是Java的反射机制<br>java反射是Java被视为动态（或准动态）语言的一个关键性质。这个机制允许程序在运行时透过Reflection APIs取得任何一个已知名称的class的内部信息，包括其modifiers(诸如public，static等)，superclass(例如Object)，实现interfaces(例如Cloneable)，也包括field和methods的所有信息，并可于运行时改变fileds内容或唤起methods。Java反射机制容许程序在运行时加载，探知，使用编译器完全未知的classes。换言之，Java可以加载一个运行时才得知名称的class，获得其完整结构。</p>
+<p>2）JAVA反射机制提供了什么功能</p>
+<blockquote>
+<p>在运行时判断任意一个对象所属的类<br>在运行时构造任意一个类的对象<br>在运行时判断任意一个类所具有的成员变量和方法<br>在运行时调用任一个对象的方法<br>在运行时创建新类对象</p>
+</blockquote>
+<p>在使用Java的反射功能时，基本首先都要获取类的Class对象，再通过Class对象获取其他的对象。</p>
+<pre><code>Class Type{
+    public int pubIntField;
+    public String pubStringField;
+    private int prvIntField;
+
+    public Type(){
+       Log(&quot;Default Constructor&quot;);
+    }
+    Type(int arg1,String arg2){
+        pubIntField=arg1;
+        pubStringField=arg2;
+
+        Log(&quot;Constructor with parameters&quot;);
+    }
+    public void setIntField(int val){
+       this.prvIntField=val;
+    }
+    public int getIntField(){
+         return prvIntField;
+    }
+    private void Log(String msg){
+        System.out.println(&quot;Type:&quot;+msg);
+    }
+}
+
+class ExtendType extends type{
+     public int pubIntExtendField;
+     public String pubStringExtendField;
+     private int prvIntExtendField;
+
+     public ExtendType(){
+        Log(&quot;Default Constructor&quot;);
+     }
+     public ExtendType(int arg1,String arg2){
+        pubIntExtendField=arg1;
+        pubStringExtendField=arg2;
+        Log(&quot;Constructor with parameters&quot;);
+    }
+    public void setIntExtendField(int field7){
+        this.prvIntExtendField=field7;
+    }
+    public int getIntExtendField(){
+        return prvIntExtendField;
+    }
+    private void Log(String msg){
+        System.out.pringln(&quot;ExtendType:&quot;+msg);
+    }
+}
+</code></pre><p>1)获取类的Class对象<br>Class类的实例表示正在运行的Java应用程序中的类和接口，获取类的Class对象有多种方式：<br>|    方法         |    示例   |<br>| —————— |:—————-|<br>| 调用getClass | Boolean var1=true;  Class&lt;?&gt;classType2=var1.getClass(); System.out.println(classType2);   输出：class java.lang.Boolean |<br>|运用.class语法  |      Class&lt;?&gt; classType4=Boolean.class;      System.out.println(classType4); 输出：class java.lang.Boolean |<br>|运用static method Class.forName()| Class&lt;?&gt; classType5=class.forName(“java.lang.Boolean”);System.out.println(classType5);输出：class java.lang.Boolean|<br>|运行primitive wrapper classes的Type语法|   Class&lt;?&gt; classType3=Boolean.TYPE;                  System.out.println(classType3);    输出：boolean|</p>
+<p>2）获取类的Fields<br>可以通过反射机制得到某个类的某个属性，然后改变对应于这个类的某个实例的该属性值。Java的Class<t>类提供了几个方法获取类的属性<br>|    方法             |    示例   |<br>| —————— |:—————-|<br>|public FieldgetField(String name)|返回一个Field对象，它反映此Class对象所表示的类或接口的制定公共成员字段|<br>|public Field[] getFields()|返回一个包含某些Field对象的数组，这些对象反映此Class对象所表示的类或接口的所有可访问公共字段|<br>|public FieldgetDeclaredField(String name)|返回一个Field对象，该对象反映此Class对象所表示的类或接口的指定已声明字段|<br>|public Field[] getDeclaredFields()|返回Field对象的一个数组，这些对象反映此Class对象所表示的类或接口所声明的所有字段|</t></p>
+<pre><code>Class&lt;?&gt; classType=ExtendType.class;
+//使用getField获取属性
+Field[] fields=classType.getFields();
+for(Field f:fields){
+    System.out.println(f);
+}
+System.out.println();
+//使用getDeclareFields获取属性
+fields=classType.getDeclareFields();
+for(Field f:fields){
+{
+   System.out.println(f);
+}
+
+输出：
+public int com.quincy.ExtendType.pubIntExtendField
+public java.lang.String com.quincy.ExtendType.pubStringExtendField
+public int com.quincy.Type.pubIntField
+public java.lang.String com.quincy.Type.pubStringField
+public int com.quincy.ExtendType.pubIntExtendField
+public java.lang.String com.quincy.ExtendType.pubStringExtendField
+private int com.quincy.ExtendType.prvIntExtendField
+</code></pre><p>可见getFields和getDeclaredFields区别：<br>getFields返回的是申明为public的属性，包括父类中定义，getDeclaredFields返回的是指定类定义的所有定义的属性，不包括父类的。</p>
+<p>3）获取类的Method<br>通过反射机制得到某个类的某个方法，然后调用对应于这个类的某个实例的该方法 Class<t> 类提供了几个方法获取类的方法<br>|    方法             |    示例   |<br>| —————— |:—————-|<br>|public MethodgetMethod(String name,Class&lt;?&gt; parameterTypes)|返回一个Method对象，它反映此Class对象所表示的类或接口的指定公共成员方法|<br>|public Method[] getMethods()|返回一个包含某些Method对象的数组，这些对象反应此Class对象所表示的类或接口（包括那些由该类或接口声明的以及从超类和超接口继承的那些类或接口）的公共member方法|<br>|public MethodgetDeclareMethod(Stringname,Class&lt;?&gt;… parameterTypes)|返回一个Method对象，该对象反应此Class对象所表示的类或借口的指定已声明方法|<br>|public Method[] getDeclaredMethods()|返回Method对象的一个数组，这些对象反映此Class对象表示的类或接口声明的所有方法，包括公共，保护，默认（包）访问和私有方法，但不包括继承方法|</t></p>
+<pre><code>//使用getMethods获取函数
+Class&lt;?&gt; classType=ExtendType.class;
+Method[] methods=classType.getMethods();
+for(Method m:methods){
+    System.out.println(m);
+}
+System.out.println();
+
+//使用getDeclaredMethods获取函数
+methods=classType.getDeclaredMethods();
+for(Method m:methods){
+{
+   System.out.println(m);
+}
+
+输出
+public void com.quincy.ExtendType.setIntExtendField(int)
+public int com.quincy.ExtendType.getIntExtendField()
+public void com.quincy.Type.setIntField(int)
+public int com.quincy.Type.getIntField()
+public final native void java.lang.Object.wait(long) throws      java.lang.InterruptedException
+public final void java.lang.Object.wait() throws java.lang.InterruptedException
+public final void java.lang.Object.wait(long,int) throws java.lang.InterruptedException
+public boolean java.lang.Object.equals(java.lang.Object)
+public java.lang.String java.lang.Object.toString()
+public native int java.lang.Object.hashCode()
+public final native java.lang.Class java.lang.Object.getClass()
+public final native void java.lang.Object.notify()
+public final native void java.lang.Object.notifyAll()
+private void com.quincy.ExtendType.Log(java.lang.String)
+public void com.quincy.ExtendType.setIntExtendField(int)
+public int com.quincy.ExtendType.getIntExtendField()
+</code></pre><p>4）获取类的Constructor<br>通过反射机制得到某个类的构造器，然后调用该构造器创建该类的一个实例<br>Class<t> 类提供了几个方法获取类的构造器<br>|    方法             |    示例   |<br>| —————— |:—————-|<br>|public Constructor<t> getConstructor(Class&lt;?&gt;… parameterTypes)|返回一个Constructor对象，它反映此Class对象所表示的类的指定公共构造方法|<br>|public Constructor&lt;?&gt;[] getConstructors()|返回一个包含某些 Constructor 对象的数组，这些对象反映此 Class 对象所表示的类的所有公共构造方法|<br>|public Constructor<t> getDeclaredConstructor(Class&lt;?&gt;… parameterTypes)|返回一个 Constructor 对象，该对象反映此 Class 对象所表示的类或接口的指定构造方法|<br>|public Constructor&lt;?&gt;[] getDeclaredConstructors()|返回 Constructor 对象的一个数组，这些对象反映此 Class 对象表示的类声明的所有构造方法。它们是公共、保护、默认（包）访问和私有构造方法|</t></t></t></p>
+<pre><code>// 使用getConstructors获取构造器    
+
+Constructor&lt;?&gt;[] constructors = classType.getConstructors();  
+for (Constructor&lt;?&gt; m : constructors)  
+{  
+    System.out.println(m);  
+}  
+
+System.out.println();  
+// 使用getDeclaredConstructors获取构造器     
+constructors = classType.getDeclaredConstructors();  
+for (Constructor&lt;?&gt; m : constructors)  
+{  
+    System.out.println(m); 
+}  
+
+输出：  
+public com.quincy.ExtendType()  
+public com.quincy.ExtendType()
+com.quincy.ExtendType(int,java.lang.String)  
+
+...
+</code></pre><p>反射的作用：反射可以增加代码的灵活性，通过反射可以使系统和插件解耦，如Spring就是使用反射来控制反转的（IOC）；<br>什么是反射：java运行阶段的程序对自身的一种审查能力</p>
+<h3 id="32-泛型常用特点，List能否转为List"><a href="#32-泛型常用特点，List能否转为List" class="headerlink" title="32. 泛型常用特点，List能否转为List"></a>32. 泛型常用特点，List<string>能否转为List<object></object></string></h3><p>泛型的种类：泛型类，泛型接口，泛型方法。Java泛型被引入的好处是安全简单。增加代码的复用性。（泛型解决了方法的重载问题：public void write(Integer i,Integer[] ia);public void write(Double d,Double[] da);的泛型版本为public<t> void write(T t,T[] ta)）</t></p>
+<p>为什么要引入泛型:在java1.5之前，如果一个方法的参数中要支持任意类型，则一般用Object类来作为参数的类型，因此在运行的时候就要进行类型转换。这种自动转换类型容易出现当变异的时候不会报错，而运行的时候会报错，这是一个安全隐患。在java中弗雷是可以转换成子类的而且不报错，调用的时候出错运行时才能检查到。</p>
+<p>泛型的好处是在编译的时候检查类型安全（类型检查是保证类型转化是可以正确转换的），并且所有的墙纸转换都是自动和隐式的，提高代码的重用率。</p>
+<p>泛型信息在编译的时候会被自动擦除，也就是在字节码中没有泛型的信息，并使用其限定类型替换（无限定类型用Object），如pulic T fun(T t)替换成public Object fun(Object t),限定类型指的是T extend Father,则用Father替换T。</p>
+<p>泛型主要的体现还是在类型安全的检查与限定，如List<string>,那我们就只能放入String类型的，这里就体现了类型检查</string></p>
+<p>List<string>不能List<object>,因为泛型并不具有继承性，只是一个限定的作用。</object></string></p>
+<h3 id="33-解析XML的几种方式的原理与特点：DOM、SAX、PULL。"><a href="#33-解析XML的几种方式的原理与特点：DOM、SAX、PULL。" class="headerlink" title="33. 解析XML的几种方式的原理与特点：DOM、SAX、PULL。"></a>33. 解析XML的几种方式的原理与特点：DOM、SAX、PULL。</h3><p>1.DOM是基于树的解析，DOM是把XML全部加载到内存中建立一棵树之后再进行处理。所以DOM不适合处理大型的XML（会产生内存的急剧膨胀），这样可以随时修改xml文件内容。<br>2.SAX基于事件的解析，sax解析一行一行的读取xml文件开始标记的时候执行startElement方法，然后执行对应解析方法character方法，当遇到结束表示符就调用endElement方法，所以是基于事件型解析，SAX不必把全部的xml都加载到内存中，但是SAX的缺点也很明显，它只能对文件顺序解析一遍，不支持对文件的随意存取。SAX也仅仅能够读取文件的内容，并不能修改内容。DOM可以随意修改文件树。（主要用于读取xml文件）<br>3.SAX和DOM不是相互排斥的，可以使用DOM来创建SAX事件流，也可以使用SAX来创建DOM树。</p>
+<h3 id="34-Java与C-对比"><a href="#34-Java与C-对比" class="headerlink" title="34. Java与C++对比"></a>34. Java与C++对比</h3><p>1.java比C++程序可靠性更高<br>2.java语言中没有指针的概念<br>3.java用接口（Interface）技术取代C++程序中的多继承性<br>4.Java语言不需要程序对内存进行分配和回收，Java中自动回收内存，而C++中要调用new和delete来申请和释放内存，如果对内存分配与申请掌握不好就容易报错。<br>5.异常：JAVA中的一场机制用于捕获意外事件，增强系统容错能力</p>
+<pre><code>try{
+    //可能产生例外的代码 
+}
+catch(exceptionType name){ 
+    //处理
+} 
+</code></pre><p>其中exceptionType表示异常类型。而C++则没有如此方便的机制<br>6.“可怕”的goto语句是C和C++的遗物，它是该语言技术上的合法部分，引用goto语句引起了程序结构的混乱，不易理解，goto语句主要用于无条件转移子程序和多结构分支技术。Java不提供goto语句，它虽然指定goto作为关键字，但不支持他的使用，是程序简洁易懂。</p>
+<h3 id="35-Java1-7与1-8新特性"><a href="#35-Java1-7与1-8新特性" class="headerlink" title="35 Java1.7与1.8新特性"></a>35 Java1.7与1.8新特性</h3><p>1.jdk1.7语法上</p>
+<p>1）二进制变量的表示，支持将整数类型用二进制来表示，用0b开头</p>
+<pre><code>//所有整数 int，short，long，byte都可以用二进制表示
+//an 8-bit &apos;byte&apos; value;
+byte aByte=(byte)0b00100001;
+
+//a 16-bit &apos;short&apos; value;
+short aShort =(short) 0b1010000101000101;
+
+//some 32-bit &apos;int&apos; value;
+intanInt1=0b10100001010001011010000101000101;
+intanInt2=0b101;
+intanInt3 = 0B101; // The B can be upper or lower case.
+
+//a 64-bit &apos;long&apos; value.Note the &apos;L&apos; suffix:
+long aLong=0b1010000101000101101000010100010110100001010001011010000101000101L;
+
+//二进制在数组等的使用
+final int[] phases = { 0b00110001, 0b01100010, 0b11000100, 0b10001001,
+0b00010011, 0b00100110, 0b01001100, 0b10011000 };
+</code></pre><p>2）switch语句支持string类型</p>
+<pre><code>public static String getTypeOfDayWithSwitchStatement(String dayOfWeekArg) {
+     String typeOfDay;
+     switch (dayOfWeekArg) {
+         case &quot;Monday&quot;:
+             typeOfDay = &quot;Start of work week&quot;;
+             break;
+         case &quot;Tuesday&quot;:
+         case &quot;Wednesday&quot;:
+         case &quot;Thursday&quot;:
+             typeOfDay = &quot;Midweek&quot;;
+             break;
+         case &quot;Friday&quot;:
+             typeOfDay = &quot;End of work week&quot;;
+             break;
+         case &quot;Saturday&quot;:
+         case &quot;Sunday&quot;:
+             typeOfDay = &quot;Weekend&quot;;
+             break;
+         default:
+             throw new IllegalArgumentException(&quot;Invalid day of the week: &quot; + dayOfWeekArg);
+     }
+     return typeOfDay;
+}
+</code></pre><p>3）try-with-resource语句<br>注意：实现java.lang.AutoCloseable接口的资源可以放到try中，跟final里面的关闭资源类似；按照声明逆序关闭资源；try块抛出的异常通过Throwalbe.getSuppossed获取</p>
+<pre><code>try (java.util.zip.ZipFile zf = new java.util.zip.ZipFile(zipFileName);
+java.io.BufferedWriter writer = java.nio.file.Files 
+.newBufferedWriter(outputFilePath, charset)) 
+{
+// Enumerate each entry
+   for (java.util.Enumeration entries = zf.entries(); entries
+  .hasMoreElements();) {
+       // Get the entry name and write it to the output file
+       String newLine = System.getProperty(&quot;line.separator&quot;);
+       String zipEntryName = ((java.util.zip.ZipEntry) entries
+       .nextElement()).getName() + newLine;
+    writer.write(zipEntryName, 0, zipEntryName.length());
+   }
+}
+</code></pre><p>4）catch多个异常 说明：Catch异常类型为final，生成Bytecode会比多个catch小，rethrow时保持异常类型</p>
+<pre><code>public static void main(String[] args) throws Exception {
+try {
+testthrows();
+} catch (IOException | SQLException ex) {
+throw ex;
+}
+}
+public static void testthrows() throws IOException, SQLException {
+}
+</code></pre><p>5）数字类型的下划线表示 更友好的表示方式，不过要注意下划线添加的一些标准，可以参考下面的示例</p>
+<pre><code>long creditCardNumber = 1234_5678_9012_3456L;
+long socialSecurityNumber = 999_99_9999L;
+float pi = 3.14_15F;
+long hexBytes = 0xFF_EC_DE_5E;
+long hexWords = 0xCAFE_BABE;
+long maxLong = 0x7fff_ffff_ffff_ffffL;
+byte nybbles = 0b0010_0101;
+long bytes = 0b11010010_01101001_10010100_10010010; 
+//float pi1 = 3_.1415F; // Invalid; cannot put underscores adjacent to a decimal point
+//float pi2 = 3._1415F; // Invalid; cannot put underscores adjacent to a decimal point
+//long socialSecurityNumber1= 999_99_9999_L; // Invalid; cannot put underscores prior to an L suffix 
+//int x1 = _52; // This is an identifier, not a numeric literal
+int x2 = 5_2; // OK (decimal literal)
+//int x3 = 52_; // Invalid; cannot put underscores at the end of a literal
+int x4 = 5_______2; // OK (decimal literal) 
+//int x5 = 0_x52; // Invalid; cannot put underscores in the 0x radix prefix
+//int x6 = 0x_52; // Invalid; cannot put underscores at the beginning of a number
+int x7 = 0x5_2; // OK (hexadecimal literal)
+//int x8 = 0x52_; // Invalid; cannot put underscores at the end of a number 
+int x9 = 0_52; // OK (octal literal)
+int x10 = 05_2; // OK (octal literal)
+</code></pre><p>6）泛型实例的创建可以通过类型推断来简化 可以去掉后面new部分的反省类型，只用&lt;&gt;就可以了</p>
+<pre><code>//使用泛型前
+List strList=new ArrayList();
+List&lt;String&gt; strList4=new ArrayList&lt;String&gt;();
+List&lt;Map&lt;String,List&lt;String&gt;&gt;&gt; strList5=new ArrayList&lt;Map&lt;String,List&lt;String&gt;&gt;&gt;();
+
+//编译器使用尖括号（&lt;&gt;）推断类型
+List&lt;String&gt; strList0=new ArrayList&lt;String&gt;();
+List&lt;Map&lt;String,List&lt;String&gt;&gt;&gt; strList1=new ArrayList&lt;Map&lt;String,List&lt;String&gt;&gt;&gt;();
+List&lt;String&gt; strList2=new ArrayList&lt;&gt;();
+List&lt;Map&lt;String,List&lt;String&gt;&gt;&gt; strList3=new ArrayList&lt;&gt;();
+List&lt;String&gt; list=new ArrayList&lt;&gt;();
+list.add(&quot;A&quot;);
+// The following statement should fail since addAll expects
+// Collection
+</code></pre><p>7)在可变参数方法中传递非具体化参数，改进编译警告和错误<br>heap pollution 指一个变量被指向另外一个不是相同类型的变量</p>
+<pre><code>List l = new ArrayList&lt;Number&gt;();
+List&lt;String&gt; ls = l; // unchecked warning
+l.add(0, new Integer(42)); // another unchecked warning
+String s = ls.get(0); // ClassCastException is thrown
+Jdk7:
+public static &lt;T&gt; void addToList (List&lt;T&gt; listArg, T... elements) {
+      for (T x : elements) {
+          listArg.add(x);
+      }
+}
+</code></pre><p>你会得到一个warning<br>warning: [varargs] Possible heap pollution from parameterized vararg type<br>    要消除警告，可以有三种方式<br>    1.加 annotation @SafeVarargs<br>    2.加 annotation @SuppressWarnings({“unchecked”, “varargs”})<br>    3.使用编译器参数 –Xlint:varargs;</p>
+<p>8）信息更丰富的回溯追踪，就是上面try语句和里面的语句同时抛出异常时，异常栈的信息</p>
+<p>2 NIO2的一些新特性</p>
+<ul>
+<li>java.nio.file和java.nio.file.attribute包，支持更详细属性，比如权限，所有者</li>
+<li>symbolic and hard links支持</li>
+<li>Path访问文件系统，Files支持各种文件操作</li>
+<li>搞笑的访问metadata信息</li>
+<li>递归查找文件树，文件扩展搜索</li>
+<li>文件系统修改通知机制</li>
+<li>File类操作API兼容</li>
+<li>文件随机访问增强 mapping a region,local a region,绝对位置读取</li>
+<li>AIO Reactor（基于事件）和Proactor</li>
+</ul>
+<p>1）IO and new IO监听文件系统变化通知<br>通过FileSystems.getDefault().newWatchService()获取watchService，然后将需要监听的path目录注册到这个watchservice中，对于这个目录的文件修改，新增，删除等实践可以配置，然后就自动能监听到响应的事件。</p>
+<p>2）IO and New IO遍历文件树，通过继承SimpleFileVisitor类，实现事件遍历目录树的操作，然后通过Files.walkFileTree(listDir, opts, Integer.MAX_VALUE, walk);这个API来遍历目录树</p>
+<p>3） AIO异步IO 文件和网络 异步IO在java<br> NIO2实现了，都是用AsynchronousFileChannel，AsynchronousSocketChanne等实现，关于同步阻塞IO，同步非阻塞IO，异步阻塞IO和异步非阻塞IO在ppt的这页上下面备注有说明，有兴趣的可以深入了解下。Java NIO2中就实现了操作系统的异步非阻塞IO</p>
+<p> 3.JDBC 4.1<br> 1）可以使用try-with-resources自动关闭Connection, ResultSet, 和 Statement资源对象<br> 2）RowSet 1.1：引入RowSetFactory接口和RowSetProvider类，可以创建JDBC driver支持的各种 row sets，这里的rowset实现其实就是将sql语句上的一些操作转为方法的操作，封装了一些功能。<br> 3）JDBC-ODBC驱动会在jdk8中删除 </p>
+<p> 4.并发工具增强<br> 5.Networking增强<br> 6.Multithreaded Custom Class Loaders<br> 7.Security 增强<br> 8.Internationalization 增强 增加了对一些编码的支持和增加了一些显示方面的编码设置等<br> 9.jvm方面的一些特性增强。</p>
+<p> JDK1.8的新特性</p>
+<ol>
+<li><p>接口的默认方法<br>Java 8允许我们给接口添加一个非抽象的方法实现，只需要使用default关键字即可，这个特征又叫做扩展方法，示例如下:</p>
+<p> interface Formula {</p>
+<pre><code>double calculate(int a);
+
+default double sqrt(int a) {
+    return Math.sqrt(a);
+}
+}
+</code></pre><p>Formula接口在拥有calculate方法之外同时还定义了sqrt方法，实现了Formula接口的子类只需要实现一个calculate方法，默认方法sqrt将在子类上可以直接使用</p>
+<pre><code>  Formula formula=new Formula(){
+ @Override
+ public double calculate(int a){
+     return sqrt(a*100);
+ }
+}
+</code></pre></li>
+</ol>
+<p>文中的formula被实现为一个匿名类的实例，该代码非常容易理解，6行代码实现了计算sqrt(a*100)。<br>    在Java中只有单继承，如果要让一个类赋予新的特性，通常是使用接口来实现，在C++中支持多继承，允许一个子类同时具有多个父类的接口与功能，在其他语言中，让一个类同时具有其他可复用代码的方法叫做mixin。新的Java 8的这个特性在编译器实现的角度上来说更接近Scala的trait</p>
+<ol>
+<li><p>Lambda表达式<br>首先看看老版本的Java是如何排列字符串的</p>
+<pre><code>List&lt;String&gt; names=Arrays.asList(&quot;peter&quot;,&quot;anna&quot;,&quot;mike&quot;,&quot;xenia&quot;);
+Collection.sort(names,new Comparator&lt;String&gt;(){
+@Override
+public int compare(String a,String b){
+     return b.compareTo(a);
+}
+});
+</code></pre></li>
+</ol>
+<p>只需要给静态方法Collections.sort传入一个List对象以及一个比较器来按指定顺序排列，通常做法都是创建一个匿名的比较器对象然后将其传递给sort方法。</p>
+<p>在Java1.8中你就没必要使用这种传统的匿名对象的方式了，Java 8提供了更简洁的语法，lambda表达式</p>
+<pre><code>Collections.sort(names,(String a,String b)-&gt;{
+    return b.compareTo(a);
+});
+</code></pre><p>代码变得更短更具有可读性，但是实际上还可以写的更短</p>
+<pre><code>Collections.sort(names,(String a,String b)-&gt;b.compareTo(a));
+</code></pre><p>java编译器可以自动推导出参数类型，所以你可以不用再写一次类型</p>
+<ol>
+<li>函数式接口<br>Lambda表达式是如何在java类型系统中表示的呢？每一个lambda表达式都对应一个类型，通常是接口类型，而“函数式接口”是指仅仅只包含一个抽象方法的接口，每一个该类型的lambda表达式都会被匹配到这个抽象方法，因为默认方法不算抽象方法，所以你也可以给你的函数式接口添加默认方法。</li>
+</ol>
+<p>我们可以将lambda表达式当做任意只包含一个抽象方法的接口类型，确保你的接口一定达到这个要求，你只需要给你的额接口添加@FunctionalInterface 注解，编译器如果发现你标注了这个注解的接口有多于一个抽象方法的时候会报错的。</p>
+<pre><code>@FunctionalInterface
+interface Converter&lt;F, T&gt; {
+     T convert(F from);
+}
+Converter&lt;String, Integer&gt; converter = (from) -&gt; Integer.valueOf(from);
+Integer converted = converter.convert(&quot;123&quot;);
+System.out.println(converted);
+</code></pre><p>需要注意如果@FunctionalInterface如果没有指定，上面的代码也是对的</p>
+<ol>
+<li><p>方法与构造函数引用<br>构造函数是如何使用：：关键字来引用的，首先我们定义一个包含多个构造函数的简单类：</p>
+<pre><code> class Person{
+ String firstName;
+ String lastName;
+ Person() {}
+
+ Person(String firstName, String lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+ }
+}
+</code></pre></li>
+</ol>
+<p>接下来我们制定一个用来创建Person对象的对象工厂接口：</p>
+<pre><code>interface PersonFactory&lt;P extends Person&gt; {
+   P create(String firstName, String lastName);
+}
+</code></pre><p>这里我们使用构造函数引用来将他们关联起来，而不是实现一个完整的工厂：</p>
+<pre><code>PersonFactory&lt;Person&gt; personFactory = Person::new;
+Person person = personFactory.create(&quot;Peter&quot;, &quot;Parker&quot;);
+</code></pre><p>我们只需要使用Person：：new来获取Person类构造函数的引用，Java编译器会自动根据PersonFactory.create方法的签名来选择合适的构造函数。</p>
+<ol>
+<li><p>Lambda作用域<br>在lambda表达式中访问外层作用域和老版本的匿名对象中的方法很相似，你可以直接访问标记了final的外层局部变量，或者实例的字段以及静态变量。</p>
+</li>
+<li><p>访问局部变量<br>我们可以直接在lambda表达式中访问外层的局部变量：</p>
+<pre><code>final int num = 1;
+Converter&lt;Integer, String&gt; stringConverter =
+(from) -&gt; String.valueOf(from + num); 
+stringConverter.convert(2);
+</code></pre></li>
+</ol>
+<p>但是和匿名对象不同的是，这里的变量可以不用声明为final，该代码同样正确：</p>
+<pre><code>int num = 1;
+Converter&lt;Integer, String&gt; stringConverter =
+</code></pre><p>   (from) -&gt; String.valueOf(from + num);<br>   stringConverter.convert(2);</p>
+<p>不过这里的num必须不可被后面的代码修改（即隐性的具有final的语义），例如下面的就无法编译</p>
+<pre><code>int num = 1;
+Converter&lt;Integer, String&gt; stringConverter =
+    (from) -&gt; String.valueOf(from + num);
+num = 3;
+</code></pre><p>在lambda表达式中试图修改num同样是不允许的。</p>
+<ol>
+<li><p>访问对象字段与静态变量<br>和本地变量不同的是lambda内部对于实例的字段以及静态变量是既可读又可写。该行为和匿名对象是一致的：</p>
+<pre><code>class Lambda4 {
+ static int outerStaticNum;
+  int outerNum; 
+</code></pre></li>
+</ol>
+<pre><code>void testScopes() {
+Converter&lt;Integer, String&gt; stringConverter1 = (from) -&gt; {
+    outerNum = 23;
+    return String.valueOf(from);
+};
+
+
+Converter&lt;Integer, String&gt; stringConverter2 = (from) -&gt; {
+    outerStaticNum = 72;
+    return String.valueOf(from);
+};
+}
+}
+</code></pre><ol>
+<li>访问接口的默认方法</li>
+</ol>
+<p>接口Formula定义了一个默认方法sqrt可以直接被formula的实例包括匿名对象访问到，但是在lambda表达式中这个是不行的。<br>Lambda表达式中是无法访问到默认方法的，一下代码将无法编译：</p>
+<pre><code>Formula formula = (a) -&gt; sqrt( a * 100);
+</code></pre><p>JDK1.8 API中包含了很多内建的函数式接口，在老Java中常用的比如Comparator或者Runnable接口，这些接口都增加了@FunctionalInterface注解以便能用在lambda上。</p>
+<ol>
+<li>Date API<br>Java 8在包java.time下包含了一组全新的日期API，新的日期API和开源的Joda-Time库差不多，但又不完全一样，下面的例子展示了这组新API里最重要的一些部分</li>
+</ol>
+<p>Clock时钟<br>  Clock类提供了访问当前日期和时间的方法，Clock是时区敏感的，可以用来取代System.currentTimeMillis()来获取当前的微妙数，某一个特定的时间点也可以使用Instant类来表示，Instant类也可以用来创建老的java.util.Date对象。</p>
+<pre><code>Clock clock = Clock.systemDefaultZone();
+long millis = clock.millis(); 
+Instant instant = clock.instant();
+Date legacyDate = Date.from(instant);
+</code></pre><p>Timezones时区<br>  在新API中时区使用ZoneId来表示。时区可以很方便的使用静态方法of来获取到。时区定义了到UTS时间的时间差，在Instant时间点对象到本地日期对象之间转换的时候是极其重要的。</p>
+<pre><code>System.out.println(ZoneId.getAvailableZoneIds());
+// prints all available timezone ids 
+
+ZoneId zone1 = ZoneId.of(&quot;Europe/Berlin&quot;);
+ZoneId zone2 = ZoneId.of(&quot;Brazil/East&quot;);
+System.out.println(zone1.getRules());
+System.out.println(zone2.getRules());
+// ZoneRules[currentStandardOffset=+01:00]
+</code></pre><p>LocalTime本地时间<br>  LocalTime定义了一个没有时区信息的时间，例如晚上10点，或者17:30:15。下面的例子使用前面的代码创建的市区创建了两个本地时间，之后比较时间并以小时和分钟为单位计算两个时间的时间差。</p>
+<pre><code>LocalTime now1 = LocalTime.now(zone1);
+LocalTime now2 = LocalTime.now(zone2); 
+
+System.out.println(now1.isBefore(now2)); // false
+
+long hoursBetween = ChronoUnit.HOURS.between(now1, now2);
+long minutesBetween = ChronoUnit.MINUTES.between(now1, now2);
+
+System.out.println(hoursBetween); // -3
+System.out.println(minutesBetween);
+</code></pre><p>LocalTime提供了多种工厂方法来简化对象的创建，包括解析时间字符串</p>
+<pre><code>LocalTime late = LocalTime.of(23, 59, 59);
+System.out.println(late); // 23:59:59 
+
+DateTimeFormatter germanFormatter =
+  DateTimeFormatter
+    .ofLocalizedTime(FormatStyle.SHORT)
+    .withLocale(Locale.GERMAN);
+
+LocalTime leetTime = LocalTime.parse(&quot;13:37&quot;, germanFormatter);
+System.out.println(leetTime);
+</code></pre><p>LocalDate本地日期<br>LocalDate表示了一个确切的日期，比如2014-03-11.该对象值是不可变的，用起来和LocalTime基本一致。下面的例子展示了如何给Date对象加减天/月/年。另外要注意的是这些对象时不可变的，操作返回的总是一个新实例。</p>
+<pre><code>LocalDate today = LocalDate.now();
+LocalDate tomorrow = today.plus(1, ChronoUnit.DAYS);
+LocalDate yesterday = tomorrow.minusDays(2); 
+
+LocalDate independenceDay = LocalDate.of(2014, Month.JULY, 4);
+DayOfWeek dayOfWeek = independenceDay.getDayOfWeek();
+
+System.out.println(dayOfWeek); // FRIDAY
+</code></pre><p>从字符串解析一个LocalDate类型和解析LocalTime一样简单：</p>
+<pre><code>DateTimeFormatter germanFormatter =
+DateTimeFormatter
+    .ofLocalizedDate(FormatStyle.MEDIUM)
+    .withLocale(Locale.GERMAN); 
+
+LocalDate xmas = LocalDate.parse(&quot;24.12.2014&quot;, germanFormatter);
+System.out.println(xmas);
+</code></pre><p>LocalDateTime本地日期时间<br>LocalDateTime同时表示了时间和日期，相当于前两节内容合并到一个对象上。LocalDateTime和LocalTime还有LocalDate一样，都是不可变的。LocalDateTime提供了一些能访问具体字段的方法。</p>
+<pre><code>LocalDateTime sylvester = LocalDateTime.of(2014, Month.DECEMBER, 31, 23, 59, 59); 
+
+DayOfWeek dayOfWeek = sylvester.getDayOfWeek();
+System.out.println(dayOfWeek); // WEDNESDAY
+Month month = sylvester.getMonth();
+System.out.println(month); // DECEMBER
+
+long minuteOfDay = sylvester.getLong(ChronoField.MINUTE_OF_DAY);
+System.out.println(minuteOfDay);
+</code></pre><p>只要附加上时区信息，就可以将其转化为一个时间点Instantt对象，Instant时间点对象很容易的转换为老式的java.util.Date。</p>
+<pre><code>Instant instant = sylvester
+    .atZone(ZoneId.systemDefault())
+    .toInstant(); 
+
+Date legacyDate = Date.from(instant);
+System.out.println(legacyDate);
+</code></pre><p>格式化LocalDateTime和格式化时间和日期一样的，除了使用预定义好的格式外，我们也可以自己定义格式：</p>
+<pre><code>DateTimeFormatter formatter =
+DateTimeFormatter
+    .ofPattern(&quot;MMM dd, yyyy - HH:mm&quot;); 
+
+LocalDateTime parsed = LocalDateTime.parse(&quot;Nov 03, 2014 - 07:13&quot;,     formatter);
+String string = formatter.format(parsed);
+System.out.println(string);
+</code></pre><p>和java.text.NumberFormat不一样的是新版的DateTimeFormatter是不可变的，所以它是线程安全。</p>
+<ol>
+<li><p>Annotation注解<br>在java 8中支持多重注解了，先看个例子来理解一下是什么意思<br>首先定义一个包装类Hints注解用来放置一组具体的Hint注解</p>
+<p>@interface Hints{</p>
+<pre><code>Hint[] value();
+</code></pre><p>}</p>
+<p>@Repeatable(Hints.class)<br>@interface Hint{<br>   String value();<br>}</p>
+</li>
+</ol>
+<p>Java 8允许我们把同一个类型的注解使用多次，只需要给注解标注一下@Repeatable即可</p>
+<p>例1：使用包装类当容器来存多个注解（老方法）</p>
+<pre><code>@Hints（{@Hint（&quot;hints&quot;）,@Hint(&quot;hints&quot;)}）
+class Person{}
+</code></pre><p>例2：使用多重注解（新方法）</p>
+<pre><code>@Hint(&quot;hint1&quot;)
+@Hint(&quot;hint2&quot;)
+class Person{}
+</code></pre><p>第二个例子里java编译器会隐性的帮你定义好@Hints注解，了解这一点有助于你用反射来获取这些信息：</p>
+<pre><code>Hint hint=Person.class.getAnnotation(Hint.class);
+System.out.println(hint);
+
+Hints hints1=Person.class.getAnnotation(Hints.class);
+System.out.println(hints2.length);    
+</code></pre><h3 id="36-设计模式：单例、工厂、适配器、责任链、观察者等等"><a href="#36-设计模式：单例、工厂、适配器、责任链、观察者等等" class="headerlink" title="36. 设计模式：单例、工厂、适配器、责任链、观察者等等"></a>36. 设计模式：单例、工厂、适配器、责任链、观察者等等</h3><p>（1）单例<br>Singleton模式要求一个类有且仅有一个实例，并且提供了一个全局的访问点。这就提出了一个问题，如何绕过常规的构造器，提供一种机制来保证一个类只有一个实例？客户程序在调用某一个类时，它是不会考虑这个类是否只能有一个实例等问题的，所以这应该是类设计者得责任，而不是类使用者的责任。从另一个角度来说，Singleton模式其实也是一种职责型模式，因为我们创建了一个对象，这个对象扮演了独一无二的角色，在这个单独的对象实例中，它集中了它所属类的所有权利，同时它也肩负了行驶这种权利的职责。</p>
+<blockquote>
+<p>生活中的例子<br>美国总统的职位是Singleton，美国宪法规定了总统的选举，任期以及继任的顺序。这样，在任何时刻只能有一个现任的总统，无论现任总统的身份为何，其头衔“美利坚合众国总统”是访问这个职位的人的一个全局访问点。</p>
+</blockquote>
+<p>在Java应用中，单例对象能保证在一个JVM中，该对象只有一个实例存在，这样的模式有几个好处：</p>
+<ul>
+<li>某些类创建比较频繁，对于一些大型的对象，这是一笔很大的系统开销</li>
+<li>省去了new操作符，降低了系统内存的使用频率，减轻GC压力</li>
+<li><p>有些类比如交易所的核心交易引擎，控制着交易流程，如果该类可以创建多个的话，系统完全乱了，所以只有使用单例模式，才能保证核心交易服务器独立控制整个流程。</p>
+<p>  public class Singleton{</p>
+<pre><code>//持有私有静态实例，防止被引用，此处赋值为null，目的是为了实现延迟加载
+private static Singleton instance=null;
+//私有构造方法，防止被实例化
+private Singleton(){
+}
+//静态工程方法，创建实例
+public static Singleton getInstance(){
+    if(instance==null){
+         instance=new Singleton();
+    }
+    return instance;
+}
+public Object readReslove(){
+    return instance;
+}
+</code></pre><p>  }</p>
+</li>
+</ul>
+<p>这个类可以满足基本要求，但是，像这样毫无线程安全保护的类，如果我们把它放入多线程的环境下，肯定就会出现问题了，如何解决，我们首先会想到对getInstance方法加synchronized关键字，如下：</p>
+<pre><code>public static synchronized Singleton getInstance(){
+    if(isntance==null){
+        instance=new Singleton();
+    }
+    return instance;
+}
+</code></pre><p>但是，synchronized关键字锁住的是这个对象，这样的用法，在性能上会有所下降，因为每次调用getInstance（），都要对对象上锁，事实上，只有在第一次创建对象的时候需要加锁，之后就不需要了，所以这个地方需要改进，我们改成下面这个：</p>
+<pre><code>public static Singleton getInstance(){
+      if(instance==null){
+</code></pre>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/01/18/Java面试(一)/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Java 面试(二)" data-title="" data-url="http://yoursite.com/2017/01/18/Java 面试(二)/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 Mai Taozi
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
