@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="麦桃子的部落格">
 <meta property="og:description" content="28. wait()和sleep()的区别1）这两个方法来自不同的类，分别是Sleep来自Thread类，wait来自Object类。sleep是Thread的静态类方法，谁调用谁去睡觉，即使在a线程里调用b的sleep方法，实际上还是a去睡觉，要让b线程睡觉要在b的代码中调用sleep。
 2）锁：最主要是sleep方法没有释放锁，而wait方法释放了锁，使得其他线程可以同步控制块或者方法。sle">
-<meta property="og:updated_time" content="2017-01-18T03:36:44.000Z">
+<meta property="og:updated_time" content="2017-01-18T03:39:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java面试（下）">
 <meta name="twitter:description" content="28. wait()和sleep()的区别1）这两个方法来自不同的类，分别是Sleep来自Thread类，wait来自Object类。sleep是Thread的静态类方法，谁调用谁去睡觉，即使在a线程里调用b的sleep方法，实际上还是a去睡觉，要让b线程睡觉要在b的代码中调用sleep。
@@ -74,7 +74,7 @@
 						<li>Tags</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -208,15 +208,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="28-wait-和sleep-的区别"><a href="#28-wait-和sleep-的区别" class="headerlink" title="28. wait()和sleep()的区别"></a>28. wait()和sleep()的区别</h3><p>1）这两个方法来自不同的类，分别是Sleep来自Thread类，wait来自Object类。sleep是Thread的静态类方法，谁调用谁去睡觉，即使在a线程里调用b的sleep方法，实际上还是a去睡觉，要让b线程睡觉要在b的代码中调用sleep。</p>
+        <h2 id="28-wait-和sleep-的区别"><a href="#28-wait-和sleep-的区别" class="headerlink" title="28. wait()和sleep()的区别"></a>28. wait()和sleep()的区别</h2><p>1）这两个方法来自不同的类，分别是Sleep来自Thread类，wait来自Object类。sleep是Thread的静态类方法，谁调用谁去睡觉，即使在a线程里调用b的sleep方法，实际上还是a去睡觉，要让b线程睡觉要在b的代码中调用sleep。</p>
 <p>2）锁：最主要是sleep方法没有释放锁，而wait方法释放了锁，使得其他线程可以同步控制块或者方法。sleep不出让系统资源，wait是进入线程等待吃等待，出让系统资源，其他线程可以占用CPU。一般wait不会加时间限制，因为如果wait线程的运行资源不够，要等待其他县城调用notify/notifyAll唤醒等待池中的所有县城，才会进入就绪队列等待OS分配系统资源。sleep（milliseconds）可以用时间指定使它自动唤醒过来，如果时间不到只能用interrupt（）强行打断。<br>Thread.sleep(0)的作用是“触发操作系统立刻重新进行一次CPU竞争”。</p>
 <p>3）使用范围：wait，notify和notifyAll只能在同步控制方法或者同步控制块里面使用，而sleep可以在任何地方使用。</p>
 <pre><code>synchronized（x）{
      x.notify()
      //或者wait()
 }
-</code></pre><h3 id="29-foreach与正常for循环效率对比"><a href="#29-foreach与正常for循环效率对比" class="headerlink" title="29. foreach与正常for循环效率对比"></a>29. foreach与正常for循环效率对比</h3><p>foreach语句是java5新增的，在遍历数组，集合的时候，foreach有不错的性能。foreach是for语句的简化，但是foreach并不能替代for循环，可以这么说，任何foreach都鞥改写为for循环，但是反之则行不通。foreach 不是java中的关键字，foreach的循环对象一般是一个集合，List，ArrayList,LinkedList,Vector数组等。</p>
-<h3 id="30-Java-IO与NIO"><a href="#30-Java-IO与NIO" class="headerlink" title="30. Java IO与NIO"></a>30. Java IO与NIO</h3><p>新的输入/输出（NIO）库是在JDK1.4种引入的。NIO弥补了原来的I/O的不足，它在标准java代码中提供了高速的，面向块的I/O。</p>
+</code></pre><h2 id="29-foreach与正常for循环效率对比"><a href="#29-foreach与正常for循环效率对比" class="headerlink" title="29. foreach与正常for循环效率对比"></a>29. foreach与正常for循环效率对比</h2><p>foreach语句是java5新增的，在遍历数组，集合的时候，foreach有不错的性能。foreach是for语句的简化，但是foreach并不能替代for循环，可以这么说，任何foreach都鞥改写为for循环，但是反之则行不通。foreach 不是java中的关键字，foreach的循环对象一般是一个集合，List，ArrayList,LinkedList,Vector数组等。</p>
+<h2 id="30-Java-IO与NIO"><a href="#30-Java-IO与NIO" class="headerlink" title="30. Java IO与NIO"></a>30. Java IO与NIO</h2><p>新的输入/输出（NIO）库是在JDK1.4种引入的。NIO弥补了原来的I/O的不足，它在标准java代码中提供了高速的，面向块的I/O。</p>
 <p>面向流与面向缓冲</p>
 <blockquote>
 <p>Java NIO和IO之间第一个最大的区别是，IO是面向流的，NIO是面向缓冲的。Java IO面向流意味着每从流中读一个或多个字节，直至读取所有字节，他们没有被缓存在任何地方。此外，它不能前后移动流中的数据，如果需要前后移动流中读取的数据，需要先将它缓存到一个缓冲区。Java NIO的缓冲导向方法略有不同，数据读取到一个它稍后处理的缓冲区，需要时可在缓冲区中前后移动，这就增加了处理过程中的灵活性。但是，还需要检查是否该缓冲区中包含所有您需要处理的数据，而且，需确保当更多的数据读入缓冲区时，不要覆盖缓冲区里尚未处理的数据。</p>
@@ -229,7 +229,7 @@
 <blockquote>
 <p>Java NIO的选择器允许一个单独的线程来监视多个输入通道，你可以注册多个通道使用一个选择器，然后使用一个单独的线程来“选择”通道：这些通道里已经有可以处理的输入，或者选择已准备写入的通道，这种选择机制，使得一个单独的线程很容易来管理多个通道。</p>
 </blockquote>
-<h3 id="31-反射的作用与原理。"><a href="#31-反射的作用与原理。" class="headerlink" title="31. 反射的作用与原理。"></a>31. 反射的作用与原理。</h3><p>1）什么是Java的反射机制<br>java反射是Java被视为动态（或准动态）语言的一个关键性质。这个机制允许程序在运行时透过Reflection APIs取得任何一个已知名称的class的内部信息，包括其modifiers(诸如public，static等)，superclass(例如Object)，实现interfaces(例如Cloneable)，也包括field和methods的所有信息，并可于运行时改变fileds内容或唤起methods。Java反射机制容许程序在运行时加载，探知，使用编译器完全未知的classes。换言之，Java可以加载一个运行时才得知名称的class，获得其完整结构。</p>
+<h2 id="31-反射的作用与原理。"><a href="#31-反射的作用与原理。" class="headerlink" title="31. 反射的作用与原理。"></a>31. 反射的作用与原理。</h2><p>1）什么是Java的反射机制<br>java反射是Java被视为动态（或准动态）语言的一个关键性质。这个机制允许程序在运行时透过Reflection APIs取得任何一个已知名称的class的内部信息，包括其modifiers(诸如public，static等)，superclass(例如Object)，实现interfaces(例如Cloneable)，也包括field和methods的所有信息，并可于运行时改变fileds内容或唤起methods。Java反射机制容许程序在运行时加载，探知，使用编译器完全未知的classes。换言之，Java可以加载一个运行时才得知名称的class，获得其完整结构。</p>
 <p>2）JAVA反射机制提供了什么功能</p>
 <blockquote>
 <p>在运行时判断任意一个对象所属的类<br>在运行时构造任意一个类的对象<br>在运行时判断任意一个类所具有的成员变量和方法<br>在运行时调用任一个对象的方法<br>在运行时创建新类对象</p>
@@ -469,15 +469,15 @@ com.quincy.ExtendType(int,java.lang.String)
 
 ...
 </code></pre><p>反射的作用：反射可以增加代码的灵活性，通过反射可以使系统和插件解耦，如Spring就是使用反射来控制反转的（IOC）；<br>什么是反射：java运行阶段的程序对自身的一种审查能力</p>
-<h3 id="32-泛型常用特点"><a href="#32-泛型常用特点" class="headerlink" title="32. 泛型常用特点"></a>32. 泛型常用特点</h3><p>List<string>能否转为List<object>? </object></string></p>
+<h2 id="32-泛型常用特点"><a href="#32-泛型常用特点" class="headerlink" title="32. 泛型常用特点"></a>32. 泛型常用特点</h2><p>List<string>能否转为List<object>? </object></string></p>
 <p>泛型的种类：泛型类，泛型接口，泛型方法。Java泛型被引入的好处是安全简单。增加代码的复用性。（泛型解决了方法的重载问题：public void write(Integer i,Integer[] ia);public void write(Double d,Double[] da);的泛型版本为public<t> void write(T t,T[] ta)）</t></p>
 <p>为什么要引入泛型:在java1.5之前，如果一个方法的参数中要支持任意类型，则一般用Object类来作为参数的类型，因此在运行的时候就要进行类型转换。这种自动转换类型容易出现当变异的时候不会报错，而运行的时候会报错，这是一个安全隐患。在java中弗雷是可以转换成子类的而且不报错，调用的时候出错运行时才能检查到。</p>
 <p>泛型的好处是在编译的时候检查类型安全（类型检查是保证类型转化是可以正确转换的），并且所有的墙纸转换都是自动和隐式的，提高代码的重用率。</p>
 <p>泛型信息在编译的时候会被自动擦除，也就是在字节码中没有泛型的信息，并使用其限定类型替换（无限定类型用Object），如pulic T fun(T t)替换成public Object fun(Object t),限定类型指的是T extend Father,则用Father替换T。</p>
 <p>泛型主要的体现还是在类型安全的检查与限定，如List<string>,那我们就只能放入String类型的，这里就体现了类型检查</string></p>
 <p>List<string>不能List<object>,因为泛型并不具有继承性，只是一个限定的作用。</object></string></p>
-<h3 id="33-解析XML的几种方式的原理与特点：DOM、SAX、PULL。"><a href="#33-解析XML的几种方式的原理与特点：DOM、SAX、PULL。" class="headerlink" title="33. 解析XML的几种方式的原理与特点：DOM、SAX、PULL。"></a>33. 解析XML的几种方式的原理与特点：DOM、SAX、PULL。</h3><p>1.DOM是基于树的解析，DOM是把XML全部加载到内存中建立一棵树之后再进行处理。所以DOM不适合处理大型的XML（会产生内存的急剧膨胀），这样可以随时修改xml文件内容。<br>2.SAX基于事件的解析，sax解析一行一行的读取xml文件开始标记的时候执行startElement方法，然后执行对应解析方法character方法，当遇到结束表示符就调用endElement方法，所以是基于事件型解析，SAX不必把全部的xml都加载到内存中，但是SAX的缺点也很明显，它只能对文件顺序解析一遍，不支持对文件的随意存取。SAX也仅仅能够读取文件的内容，并不能修改内容。DOM可以随意修改文件树。（主要用于读取xml文件）<br>3.SAX和DOM不是相互排斥的，可以使用DOM来创建SAX事件流，也可以使用SAX来创建DOM树。</p>
-<h3 id="34-Java与C-对比"><a href="#34-Java与C-对比" class="headerlink" title="34. Java与C++对比"></a>34. Java与C++对比</h3><p>1.java比C++程序可靠性更高<br>2.java语言中没有指针的概念<br>3.java用接口（Interface）技术取代C++程序中的多继承性<br>4.Java语言不需要程序对内存进行分配和回收，Java中自动回收内存，而C++中要调用new和delete来申请和释放内存，如果对内存分配与申请掌握不好就容易报错。<br>5.异常：JAVA中的一场机制用于捕获意外事件，增强系统容错能力</p>
+<h2 id="33-解析XML的几种方式的原理与特点：DOM、SAX、PULL。"><a href="#33-解析XML的几种方式的原理与特点：DOM、SAX、PULL。" class="headerlink" title="33. 解析XML的几种方式的原理与特点：DOM、SAX、PULL。"></a>33. 解析XML的几种方式的原理与特点：DOM、SAX、PULL。</h2><p>1.DOM是基于树的解析，DOM是把XML全部加载到内存中建立一棵树之后再进行处理。所以DOM不适合处理大型的XML（会产生内存的急剧膨胀），这样可以随时修改xml文件内容。<br>2.SAX基于事件的解析，sax解析一行一行的读取xml文件开始标记的时候执行startElement方法，然后执行对应解析方法character方法，当遇到结束表示符就调用endElement方法，所以是基于事件型解析，SAX不必把全部的xml都加载到内存中，但是SAX的缺点也很明显，它只能对文件顺序解析一遍，不支持对文件的随意存取。SAX也仅仅能够读取文件的内容，并不能修改内容。DOM可以随意修改文件树。（主要用于读取xml文件）<br>3.SAX和DOM不是相互排斥的，可以使用DOM来创建SAX事件流，也可以使用SAX来创建DOM树。</p>
+<h2 id="34-Java与C-对比"><a href="#34-Java与C-对比" class="headerlink" title="34. Java与C++对比"></a>34. Java与C++对比</h2><p>1.java比C++程序可靠性更高<br>2.java语言中没有指针的概念<br>3.java用接口（Interface）技术取代C++程序中的多继承性<br>4.Java语言不需要程序对内存进行分配和回收，Java中自动回收内存，而C++中要调用new和delete来申请和释放内存，如果对内存分配与申请掌握不好就容易报错。<br>5.异常：JAVA中的一场机制用于捕获意外事件，增强系统容错能力</p>
 <pre><code>try{
     //可能产生例外的代码 
 }
@@ -485,7 +485,7 @@ catch(exceptionType name){
     //处理
 } 
 </code></pre><p>其中exceptionType表示异常类型。而C++则没有如此方便的机制<br>6.“可怕”的goto语句是C和C++的遗物，它是该语言技术上的合法部分，引用goto语句引起了程序结构的混乱，不易理解，goto语句主要用于无条件转移子程序和多结构分支技术。Java不提供goto语句，它虽然指定goto作为关键字，但不支持他的使用，是程序简洁易懂。</p>
-<h3 id="35-Java1-7与1-8新特性"><a href="#35-Java1-7与1-8新特性" class="headerlink" title="35 Java1.7与1.8新特性"></a>35 Java1.7与1.8新特性</h3><p>1.jdk1.7语法上</p>
+<h2 id="35-Java1-7与1-8新特性"><a href="#35-Java1-7与1-8新特性" class="headerlink" title="35. Java1.7与1.8新特性"></a>35. Java1.7与1.8新特性</h2><p>1.jdk1.7语法上</p>
 <p>1）二进制变量的表示，支持将整数类型用二进制来表示，用0b开头</p>
 <pre><code>//所有整数 int，short，long，byte都可以用二进制表示
 //an 8-bit &apos;byte&apos; value;
@@ -852,7 +852,7 @@ System.out.println(hint);
 
 Hints hints1=Person.class.getAnnotation(Hints.class);
 System.out.println(hints2.length);    
-</code></pre><h3 id="36-设计模式：单例、工厂、适配器、责任链、观察者等等"><a href="#36-设计模式：单例、工厂、适配器、责任链、观察者等等" class="headerlink" title="36. 设计模式：单例、工厂、适配器、责任链、观察者等等"></a>36. 设计模式：单例、工厂、适配器、责任链、观察者等等</h3><p>（1）单例</p>
+</code></pre><h2 id="36-设计模式：单例、工厂、适配器、责任链、观察者等等"><a href="#36-设计模式：单例、工厂、适配器、责任链、观察者等等" class="headerlink" title="36. 设计模式：单例、工厂、适配器、责任链、观察者等等"></a>36. 设计模式：单例、工厂、适配器、责任链、观察者等等</h2><p>（1）单例</p>
 <p>Singleton模式要求一个类有且仅有一个实例，并且提供了一个全局的访问点。这就提出了一个问题，如何绕过常规的构造器，提供一种机制来保证一个类只有一个实例？客户程序在调用某一个类时，它是不会考虑这个类是否只能有一个实例等问题的，所以这应该是类设计者得责任，而不是类使用者的责任。从另一个角度来说，Singleton模式其实也是一种职责型模式，因为我们创建了一个对象，这个对象扮演了独一无二的角色，在这个单独的对象实例中，它集中了它所属类的所有权利，同时它也肩负了行驶这种权利的职责。</p>
 <blockquote>
 <p>生活中的例子<br>美国总统的职位是Singleton，美国宪法规定了总统的选举，任期以及继任的顺序。这样，在任何时刻只能有一个现任的总统，无论现任总统的身份为何，其头衔“美利坚合众国总统”是访问这个职位的人的一个全局访问点。</p>
