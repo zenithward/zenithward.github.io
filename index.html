@@ -173,11 +173,11 @@
 
       <div class="body-wrap">
   
-    <article id="post-Java 面试(二)" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Java面试（下）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/01/18/Java 面试(二)/" class="article-date">
-  	<time datetime="2017-01-18T02:39:18.000Z" itemprop="datePublished">2017-01-18</time>
+      <a href="/2017/01/18/Java面试（下）/" class="article-date">
+  	<time datetime="2017-01-18T02:55:26.000Z" itemprop="datePublished">2017-01-18</time>
 </a>
     </div>
   
@@ -185,6 +185,17 @@
     
       <input type="hidden" class="isFancy" />
     
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/18/Java面试（下）/">Java面试（下）</a>
+    </h1>
+  
+
+      </header>
+      
     
     <div class="article-entry" itemprop="articleBody">
       
@@ -265,8 +276,60 @@ class ExtendType extends type{
         System.out.pringln(&quot;ExtendType:&quot;+msg);
     }
 }
-</code></pre><p>1)获取类的Class对象<br>Class类的实例表示正在运行的Java应用程序中的类和接口，获取类的Class对象有多种方式：<br>|    方法         |    示例   |<br>| —————— |:—————-|<br>| 调用getClass | Boolean var1=true;  Class&lt;?&gt;classType2=var1.getClass(); System.out.println(classType2);   输出：class java.lang.Boolean |<br>|运用.class语法  |      Class&lt;?&gt; classType4=Boolean.class;      System.out.println(classType4); 输出：class java.lang.Boolean |<br>|运用static method Class.forName()| Class&lt;?&gt; classType5=class.forName(“java.lang.Boolean”);System.out.println(classType5);输出：class java.lang.Boolean|<br>|运行primitive wrapper classes的Type语法|   Class&lt;?&gt; classType3=Boolean.TYPE;                  System.out.println(classType3);    输出：boolean|</p>
-<p>2）获取类的Fields<br>可以通过反射机制得到某个类的某个属性，然后改变对应于这个类的某个实例的该属性值。Java的Class<t>类提供了几个方法获取类的属性<br>|    方法             |    示例   |<br>| —————— |:—————-|<br>|public FieldgetField(String name)|返回一个Field对象，它反映此Class对象所表示的类或接口的制定公共成员字段|<br>|public Field[] getFields()|返回一个包含某些Field对象的数组，这些对象反映此Class对象所表示的类或接口的所有可访问公共字段|<br>|public FieldgetDeclaredField(String name)|返回一个Field对象，该对象反映此Class对象所表示的类或接口的指定已声明字段|<br>|public Field[] getDeclaredFields()|返回Field对象的一个数组，这些对象反映此Class对象所表示的类或接口所声明的所有字段|</t></p>
+</code></pre><p>1)获取类的Class对象<br>Class类的实例表示正在运行的Java应用程序中的类和接口，获取类的Class对象有多种方式：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th style="text-align:left">示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>调用getClass</td>
+<td style="text-align:left">Boolean var1=true;  Class&lt;?&gt;classType2=var1.getClass(); System.out.println(classType2);   输出：class java.lang.Boolean</td>
+</tr>
+<tr>
+<td>运用.class语法</td>
+<td style="text-align:left">Class&lt;?&gt; classType4=Boolean.class;      System.out.println(classType4); 输出：class java.lang.Boolean</td>
+</tr>
+<tr>
+<td>运用static method Class.forName()</td>
+<td style="text-align:left">Class&lt;?&gt; classType5=class.forName(“java.lang.Boolean”);System.out.println(classType5);输出：class java.lang.Boolean</td>
+</tr>
+<tr>
+<td>运行primitive wrapper classes的Type语法</td>
+<td style="text-align:left">Class&lt;?&gt; classType3=Boolean.TYPE;                  System.out.println(classType3);    输出：boolean</td>
+</tr>
+</tbody>
+</table>
+<p>2）获取类的Fields<br>可以通过反射机制得到某个类的某个属性，然后改变对应于这个类的某个实例的该属性值。Java的Class<t>类提供了几个方法获取类的属性</t></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th style="text-align:left">示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>public FieldgetField(String name)</td>
+<td style="text-align:left">返回一个Field对象，它反映此Class对象所表示的类或接口的制定公共成员字段</td>
+</tr>
+<tr>
+<td>public Field[] getFields()</td>
+<td style="text-align:left">返回一个包含某些Field对象的数组，这些对象反映此Class对象所表示的类或接口的所有可访问公共字段</td>
+</tr>
+<tr>
+<td>public FieldgetDeclaredField(String name)</td>
+<td style="text-align:left">返回一个Field对象，该对象反映此Class对象所表示的类或接口的指定已声明字段</td>
+</tr>
+<tr>
+<td>public Field[] getDeclaredFields()</td>
+<td style="text-align:left">返回Field对象的一个数组，这些对象反映此Class对象所表示的类或接口所声明的所有字段</td>
+</tr>
+</tbody>
+</table>
 <pre><code>Class&lt;?&gt; classType=ExtendType.class;
 //使用getField获取属性
 Field[] fields=classType.getFields();
@@ -290,7 +353,33 @@ public int com.quincy.ExtendType.pubIntExtendField
 public java.lang.String com.quincy.ExtendType.pubStringExtendField
 private int com.quincy.ExtendType.prvIntExtendField
 </code></pre><p>可见getFields和getDeclaredFields区别：<br>getFields返回的是申明为public的属性，包括父类中定义，getDeclaredFields返回的是指定类定义的所有定义的属性，不包括父类的。</p>
-<p>3）获取类的Method<br>通过反射机制得到某个类的某个方法，然后调用对应于这个类的某个实例的该方法 Class<t> 类提供了几个方法获取类的方法<br>|    方法             |    示例   |<br>| —————— |:—————-|<br>|public MethodgetMethod(String name,Class&lt;?&gt; parameterTypes)|返回一个Method对象，它反映此Class对象所表示的类或接口的指定公共成员方法|<br>|public Method[] getMethods()|返回一个包含某些Method对象的数组，这些对象反应此Class对象所表示的类或接口（包括那些由该类或接口声明的以及从超类和超接口继承的那些类或接口）的公共member方法|<br>|public MethodgetDeclareMethod(Stringname,Class&lt;?&gt;… parameterTypes)|返回一个Method对象，该对象反应此Class对象所表示的类或借口的指定已声明方法|<br>|public Method[] getDeclaredMethods()|返回Method对象的一个数组，这些对象反映此Class对象表示的类或接口声明的所有方法，包括公共，保护，默认（包）访问和私有方法，但不包括继承方法|</t></p>
+<p>3）获取类的Method<br>通过反射机制得到某个类的某个方法，然后调用对应于这个类的某个实例的该方法 Class<t> 类提供了几个方法获取类的方法</t></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th style="text-align:left">示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>public MethodgetMethod(String name,Class&lt;?&gt; parameterTypes)</td>
+<td style="text-align:left">返回一个Method对象，它反映此Class对象所表示的类或接口的指定公共成员方法</td>
+</tr>
+<tr>
+<td>public Method[] getMethods()</td>
+<td style="text-align:left">返回一个包含某些Method对象的数组，这些对象反应此Class对象所表示的类或接口（包括那些由该类或接口声明的以及从超类和超接口继承的那些类或接口）的公共member方法</td>
+</tr>
+<tr>
+<td>public MethodgetDeclareMethod(Stringname,Class&lt;?&gt;… parameterTypes)</td>
+<td style="text-align:left">返回一个Method对象，该对象反应此Class对象所表示的类或借口的指定已声明方法</td>
+</tr>
+<tr>
+<td>public Method[] getDeclaredMethods()</td>
+<td style="text-align:left">返回Method对象的一个数组，这些对象反映此Class对象表示的类或接口声明的所有方法，包括公共，保护，默认（包）访问和私有方法，但不包括继承方法</td>
+</tr>
+</tbody>
+</table>
 <pre><code>//使用getMethods获取函数
 Class&lt;?&gt; classType=ExtendType.class;
 Method[] methods=classType.getMethods();
@@ -323,7 +412,33 @@ public final native void java.lang.Object.notifyAll()
 private void com.quincy.ExtendType.Log(java.lang.String)
 public void com.quincy.ExtendType.setIntExtendField(int)
 public int com.quincy.ExtendType.getIntExtendField()
-</code></pre><p>4）获取类的Constructor<br>通过反射机制得到某个类的构造器，然后调用该构造器创建该类的一个实例<br>Class<t> 类提供了几个方法获取类的构造器<br>|    方法             |    示例   |<br>| —————— |:—————-|<br>|public Constructor<t> getConstructor(Class&lt;?&gt;… parameterTypes)|返回一个Constructor对象，它反映此Class对象所表示的类的指定公共构造方法|<br>|public Constructor&lt;?&gt;[] getConstructors()|返回一个包含某些 Constructor 对象的数组，这些对象反映此 Class 对象所表示的类的所有公共构造方法|<br>|public Constructor<t> getDeclaredConstructor(Class&lt;?&gt;… parameterTypes)|返回一个 Constructor 对象，该对象反映此 Class 对象所表示的类或接口的指定构造方法|<br>|public Constructor&lt;?&gt;[] getDeclaredConstructors()|返回 Constructor 对象的一个数组，这些对象反映此 Class 对象表示的类声明的所有构造方法。它们是公共、保护、默认（包）访问和私有构造方法|</t></t></t></p>
+</code></pre><p>4）获取类的Constructor<br>通过反射机制得到某个类的构造器，然后调用该构造器创建该类的一个实例<br>Class<t> 类提供了几个方法获取类的构造器</t></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th style="text-align:left">示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>public Constructor<t> getConstructor(Class&lt;?&gt;… parameterTypes)</t></td>
+<td style="text-align:left">返回一个Constructor对象，它反映此Class对象所表示的类的指定公共构造方法</td>
+</tr>
+<tr>
+<td>public Constructor&lt;?&gt;[] getConstructors()</td>
+<td style="text-align:left">返回一个包含某些 Constructor 对象的数组，这些对象反映此 Class 对象所表示的类的所有公共构造方法</td>
+</tr>
+<tr>
+<td>public Constructor<t> getDeclaredConstructor(Class&lt;?&gt;… parameterTypes)</t></td>
+<td style="text-align:left">返回一个 Constructor 对象，该对象反映此 Class 对象所表示的类或接口的指定构造方法</td>
+</tr>
+<tr>
+<td>public Constructor&lt;?&gt;[] getDeclaredConstructors()</td>
+<td style="text-align:left">返回 Constructor 对象的一个数组，这些对象反映此 Class 对象表示的类声明的所有构造方法。它们是公共、保护、默认（包）访问和私有构造方法</td>
+</tr>
+</tbody>
+</table>
 <pre><code>// 使用getConstructors获取构造器    
 
 Constructor&lt;?&gt;[] constructors = classType.getConstructors();  
@@ -347,7 +462,8 @@ com.quincy.ExtendType(int,java.lang.String)
 
 ...
 </code></pre><p>反射的作用：反射可以增加代码的灵活性，通过反射可以使系统和插件解耦，如Spring就是使用反射来控制反转的（IOC）；<br>什么是反射：java运行阶段的程序对自身的一种审查能力</p>
-<h3 id="32-泛型常用特点，List能否转为List"><a href="#32-泛型常用特点，List能否转为List" class="headerlink" title="32. 泛型常用特点，List能否转为List"></a>32. 泛型常用特点，List<string>能否转为List<object></object></string></h3><p>泛型的种类：泛型类，泛型接口，泛型方法。Java泛型被引入的好处是安全简单。增加代码的复用性。（泛型解决了方法的重载问题：public void write(Integer i,Integer[] ia);public void write(Double d,Double[] da);的泛型版本为public<t> void write(T t,T[] ta)）</t></p>
+<h3 id="32-泛型常用特点"><a href="#32-泛型常用特点" class="headerlink" title="32. 泛型常用特点"></a>32. 泛型常用特点</h3><p>List<string>能否转为List<object>? </object></string></p>
+<p>泛型的种类：泛型类，泛型接口，泛型方法。Java泛型被引入的好处是安全简单。增加代码的复用性。（泛型解决了方法的重载问题：public void write(Integer i,Integer[] ia);public void write(Double d,Double[] da);的泛型版本为public<t> void write(T t,T[] ta)）</t></p>
 <p>为什么要引入泛型:在java1.5之前，如果一个方法的参数中要支持任意类型，则一般用Object类来作为参数的类型，因此在运行的时候就要进行类型转换。这种自动转换类型容易出现当变异的时候不会报错，而运行的时候会报错，这是一个安全隐患。在java中弗雷是可以转换成子类的而且不报错，调用的时候出错运行时才能检查到。</p>
 <p>泛型的好处是在编译的时候检查类型安全（类型检查是保证类型转化是可以正确转换的），并且所有的墙纸转换都是自动和隐式的，提高代码的重用率。</p>
 <p>泛型信息在编译的时候会被自动擦除，也就是在字节码中没有泛型的信息，并使用其限定类型替换（无限定类型用Object），如pulic T fun(T t)替换成public Object fun(Object t),限定类型指的是T extend Father,则用Father替换T。</p>
@@ -759,6 +875,13 @@ public Object readReslove(){
 </code></pre><p>但是，synchronized关键字锁住的是这个对象，这样的用法，在性能上会有所下降，因为每次调用getInstance（），都要对对象上锁，事实上，只有在第一次创建对象的时候需要加锁，之后就不需要了，所以这个地方需要改进，我们改成下面这个：</p>
 <pre><code>public static Singleton getInstance(){
       if(instance==null){
+         synchronized(instance){
+           if(instance==null){
+              instance=new Singleton();
+           }
+         }
+       }
+}
 </code></pre>
       
     </div>
@@ -785,11 +908,11 @@ public Object readReslove(){
 
 
   
-    <article id="post-Java面试(一)" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Java面试（上）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/01/18/Java面试(一)/" class="article-date">
-  	<time datetime="2017-01-18T02:37:26.000Z" itemprop="datePublished">2017-01-18</time>
+      <a href="/2017/01/18/Java面试（上）/" class="article-date">
+  	<time datetime="2017-01-18T02:49:55.000Z" itemprop="datePublished">2017-01-18</time>
 </a>
     </div>
   
@@ -798,12 +921,30 @@ public Object readReslove(){
       <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/18/Java面试（上）/">Java面试（上）</a>
+    </h1>
+  
+
+      </header>
+      
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Java面试"><a href="#Java面试" class="headerlink" title="Java面试"></a>Java面试</h1><p>标签（空格分隔）： java</p>
-<hr>
-<h3 id="1-九种基本数据类型的大小，以及他们的封装类"><a href="#1-九种基本数据类型的大小，以及他们的封装类" class="headerlink" title="1.九种基本数据类型的大小，以及他们的封装类"></a>1.九种基本数据类型的大小，以及他们的封装类</h3><p>byte（Byte）：1字节<br>short（Short）：2字节<br>int（Integer）：4字节<br>long（Long）：8字节<br>float（Float）：4字节<br>double（Double）：8字节<br>boolean（Boolean）<br>char（Character）：2字节<br>void（Void）</p>
-<h3 id="2-Switch能否用string做参数？"><a href="#2-Switch能否用string做参数？" class="headerlink" title="2.Switch能否用string做参数？"></a>2.Switch能否用string做参数？</h3><p>char int byte short可以，java 7之后可以使用string做参数</p>
+        <h1 id="Java面试"><a href="#Java面试" class="headerlink" title="Java面试"></a>Java面试</h1><hr>
+<h3 id="1-九种基本数据类型的大小，以及他们的封装类"><a href="#1-九种基本数据类型的大小，以及他们的封装类" class="headerlink" title="1.九种基本数据类型的大小，以及他们的封装类"></a>1.九种基本数据类型的大小，以及他们的封装类</h3><pre><code>byte（Byte）：1字节
+short（Short）：2字节
+int（Integer）：4字节
+long（Long）：8字节
+float（Float）：4字节
+double（Double）：8字节
+boolean（Boolean）
+char（Character）：2字节
+void（Void）
+</code></pre><h3 id="2-Switch能否用string做参数？"><a href="#2-Switch能否用string做参数？" class="headerlink" title="2.Switch能否用string做参数？"></a>2.Switch能否用string做参数？</h3><p>char int byte short可以，java 7之后可以使用string做参数</p>
 <h3 id="3-equals和-的区别"><a href="#3-equals和-的区别" class="headerlink" title="3.equals和==的区别"></a>3.equals和==的区别</h3><p>“==”是一个运算符，而equals是object里面的一个方法<br>对于基本类型，在比较大小的时候可以使用“==”，看两个元素是否相等。equals没有用武之地。<br>对于对象之间的比较，“==”是比较两个对象的内存地址是否相等，equals在object也是使用“==”运算符实现的，所以不重写equals方法的类使用是一样的，但是我们一般会在子类中重写他，比较两个对象的内容是否一样。</p>
 <h3 id="4-Object有哪些公用方法？"><a href="#4-Object有哪些公用方法？" class="headerlink" title="4.Object有哪些公用方法？"></a>4.Object有哪些公用方法？</h3><p>Object是所有类的父类，任何类都默认继承Object。</p>
 <p>1）clone：protect方法，实现对象的浅复制，只有实现了Cloneable接口才可以调用该方法，否则抛出CloneNotSupportedException异常</p>
@@ -833,7 +974,11 @@ public Object readReslove(){
 <p>List：有序的可重复集合，可以再任意位置增加删除元素</p>
 <p>Queue：遵从先进先出的原则，使用时尽量避免使用add（）和remove（）方法，而是使用offer（）来添加元素，使用poll（）来移除元素，他的有点事可以通过返回值来判断是否成功。LinkedList实现了Queue接口</p>
 <p>stack：遵从后进先出的原则，Stack继承自vector。它通过五个操作对类Vector进行扩展，允许将向量视为堆栈，它提供了通常的push和pop操作，以及去堆栈顶点的peek()方法，测试堆栈是否为空的empty方法等。</p>
-<h3 id="10-HashMap和HashTable的区别。"><a href="#10-HashMap和HashTable的区别。" class="headerlink" title="10.HashMap和HashTable的区别。"></a>10.HashMap和HashTable的区别。</h3><p>1）HashMap几乎可以等价于Hashtable，除了HashMap是非synchronized的，并可以接受null（hashMap可以接受null的键（key）和值（value），而hashTable则不行）<br>2）HashMap是非synchronized，而hashtable是synchronized，这意味着hashtable是线程安全的，多个线程一个共享一个hashtable，而如果没有正确的同步的话，多个线程是不能共享hashMap的。<br>3）另一个区别是HashMap的迭代器(Iterator)是fail-fast迭代器，而HashTable的enumerator迭代器不是fail-fast的。所以当有其它线程改变了HashMap的结构（增加或者移除元素），将会抛出ConcurrentModificationException，但迭代器本身的remove()方法移除元素则不会抛出ConcurrentModificationException异常。但这并不是一个一定发生的行为，要看JVM。<br>4）由于hashTable是线程安全的也是synchronized，所以在单线程环境下它比hashMap要慢。如果你不需要同步，只需要单一线程，那么使用hashmap性能要好过HashTable。<br>5）HashMap不能保证随着时间的推移map中的元素次序是不变的。</p>
+<h3 id="10-HashMap和HashTable的区别。"><a href="#10-HashMap和HashTable的区别。" class="headerlink" title="10.HashMap和HashTable的区别。"></a>10.HashMap和HashTable的区别。</h3><p>1）HashMap几乎可以等价于Hashtable，除了HashMap是非synchronized的，并可以接受null（hashMap可以接受null的键（key）和值（value），而hashTable则不行）</p>
+<p>2）HashMap是非synchronized，而hashtable是synchronized，这意味着hashtable是线程安全的，多个线程一个共享一个hashtable，而如果没有正确的同步的话，多个线程是不能共享hashMap的。</p>
+<p>3）另一个区别是HashMap的迭代器(Iterator)是fail-fast迭代器，而HashTable的enumerator迭代器不是fail-fast的。所以当有其它线程改变了HashMap的结构（增加或者移除元素），将会抛出ConcurrentModificationException，但迭代器本身的remove()方法移除元素则不会抛出ConcurrentModificationException异常。但这并不是一个一定发生的行为，要看JVM。</p>
+<p>4）由于hashTable是线程安全的也是synchronized，所以在单线程环境下它比hashMap要慢。如果你不需要同步，只需要单一线程，那么使用hashmap性能要好过HashTable。</p>
+<p>5）HashMap不能保证随着时间的推移map中的元素次序是不变的。</p>
 <h3 id="11-HashMap和ConcurrentHashMap的区别，HashMap的底层源码。"><a href="#11-HashMap和ConcurrentHashMap的区别，HashMap的底层源码。" class="headerlink" title="11.HashMap和ConcurrentHashMap的区别，HashMap的底层源码。"></a>11.HashMap和ConcurrentHashMap的区别，HashMap的底层源码。</h3><p>ConcurrentHashMap融合了hashmap和hashtable二者的优势。hashtable是做了同步的，hashmap未考虑同步，所以hashmap在单线程情况下效率较高，hashtable在多线程情况下，同步操作能保证程序执行的正确性。但是hashtable每次同步执行的时候都要锁住整个结构。</p>
 <p>ConcurrentHashMap正式为了解决这个问题而诞生的。ConcurrentHashMap锁的当时是稍微细粒度的。ConcurrentHashMap将hash表分为16个桶（默认值），诸如get，put，remove等常用操作只锁住当前需要用到的桶。</p>
 <p>试想，原来只能一个线程进入，现在却能同时16个写线程进入（写线程才需要锁定，而而读线程几乎不受限制），并发性的提升是显而易见的。</p>
@@ -919,7 +1064,8 @@ public HashMap(){
      addEntry(0,null,value,0); //如果键为null的话，则hash值为0
      return null；
  }
-</code></pre><p><font color="red"><b>注意：如果key为null的话，hash值为0，对象存储在数组中索引为0的位置。即table[0]</b></font></p>
+</code></pre><font color="red"><b>注意：如果key为null的话，hash值为0，对象存储在数组中索引为0的位置。即table[0]</b></font>
+
 <p>下面是计算hash码的函数：</p>
 <pre><code>//计算hash值得方法，通过键的hashCode来计算
 static int hash(int h){
@@ -1352,8 +1498,11 @@ public void Method２()
 <p>wait()/notify()方法时基类Object的两个方法，也就意味着所有Java类都会拥有这两个方法，这样我们就可以为任何对象实现同步机制。</p>
 <p>wait()方法：当缓冲区已满/空时，生产者/消费者线程停止自己的执行，放弃锁，使自己处于等待状态，让其他线程执行<br>notify()方法：当生产者/消费者向缓冲区放入/取出一个产品时，向其他等待的线程发出可执行的通知，同时放弃锁，使自己处于等待状态。</p>
 <pre><code>//实现缓冲区
-</code></pre><p>public class Storage {<br>    private final int MAX_SIZE=100;  //仓库最大存储量<br>    private LinkedList<object> list=new LinkedList<object>();   //仓库存储的载体</object></object></p>
-<pre><code>//生产num个产品
+ public class Storage {
+private final int MAX_SIZE=100;  //仓库最大存储量
+private LinkedList&lt;Object&gt; list=new LinkedList&lt;Object&gt;();   //仓库存储的载体
+
+//生产num个产品
 public void produce(int num){
     //同步代码段
     synchronized(list){
@@ -1475,8 +1624,11 @@ public void setStorage(Storage storage){
 }
 </code></pre><p>2.await()/signal()方法<br>在JDK5.0之后，Java提供了更加健壮的线程处理机制，包括同步，锁定，线程池等，他们可以实现更细粒度的线程控制。await()和signal()就是其中用来做同步的两种方法，它们的功能基本上和wait()/notify()相同，完全可以取代他们，但是它们和新引入的锁定机制Lock直接挂钩，具有更大的灵活性。通过在Lock对象上调用newCondition()方法，将条件变量和一个锁对象绑定，进而控制并发程序访问竞争资源的安全。</p>
 <pre><code>//实现缓冲区
-</code></pre><p>public class Storage {<br>    private final int MAX_SIZE=100;  //仓库最大存储量<br>    private LinkedList<object> list=new LinkedList<object>();   //仓库存储的载体</object></object></p>
-<pre><code>//锁
+public class Storage {
+private final int MAX_SIZE=100;  //仓库最大存储量
+private LinkedList&lt;Object&gt; list=new LinkedList&lt;Object&gt;();   //仓库存储的载体
+
+//锁
 private final Lock lock=new ReentrantLock();
 
 //仓库满的条件变量
@@ -1742,11 +1894,13 @@ for(int i=0;i&lt;10;i++){
 }
 </code></pre><p>结果依次输出，相当于顺序执行各个任务</p>
 <p>线程池的优势<br>合理利用线程池能够带来三个好处</p>
+<blockquote>
 <ul>
 <li>降低资源消耗。通过重复利用已创建的线程降低县城创建和销毁造成的消耗。</li>
 <li>提高响应速度。当任务到达时，任务可以不需要等到线程创建就能立即执行</li>
 <li>提高线程的可管理性，线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一的分配，调优和监控。但是要做到合理的利用县城吃，必须对其原理了如指掌</li>
 </ul>
+</blockquote>
 <h3 id="27-Concurrent包里的其他东西：ArrayBlockingQueue、CountDownLatch等等。"><a href="#27-Concurrent包里的其他东西：ArrayBlockingQueue、CountDownLatch等等。" class="headerlink" title="27. Concurrent包里的其他东西：ArrayBlockingQueue、CountDownLatch等等。"></a>27. Concurrent包里的其他东西：ArrayBlockingQueue、CountDownLatch等等。</h3><p>java.util.concurrent包含许多线程安全，测试良好，高性能的并发构建块。通过提供一组可靠的，高性能并发构建块，开发人员可以提高并发类的线程安全，可伸缩性，性能，可读性和可靠性。</p>
 <p>使用线程的理由：</p>
 <blockquote>
