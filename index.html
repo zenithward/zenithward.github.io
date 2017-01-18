@@ -202,7 +202,7 @@
         <blockquote>
 <p>参考文章</p>
 <p><a href="http://www.ibm.com/developerworks/cn/opensource/os-cn-spark-practice2/" target="_blank" rel="external">Spark实战，第二部分：使用Kafka和Spark Streaming构建实时数据处理系统</a></p>
-<p><a href="spark.apache.org/docs/1.6.3/streaming-programming-guide.html">Spark Streaming Programming Guide</a></p>
+<p><a href="http://www.spark.apache.org/docs/1.6.3/streaming-programming-guide.html" target="_blank" rel="external">Spark Streaming Programming Guide</a></p>
 </blockquote>
 <h2 id="关于Spark-Streaming"><a href="#关于Spark-Streaming" class="headerlink" title="关于Spark Streaming"></a>关于Spark Streaming</h2><p>Spark Streaming模块是对于Spark Core的一个扩展，目的是为了以提高吞吐量，并且容错的方式处理持续性的数据流。目前Spark支持的外部数据源有Flume,Kafka,Twitter,ZeroMQ,TCP Socket等。</p>
 <p>Discretized Stream也叫DStream是Spark Streaming对于持续数据流的一种基本抽象，在内部实现上，DStream会被表示成一系列连续的RDD(弹性分布式数据集)，每一个RDD都代表一定时间间隔内到达的数据。所以在对DStream进行操作时，会被Spark Stream引擎转化成对底层RDD的操作。对Dstream的操作类型有：</p>
